@@ -1,6 +1,5 @@
 require("settings-value")
 
-
 local function update_recipes(event)
 	local base = event.research.name:gsub("(.*)%-.*$", "%1")
 	local identifier = base:sub(1,3)
@@ -49,9 +48,13 @@ local function switch_tech(event)
 			game.forces["player"].technologies[base .. "-" .. level + 1].enabled = true
 		end
 
-		game.forces["player"].technologies[base .. "-" .. level].enabled = false
-		game.forces["player"].technologies[base .. "-" .. level].researched = false
+		
 		game.forces["player"].recipes[base .. "-" .. level].enabled = true
+		if tonumber(level) > 1 then
+			game.forces["player"].technologies[base .. "-" .. level-1].enabled = false
+			game.forces["player"].technologies[base .. "-" .. level-1].researched = false
+		end
+			  
 		if tonumber(level) > 1 then
 			game.forces["player"].recipes[base .. "-" .. level - 1].enabled = false
 		end
@@ -62,7 +65,3 @@ script.on_event(defines.events.on_research_finished, function(event)
 	switch_tech(event)
 	update_recipes(event)
 end)
-
-
---gsub("(.*)%-.*$","%1") after specific character
---gsub(".*-","") before specific character

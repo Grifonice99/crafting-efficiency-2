@@ -3,7 +3,7 @@ New_values = {
         name = "copper cable efficiency",
         max = 14,
         crafting = {
-            efficiency = 10.0,
+            efficiency = 5.0,
         },
         research = {
             level = 1
@@ -13,7 +13,7 @@ New_values = {
         name = "electronic circuit efficiency",
         max = 9,
         crafting = {
-            efficiency = 10.0,
+            efficiency = 5.0,
         },
         research = {
             level = 1
@@ -23,7 +23,7 @@ New_values = {
         name = "iron gear wheel efficiency",
         max = 13,
         crafting = {
-            efficiency = 10.0,
+            efficiency = 5.0,
         },
         research = {
             level = 1
@@ -33,103 +33,115 @@ New_values = {
         name = "engine unit efficiency",
         max = 9,
         crafting = {
-            efficiency = 10.0,
+            efficiency = 5.0,
         },
         research = {
             level = 2,
-            prerequisites = { "engine" },
         }
     },
     ["battery"] = {
         name = "battery efficiency",
         max = 6,
         crafting = {
-            efficiency = 10.0,
+            efficiency = 5.0,
             category = "chemistry",
         },
         research = {
             level = 2,
-            prerequisites = { "battery" },
         }
     },
     ["advanced-circuit"] = {
         name = "advanced circuit efficiency",
         max = 8,
         crafting = {
-            efficiency = 10.0,
+            efficiency = 5.0,
         },
         research = {
             level = 2,
-            prerequisites = { "advanced-electronics" },
         }
     },
     ["plastic-bar"] = {
         name = "plastic bar efficiency",
         max = 7,
         crafting = {
-            efficiency = 10.0,
+            efficiency = 5.0,
             category = "chemistry",
         },
         research = {
             level = 2,
-            prerequisites = { "plastics" },
         }
     },
     ["processing-unit"] = {
         name = "processing unit efficiency",
         max = 8,
         crafting = {
-            efficiency = 10.0,
+            efficiency = 5.0,
             category = "crafting-with-fluid",
         },
         research = {
             level = 3,
-            prerequisites = { "advanced-electronics-2" },
         }
     },
     ["electric-engine-unit"] = {
         name = "electric engine unit efficiency",
         max = 15,
         crafting = {
-            efficiency = 10.0,
-            category = "crafting-with-fluid",
+            efficiency = 5.0,
         },
         research = {
             level = 3,
-            prerequisites = { "electric-engine" },
         }
     },
     ["flying-robot-frame"] = {
         name = "flying robot frame efficiency",
         max = 15,
         crafting = {
-            efficiency = 10.0,
+            efficiency = 5.0,
         },
         research = {
             level = 3,
-            prerequisites = { "robotics" },
         }
     },
     ["low-density-structure"] = {
         name = "low density structure efficiency",
         max = 15,
         crafting ={
-            efficiency = 10.0,
+            efficiency = 5.0,
         },
         research = {
             level = 3,
-            prerequisites = { "low-density-structure" },
         }
     },
     ["uranium-processing"] = {
         name = "uranium processing efficiency",
         max = 3,
         crafting = {
-            efficiency = 10.0,
+            efficiency = 5.0,
         },
         research = {
             level = 4,
-            prerequisites = { "uranium-processing" },
         }
     }
 }
+
+
+function CE_Add_Recipe(data, name)
+    if data.name == nil or data.max == nil or data.icon == nil or data.research == nil or data.research.level == nil or data.crafting == nil or  data.crafting.efficiency == nil or  name == nil then
+        log("Missing elements in the table.")
+        return
+    end
+    local item = {
+        icon = data.icon,
+        name = data.name,
+        max = data.max,
+        crafting = {
+            efficiency = data.crafting.efficiency,
+        },
+        research = {
+            level = data.research.level,
+        }
+    }
+
+    New_values[name] = item
+    log("Added " .. name .. " to the table.")
+end
