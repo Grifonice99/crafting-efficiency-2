@@ -254,6 +254,23 @@ local function add_recipe(recipe, name, count)
             end
         end
     end
+    if CE_recipes[name].base.ingredients then
+        for a, b in pairs(CE_recipes[name].base.ingredients) do
+            if b.type == "fluid" then
+                recipe.normal.ingredients[a].fluidbox_index = b.fluidbox_index or 1
+                recipe.expensive.ingredients[a].fluidbox_index = b.fluidbox_index or 1
+            end
+        end
+    end
+    if CE_recipes[name].base.results then
+        for a, b in pairs(CE_recipes[name].base.results) do
+            if b.type == "fluid" then
+                recipe.normal.results[a].fluidbox_index = b.fluidbox_index or 1
+                recipe.expensive.results[a].fluidbox_index = b.fluidbox_index or 1
+            end
+        end
+    end
+
     data:extend({ recipe })
 end
 
