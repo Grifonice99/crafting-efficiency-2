@@ -6,6 +6,9 @@ local function update_recipes(event)
 	local level = event.research.name:gsub(".*%-", "")
 	local name = base:sub(4)
 	if New_values[name] and tonumber(level) ~= nil and identifier == "ce-" then
+		if tonumber(level) > 1 then
+			game.forces["player"].recipes[base .. "-" .. level - 1].enabled = false
+		end
 		for _, surface in pairs(game.surfaces) do
 			for _, entity in pairs(surface.find_entities_filtered({ type = "assembling-machine" })) do
 				local recipe = entity.get_recipe()
@@ -38,30 +41,6 @@ local function update_recipes(event)
 	end
 end
 
-local function switch_tech(event)
-	local base = event.research.name:gsub("(.*)%-.*$", "%1")
-	local identifier = base:sub(1,3)
-	local level = event.research.name:gsub(".*%-", "")
-	local name = base:sub(4)
-	if New_values[name] and tonumber(level) ~= nil and identifier == "ce-" then
-		if New_values[name].max > tonumber(level) then
-			game.forces["player"].technologies[base .. "-" .. level + 1].enabled = true
-		end
-
-		
-		game.forces["player"].recipes[base .. "-" .. level].enabled = true
-		if tonumber(level) > 1 then
-			game.forces["player"].technologies[base .. "-" .. level-1].enabled = false
-			game.forces["player"].technologies[base .. "-" .. level-1].researched = false
-		end
-			  
-		if tonumber(level) > 1 then
-			game.forces["player"].recipes[base .. "-" .. level - 1].enabled = false
-		end
-	end
-end
-
 script.on_event(defines.events.on_research_finished, function(event)
-	switch_tech(event)
 	update_recipes(event)
 end)

@@ -1,6 +1,5 @@
 require("functions")
 
-
 function table.removekey(table, key)
     local element = table[key]
     table[key] = nil
@@ -26,22 +25,22 @@ local function add_recipe(recipe, name, count)
             table.insert(materials, b[2])
         end
     end
-    
+
     if CE_recipes[name].base.result then
         table.insert(result, CE_recipes[name].base.result[1])
-        result_count = {CE_recipes[name].base.result_count} 
+        result_count = { CE_recipes[name].base.result_count }
     else
         for a, b in pairs(CE_recipes[name].base.results) do
             if b.name then
                 table.insert(results, b.name)
                 table.insert(result_count, b.amount)
             else
-                if #b > 2 and math.floor(#b/2) == #b/2 then
+                if #b > 2 and math.floor(#b / 2) == #b / 2 then
                     for i = 0, #b, 2 do
-                        table.insert(results, b[i-1])
+                        table.insert(results, b[i - 1])
                         table.insert(result_count, b[i])
                     end
-                else                    
+                else
                     table.insert(result, b[1])
                     table.insert(result_count, b[2])
                 end
@@ -60,14 +59,14 @@ local function add_recipe(recipe, name, count)
     materials = multiplier_result[1]
     time = multiplier_result[2]
     result_count_2 = multiplier_result[3]
-    
+
     local conf = {}
     conf.ingredients = {}
     conf.result_count = {}
     conf.results = {}
     conf.result = {}
     conf.time = time
-    
+
 
     for a, b in pairs(CE_recipes[name].base.ingredients) do
         if b.name then
@@ -81,7 +80,7 @@ local function add_recipe(recipe, name, count)
     if CE_recipes[name].base.results then
         local results = {}
         for a, b in pairs(CE_recipes[name].base.results) do
-            
+
             if b.name then
                 if b.probability then
                     table.insert(conf.results,
@@ -94,13 +93,13 @@ local function add_recipe(recipe, name, count)
             end
         end
         if #results > 0 then
-            conf.results=results
+            conf.results = results
         end
     else
         for a, b in pairs(CE_recipes[name].base.result) do
             if b.name then
                 table.insert(conf.result, { type = b.type, name = b.name, amount = b.amount })
-            else                
+            else
                 table.insert(conf.result, { b })
             end
         end
@@ -150,12 +149,9 @@ local function add_recipe(recipe, name, count)
         recipe.result_count = result_count_2[1]
     else
         if #result_count_2 == 1 and not CE_recipes[name][tostring(count)].results[1].name then
-            
+
             recipe.result = CE_recipes[name][tostring(count)].results[1]
             recipe.result_count = CE_recipes[name][tostring(count)].result_count
-        --elseif type(CE_recipes[name][tostring(count)].results[1]) == "tablea" and not CE_recipes[name][tostring(count)].results[1].name then 
-         --   for a, b in pairs(CE_recipes[name][tostring(count)].results) do
-        --    end
         else
             recipe.results = CE_recipes[name][tostring(count)].results
         end
@@ -170,12 +166,20 @@ local function add_recipe(recipe, name, count)
         recipe.icons = CE_recipes[name].base.icons
     end
 
+    if CE_recipes[name].base.icon_size then
+        recipe.icon_size = CE_recipes[name].base.icon_size
+    end
+
+    if CE_recipes[name].base.icon_mipmaps then
+        recipe.icon_mipmaps = CE_recipes[name].base.icon_mipmaps
+    end
+
     if CE_recipes[name].base.subgroup then
         recipe.subgroup = CE_recipes[name].base.subgroup
     end
     recipe.energy_required = CE_recipes[name][tostring(count)].time
-    
-    
+
+
     data:extend({ recipe })
 end
 
@@ -217,6 +221,7 @@ local function add_research(name, count)
         type = "technology",
         icon_size = 64,
         icon_mipmaps = 4,
+        upgrade = false,
         localised_name = { "technology-name.technology-efficiency", New_values[name].name, " (" .. count .. ")" },
         effects = {
             {
@@ -225,28 +230,32 @@ local function add_research(name, count)
             },
         },
     }
+    local prerequisites = {}
+    if count > 1 then
+        table.insert(prerequisites, "ce-" .. name .. "-" .. count-1)
+        tech.upgrade = true
+    else
+        if CE_recipes[name].base.prerequisites then
+            for a, b in pairs(CE_recipes[name].base.prerequisites) do
+                table.insert(prerequisites, b)
+            end
+        end
+    end
 
     if CE_recipes[name].base.icon then
         tech.icon = CE_recipes[name].base.icon
-    elseif  New_values[name].icon then
+    elseif New_values[name].icon then
         tech.icon = New_values[name].icon
     else
         tech.icon = "__base__/graphics/icons/" .. name .. ".png"
     end
 
-    local prerequisites = {}
-    if CE_recipes[name].base.prerequisites then
-        for a, b in pairs(CE_recipes[name].base.prerequisites) do
-            table.insert(prerequisites, b)
-        end
-    end
+    
+    
     for a, b in pairs(ingredients) do
-        if b[1] ~= "automation-science-pack" and b[1] ~=name then
+        if b[1] ~= "automation-science-pack" and b[1] ~= name then
             table.insert(prerequisites, b[1])
         end
-    end
-    if count > 1 then
-        tech.enabled = false
     end
     local cond = false
     local name_tech = ""
@@ -260,7 +269,7 @@ local function add_research(name, count)
             end
         end
     end
-    
+
     if cond and name_tech ~= "" then
         table.insert(prerequisites, name_tech)
     end
@@ -283,6 +292,8 @@ function Add_items()
         end
     end
 end
+
+
 
 CE_recipes = {}
 CE_research = {}
@@ -322,7 +333,8 @@ for name, recipe in pairs(data.raw.recipe) do
             end
             CE_recipes[name] = { base = { ingredients = ingredients, result = result, time = time,
                 category = category, result_count = result_count, icon = data.raw.recipe[name].icon,
-                subgroup = data.raw.recipe[name].subgroup, icons = data.raw.recipe[name].icons  } }
+                icon_size = data.raw.recipe[name].icon_size, icon_mipmaps = data.raw.recipe[name].icon_mipmaps,
+                subgroup = data.raw.recipe[name].subgroup, icons = data.raw.recipe[name].icons } }
 
         elseif data.raw.recipe[name].normal.results and New_values[name] then
 
@@ -353,7 +365,8 @@ for name, recipe in pairs(data.raw.recipe) do
             end
             CE_recipes[name] = { base = { ingredients = ingredients, results = results, time = time,
                 category = category, result_count = result_count, icon = data.raw.recipe[name].icon,
-                subgroup = data.raw.recipe[name].subgroup, icons = data.raw.recipe[name].icons  } }
+                icon_size = data.raw.recipe[name].icon_size, icon_mipmaps = data.raw.recipe[name].icon_mipmaps,
+                subgroup = data.raw.recipe[name].subgroup, icons = data.raw.recipe[name].icons } }
 
         end
     else
@@ -392,7 +405,8 @@ for name, recipe in pairs(data.raw.recipe) do
 
             CE_recipes[name] = { base = { ingredients = ingredients, result = result, time = time,
                 category = category, result_count = result_count, icon = data.raw.recipe[name].icon,
-                subgroup = data.raw.recipe[name].subgroup, icons = data.raw.recipe[name].icons  } }
+                icon_size = data.raw.recipe[name].icon_size, icon_mipmaps = data.raw.recipe[name].icon_mipmaps,
+                subgroup = data.raw.recipe[name].subgroup, icons = data.raw.recipe[name].icons } }
 
         elseif data.raw.recipe[name].results and New_values[name] then
 
@@ -424,7 +438,8 @@ for name, recipe in pairs(data.raw.recipe) do
 
             CE_recipes[name] = { base = { ingredients = ingredients, results = results, time = time,
                 category = category, result_count = result_count, icon = data.raw.recipe[name].icon,
-                subgroup = data.raw.recipe[name].subgroup, icons = data.raw.recipe[name].icons  } }
+                icon_size = data.raw.recipe[name].icon_size, icon_mipmaps = data.raw.recipe[name].icon_mipmaps,
+                subgroup = data.raw.recipe[name].subgroup, icons = data.raw.recipe[name].icons } }
         end
     end
 end
