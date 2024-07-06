@@ -1,4 +1,14 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.0.5
+Date: 11.08.2022
+  Features:
+    - Added efficiency for science pack
+      Changes:
+    - Changed base cost of technology 
+  Bugfixes:
+    - Fixed different recipe with the same result  
+    - Fixed recipe that have 1 with result
+---------------------------------------------------------------------------------------------------
 Version: 0.0.4
 Date: 06.08.2022
   Features:

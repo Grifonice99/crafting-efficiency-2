@@ -105,7 +105,7 @@ New_values = {
     ["low-density-structure"] = {
         name = "low density structure efficiency",
         max = 15,
-        crafting ={
+        crafting = {
             efficiency = 5.0,
         },
         research = {
@@ -121,12 +121,63 @@ New_values = {
         research = {
             level = 4,
         }
+    },
+    ["automation-science-pack"] = {
+        name = "flying robot frame efficiency",
+        max = 18,
+        crafting = {
+            efficiency = 4.5,
+        },
+        research = {
+            level = 1,
+        }
+    },
+    ["logistic-science-pack"] = {
+        name = "flying robot frame efficiency",
+        max = 18,
+        crafting = {
+            efficiency = 4.5,
+        },
+        research = {
+            level = 2,
+        }
+    },
+    ["chemical-science-pack"] = {
+        name = "flying robot frame efficiency",
+        max = 18,
+        crafting = {
+            efficiency = 4.5,
+        },
+        research = {
+            level = 3,
+        }
+    },
+    ["production-science-pack"] = {
+        name = "flying robot frame efficiency",
+        max = 18,
+        crafting = {
+            efficiency = 4.5,
+        },
+        research = {
+            level = 4,
+        }
+    },
+    ["utility-science-pack"] = {
+        name = "flying robot frame efficiency",
+        max = 18,
+        crafting = {
+            efficiency = 4.5,
+        },
+        research = {
+            level = 5,
+        }
     }
 }
 
 
 function CE_Add_Recipe(data, name)
-    if data.name == nil or data.max == nil or data.icon == nil or data.research == nil or data.research.level == nil or data.crafting == nil or  data.crafting.efficiency == nil or  name == nil then
+    if data.name == nil or data.max == nil or data.icon == nil or data.research == nil or data.research.level == nil or
+        data.crafting == nil or data.crafting.efficiency == nil or name == nil then
         log("Missing elements in the table.")
         return
     end

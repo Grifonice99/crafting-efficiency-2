@@ -59,7 +59,7 @@ local function add_recipe(recipe, name, count)
     materials = multiplier_result[1]
     time = multiplier_result[2]
     result_count_2 = multiplier_result[3]
-
+    
     local conf = {}
     conf.ingredients = {}
     conf.result_count = {}
@@ -140,7 +140,7 @@ local function add_recipe(recipe, name, count)
 
     if #result == 1 then
         recipe.result = result[1]
-        recipe.result_count = CE_recipes[name][tostring(count)].result_count
+        recipe.result_count = result_count_2[1]
     else
         if #result_count_2 == 1 and not CE_recipes[name][tostring(count)].results[1].name then
             recipe.result = CE_recipes[name][tostring(count)].results[1]
@@ -165,6 +165,7 @@ end
 local function add_research(name, count)
     local level = New_values[name].research.level
     local count2 = count * 1
+    local cost_multiplier = 1
     local cond = true
     if count2 - 5 > 0 and level < 6 then
         repeat
@@ -178,14 +179,18 @@ local function add_research(name, count)
         ingredients = { { "automation-science-pack", 1 } }
     elseif level == 2 then
         ingredients = { { "automation-science-pack", 1 }, { "logistic-science-pack", 1 } }
+        cost_multiplier = 2
     elseif level == 3 then
         ingredients = { { "automation-science-pack", 1 }, { "logistic-science-pack", 1 }, { "chemical-science-pack", 1 } }
+        cost_multiplier = 4
     elseif level == 4 then
         ingredients = { { "automation-science-pack", 1 }, { "logistic-science-pack", 1 }, { "chemical-science-pack", 1 },
             { "production-science-pack", 1 } }
+        cost_multiplier = 7
     elseif level == 5 then
         ingredients = { { "automation-science-pack", 1 }, { "logistic-science-pack", 1 }, { "chemical-science-pack", 1 },
             { "production-science-pack", 1 }, { "utility-science-pack", 1 } }
+        cost_multiplier = 13
     else
         ingredients = { { "automation-science-pack", 1 } }
     end
@@ -219,7 +224,7 @@ local function add_research(name, count)
         end
     end
     for a, b in pairs(ingredients) do
-        if b[1] ~= "automation-science-pack" then
+        if b[1] ~= "automation-science-pack" and b[1] ~=name then
             table.insert(prerequisites, b[1])
         end
     end
@@ -238,11 +243,12 @@ local function add_research(name, count)
             end
         end
     end
+    
     if cond and name_tech ~= "" then
         table.insert(prerequisites, name_tech)
     end
     local unit = {}
-    unit.count = 100 * count
+    unit.count = (100 * cost_multiplier) * count
     unit.ingredients = ingredients
     unit.time = 30
     tech.unit = unit

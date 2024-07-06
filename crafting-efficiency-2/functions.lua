@@ -1,12 +1,12 @@
 function Cost_multiplier(ingredients, time, results, multiplier)
-
+	local decimal_count = #tostring(multiplier):match("%.(%d+)")
 
 	for i, v in ipairs(ingredients) do
-		ingredients[i] = ingredients[i] * 10
+		ingredients[i] = ingredients[i] * (10 ^ decimal_count)
 	end
-	time=time*10
-	for i,v in ipairs(results) do
-		results[i] = results[i] * multiplier*10
+	time = time * (10 ^ decimal_count)
+	for i, v in ipairs(results) do
+		results[i] = results[i] * multiplier * (10 ^ decimal_count)
 	end
 
 	local signal = false
@@ -21,7 +21,7 @@ function Cost_multiplier(ingredients, time, results, multiplier)
 	end
 
 
-	
+
 	for i, v in ipairs(ingredients) do
 		ingredients[i] = ingredients[i] / 2
 		if ingredients[i] ~= math.floor(ingredients[i]) then
@@ -39,8 +39,8 @@ function Cost_multiplier(ingredients, time, results, multiplier)
 
 	if signal == false then
 
-		local time_old=time
-		time=time/2
+		local time_old = time
+		time = time / 2
 
 
 		local ingredients_old2 = {}
@@ -71,17 +71,15 @@ function Cost_multiplier(ingredients, time, results, multiplier)
 
 		if signal == true then
 			ingredients = ingredients_old2
-			results = results_old2 
+			results = results_old2
 		else
-			time=time_old/5
+			time = time_old / 5
 		end
-		
+
 	else
 		ingredients = ingredients_old
 		results = results_old
 	end
 
-	return {ingredients, time, results}
+	return { ingredients, time, results }
 end
-
-
