@@ -345,9 +345,14 @@ local function add_research(name, count)
             end
         end
     end
+    if type(CE_recipes[name].base.icons) == "table" then
+        tech.icon = CE_recipes[name].base.icons[1].icon
 
-    if CE_recipes[name].base.icon then
+        
+    elseif CE_recipes[name].base and CE_recipes[name].base.icon then
         tech.icon = CE_recipes[name].base.icon
+        tech.icon_size = CE_recipes[name].base.icon_size
+        tech.icon_mipmaps = CE_recipes[name].base.icon_mipmaps
     elseif Recipes[name].icon then
         tech.icon = Recipes[name].icon
     elseif Recipes[name].fluid then
