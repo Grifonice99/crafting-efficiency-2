@@ -14,7 +14,7 @@ local function update_recipes(event)
 				local recipe = entity.get_recipe()
 
 				if recipe then
-					if recipe.name == base .. "-" .. level - 1 then
+					if recipe.name == base .. "-" .. level - 1 or recipe.name == name then
 						local ingredients = {}
 						if entity.is_crafting() then
 							ingredients = recipe.ingredients or {}

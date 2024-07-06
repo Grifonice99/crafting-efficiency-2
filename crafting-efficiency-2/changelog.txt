@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.0.10
+Date: 29.08.2022
+  Changes:
+    - Increased the maximum efficiency level of almost all recipes 
+  Features:
+    - Added sulfur to efficiency
+    - Replace vanilla recipes in the entities
+---------------------------------------------------------------------------------------------------
 Version: 0.0.9
 Date: 28.08.2022
   Bugfixes:

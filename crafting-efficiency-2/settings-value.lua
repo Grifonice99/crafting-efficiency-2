@@ -1,7 +1,7 @@
 New_values = {
     ["copper-cable"] = {
         name = "copper cable efficiency",
-        max = 14,
+        max = 18,
         crafting = {
             efficiency = 10,
         },
@@ -11,7 +11,7 @@ New_values = {
     },
     ["electronic-circuit"] = {
         name = "electronic circuit efficiency",
-        max = 9,
+        max = 16,
         crafting = {
             efficiency = 10,
         },
@@ -21,7 +21,7 @@ New_values = {
     },
     ["iron-gear-wheel"] = {
         name = "iron gear wheel efficiency",
-        max = 13,
+        max = 18,
         crafting = {
             efficiency = 10,
         },
@@ -30,8 +30,8 @@ New_values = {
         }
     },
     ["engine-unit"] = {
-        name = "engine unit efficiency",
-        max = 9,
+        name = "Engine unit efficiency",
+        max = 16,
         crafting = {
             efficiency = 10,
         },
@@ -40,8 +40,8 @@ New_values = {
         }
     },
     ["battery"] = {
-        name = "battery efficiency",
-        max = 6,
+        name = "Battery efficiency",
+        max = 10,
         crafting = {
             efficiency = 10,
             category = "chemistry",
@@ -51,8 +51,8 @@ New_values = {
         }
     },
     ["advanced-circuit"] = {
-        name = "advanced circuit efficiency",
-        max = 8,
+        name = "Advanced circuit efficiency",
+        max = 16,
         crafting = {
             efficiency = 10,
         },
@@ -61,8 +61,8 @@ New_values = {
         }
     },
     ["plastic-bar"] = {
-        name = "plastic bar efficiency",
-        max = 7,
+        name = "Plastic bar efficiency",
+        max = 12,
         crafting = {
             efficiency = 10,
             category = "chemistry",
@@ -72,8 +72,8 @@ New_values = {
         }
     },
     ["processing-unit"] = {
-        name = "processing unit efficiency",
-        max = 8,
+        name = "Processing unit efficiency",
+        max = 14,
         crafting = {
             efficiency = 10,
             category = "crafting-with-fluid",
@@ -83,7 +83,7 @@ New_values = {
         }
     },
     ["electric-engine-unit"] = {
-        name = "electric engine unit efficiency",
+        name = "Electric engine unit efficiency",
         max = 15,
         crafting = {
             efficiency = 10,
@@ -93,7 +93,7 @@ New_values = {
         }
     },
     ["flying-robot-frame"] = {
-        name = "flying robot frame efficiency",
+        name = "Flying robot frame efficiency",
         max = 15,
         crafting = {
             efficiency = 10,
@@ -103,7 +103,7 @@ New_values = {
         }
     },
     ["low-density-structure"] = {
-        name = "low density structure efficiency",
+        name = "Low density structure efficiency",
         max = 15,
         crafting = {
             efficiency = 10,
@@ -113,7 +113,7 @@ New_values = {
         }
     },
     ["uranium-processing"] = {
-        name = "uranium processing efficiency",
+        name = "Uranium processing efficiency",
         max = 3,
         crafting = {
             efficiency = 10,
@@ -123,8 +123,8 @@ New_values = {
         }
     },
     ["automation-science-pack"] = {
-        name = "automation science pack efficiency",
-        max = 18,
+        name = "Automation science pack efficiency",
+        max = 22,
         crafting = {
             efficiency = 10,
         },
@@ -133,8 +133,8 @@ New_values = {
         }
     },
     ["logistic-science-pack"] = {
-        name = "logistic science pack efficiency",
-        max = 18,
+        name = "Logistic science pack efficiency",
+        max = 22,
         crafting = {
             efficiency = 10,
         },
@@ -143,8 +143,8 @@ New_values = {
         }
     },
     ["chemical-science-pack"] = {
-        name = "chemical science pack efficiency",
-        max = 18,
+        name = "Chemical science pack efficiency",
+        max = 22,
         crafting = {
             efficiency = 10,
         },
@@ -153,8 +153,8 @@ New_values = {
         }
     },
     ["production-science-pack"] = {
-        name = "production science pack efficiency",
-        max = 18,
+        name = "Production science pack efficiency",
+        max = 22,
         crafting = {
             efficiency = 10,
         },
@@ -163,8 +163,18 @@ New_values = {
         }
     },
     ["utility-science-pack"] = {
-        name = "utility science pack efficiency",
-        max = 18,
+        name = "Utility science pack efficiency",
+        max = 22,
+        crafting = {
+            efficiency = 10,
+        },
+        research = {
+            level = 5,
+        }
+    },
+    ["sulfur"] = {
+        name = "Sulfur efficiency",
+        max = 22,
         crafting = {
             efficiency = 10,
         },
