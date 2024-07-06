@@ -11,8 +11,10 @@ local function add_recipe(recipe, name, count)
     local result = {}
     local results = {}
     local time = 0
-    local result_count = {}
-    local result_count_2 = {}
+    local result_count1 = {}
+    local result_count2 = {}
+    local result_count1_2 = {}
+    local result_count2_2 = {}
     local efficiency = 0
 
 
@@ -28,21 +30,26 @@ local function add_recipe(recipe, name, count)
 
     if CE_recipes[name].base.result then
         table.insert(result, CE_recipes[name].base.result[1])
-        result_count = { CE_recipes[name].base.result_count }
+        result_count1 = { CE_recipes[name].base.result_count }
     else
         for a, b in pairs(CE_recipes[name].base.results) do
             if b.name then
                 table.insert(results, b.name)
-                table.insert(result_count, b.amount)
+                if b.amount_min then
+                    table.insert(result_count1, b.amount_min)
+                    table.insert(result_count2, b.amount_max)
+                else
+                    table.insert(result_count1, b.amount)
+                end
             else
                 if #b > 2 and math.floor(#b / 2) == #b / 2 then
                     for i = 0, #b, 2 do
                         table.insert(results, b[i - 1])
-                        table.insert(result_count, b[i])
+                        table.insert(result_count1, b[i])
                     end
                 else
                     table.insert(result, b[1])
-                    table.insert(result_count, b[2])
+                    table.insert(result_count1, b[2])
                 end
             end
         end
@@ -51,14 +58,16 @@ local function add_recipe(recipe, name, count)
     if Recipes[name].crafting.efficiency then
         efficiency = Recipes[name].crafting.efficiency / 100
     else
-        efficiency = 0.05
+        efficiency = 0.10
     end
 
     time = CE_recipes[name].base.time
-    multiplier_result = Cost_multiplier(materials, time, result_count, 1 + (efficiency * count))
+    multiplier_result = Cost_multiplier(materials, time, result_count1, 1 + (efficiency * count), result_count2)
     materials = multiplier_result[1]
     time = multiplier_result[2]
-    result_count_2 = multiplier_result[3]
+    
+    result_count1_2 = multiplier_result[3]
+    result_count2_2 = multiplier_result[4]
 
     local conf = {}
     conf.normal = {}
@@ -86,11 +95,13 @@ local function add_recipe(recipe, name, count)
     if CE_recipes[name].base.results then
         local results = {}
         for a, b in pairs(CE_recipes[name].base.results) do
-
             if b.name then
                 if b.probability then
                     table.insert(conf.results,
                         { type = b.type, name = b.name, amount = b.amount, probability = b.probability })
+                elseif b.amount_min then
+                    table.insert(conf.results,
+                        { type = b.type, name = b.name, amount_min = b.amount_min, amount_max = b.amount_max })
                 else
                     table.insert(conf.results, { type = b.type, name = b.name, amount = b.amount })
                 end
@@ -122,21 +133,30 @@ local function add_recipe(recipe, name, count)
     end
     for a, b in pairs(CE_recipes[name][tostring(count)].expensive.ingredients) do
         if b.type then
-            b.amount = materials[a]*2
+            b.amount = materials[a] * 2
         else
-            b[2] = materials[a]*2
+            b[2] = materials[a] * 2
         end
     end
     if CE_recipes[name].base.results then
-        if CE_recipes[name].base.results[1].amount then
+        local check = false
+        for a, b in pairs(CE_recipes[name].base.results) do
+            if b.name then
+                check = true
+            end
+        end
+        if check then
             for a, b in pairs(CE_recipes[name][tostring(count)].results) do
-                if b.name then
-                    b.amount = result_count_2[a]
+                if b.amount then
+                    b.amount = result_count1_2[a]
+                elseif b.amount_min then
+                    b.amount_min = result_count1_2[a]
+                    b.amount_max = result_count2_2[a]
                 end
             end
         end
     else
-        CE_recipes[name][tostring(count)].result_count = result_count_2[1]
+        CE_recipes[name][tostring(count)].result_count = result_count1_2[1]
     end
     if type(CE_recipes[name][tostring(count)].result_count) == "table" then
         table.removekey(CE_recipes[name][tostring(count)], "result_count")
@@ -153,12 +173,12 @@ local function add_recipe(recipe, name, count)
         order = CE_recipes[name].base.order .. "b-" .. count,
         normal = {
             ingredients = CE_recipes[name][tostring(count)].normal.ingredients,
-            energy_required=CE_recipes[name][tostring(count)].time,
+            energy_required = CE_recipes[name][tostring(count)].time,
             enabled = false,
         },
         expensive = {
             ingredients = CE_recipes[name][tostring(count)].expensive.ingredients,
-            energy_required=CE_recipes[name][tostring(count)].time,
+            energy_required = CE_recipes[name][tostring(count)].time,
             enabled = false,
         },
     }
@@ -178,12 +198,11 @@ local function add_recipe(recipe, name, count)
 
     if #result == 1 then
         recipe.normal.result = result[1]
-        recipe.normal.result_count = result_count_2[1]
+        recipe.normal.result_count = result_count1_2[1]
         recipe.expensive.result = result[1]
-        recipe.expensive.result_count = result_count_2[1]
+        recipe.expensive.result_count = result_count1_2[1]
     else
-        if #result_count_2 == 1 and not CE_recipes[name][tostring(count)].results[1].name then
-
+        if #result_count1_2 == 1 and not CE_recipes[name][tostring(count)].results[1].name then
             recipe.normal.result = CE_recipes[name][tostring(count)].results[1]
             recipe.normal.result_count = CE_recipes[name][tostring(count)].result_count
             recipe.expensive.result = CE_recipes[name][tostring(count)].results[1]
@@ -328,7 +347,6 @@ end
 
 function Add_items()
     for i, v in pairs(Recipes) do
-
         for x = 1, v.max do
             add_recipe(v, i, x)
             add_research(i, x)
@@ -344,152 +362,36 @@ for name, recipe in pairs(data.raw.recipe) do
     if recipe.order then
         order = recipe.order
     end
-    if data.raw.recipe[name].normal then
-        local time = 0
-        local result_count = 0
-        local ingredients = {}
-        local result = {}
-        local results = {}
-        local category = ""
 
-        if data.raw.recipe[name].normal.result and Recipes[name] then
-
-            table.insert(result, data.raw.recipe[name].normal.result)
-
-            if data.raw.recipe[name].normal.energy_required then
-                time = data.raw.recipe[name].normal.energy_required
-            else
-                time = 0.5
-            end
-            if data.raw.recipe[name].category then
-                category = data.raw.recipe[name].category
-            else
-                category = "crafting"
-            end
-
-            if data.raw.recipe[name].normal.result_count then
-                result_count = data.raw.recipe[name].normal.result_count
-            else
-                result_count = 1
-            end
-
-            for index, ingr in pairs(data.raw.recipe[name].normal.ingredients) do
-                table.insert(ingredients, ingr)
-            end
-            CE_recipes[name] = { base = { ingredients = ingredients, result = result, time = time,
-                category = category, result_count = result_count, icon = data.raw.recipe[name].icon,
-                icon_size = data.raw.recipe[name].icon_size, icon_mipmaps = data.raw.recipe[name].icon_mipmaps,
-                subgroup = data.raw.recipe[name].subgroup, icons = data.raw.recipe[name].icons } }
-
-        elseif data.raw.recipe[name].normal.results and Recipes[name] then
-
-            for index, res in pairs(data.raw.recipe[name].normal.results) do
-                table.insert(results, res)
-            end
-
-            if data.raw.recipe[name].normal.energy_required then
-                time = data.raw.recipe[name].normal.energy_required
-            else
-                time = 0.5
-            end
-
-            if data.raw.recipe[name].category then
-                category = data.raw.recipe[name].category
-            else
-                category = "crafting"
-            end
-
-            if data.raw.recipe[name].normal.result_count then
-                result_count = data.raw.recipe[name].normal.result_count
-            else
-                result_count = 1
-            end
-
-            for index, ingr in pairs(data.raw.recipe[name].normal.ingredients) do
-                table.insert(ingredients, ingr)
-            end
-            CE_recipes[name] = { base = { ingredients = ingredients, results = results, time = time,
-                category = category, result_count = result_count, icon = data.raw.recipe[name].icon,
-                icon_size = data.raw.recipe[name].icon_size, icon_mipmaps = data.raw.recipe[name].icon_mipmaps,
-                subgroup = data.raw.recipe[name].subgroup, icons = data.raw.recipe[name].icons } }
-        end
-    else
-        local result_count = 0
-        local time = 0
-        local ingredients = {}
-        local result = {}
-        local results = {}
-        local category = ""
-
-        if data.raw.recipe[name].result and Recipes[name] then
-
-            table.insert(result, data.raw.recipe[name].result)
-
-            if data.raw.recipe[name].energy_required then
-                time = data.raw.recipe[name].energy_required
-            else
-                time = 0.5
-            end
-            if data.raw.recipe[name].category then
-
-                category = data.raw.recipe[name].category
-            else
-                category = "crafting"
-            end
-
-            if data.raw.recipe[name].result_count then
-                result_count = data.raw.recipe[name].result_count
-            else
-                result_count = 1
-            end
-
-            for index, ingr in pairs(data.raw.recipe[name].ingredients) do
-                table.insert(ingredients, ingr)
-            end
-
-            CE_recipes[name] = { base = { ingredients = ingredients, result = result, time = time,
-                category = category, result_count = result_count, icon = data.raw.recipe[name].icon,
-                icon_size = data.raw.recipe[name].icon_size, icon_mipmaps = data.raw.recipe[name].icon_mipmaps,
-                subgroup = data.raw.recipe[name].subgroup, icons = data.raw.recipe[name].icons } }
-
-        elseif data.raw.recipe[name].results and Recipes[name] then
-
-            for index, res in pairs(data.raw.recipe[name].results) do
-                table.insert(results, res)
-            end
-
-            if data.raw.recipe[name].energy_required then
-                time = data.raw.recipe[name].energy_required
-            else
-                time = 0.5
-            end
-
-
-            if data.raw.recipe[name].category then
-                category = data.raw.recipe[name].category
-            else
-                category = "crafting"
-            end
-            if data.raw.recipe[name].result_count then
-                result_count = data.raw.recipe[name].result_count
-            else
-                result_count = 1
-            end
-
-            for index, ingr in pairs(data.raw.recipe[name].ingredients) do
-                table.insert(ingredients, ingr)
-            end
-
-            CE_recipes[name] = { base = { ingredients = ingredients, results = results, time = time,
-                category = category, result_count = result_count, icon = data.raw.recipe[name].icon,
-                icon_size = data.raw.recipe[name].icon_size, icon_mipmaps = data.raw.recipe[name].icon_mipmaps,
-                subgroup = data.raw.recipe[name].subgroup, icons = data.raw.recipe[name].icons } }
-        end
-    end
     if Recipes[name] then
-        CE_recipes[name].base.order = order
+        recipe = deepcopy(recipe)
+        if recipe.normal == nil then
+            recipe.normal = {}
+        end
+        
+        CE_recipes[name] = {
+            base = { 
+                order = order,
+                ingredients = recipe.ingredients or recipe.normal.ingredients ,
+                time = recipe.energy_required or recipe.normal.energy_required or 0.5,
+                category = recipe.category or "crafting",
+                result_count = recipe.result_count or recipe.normal.result_count or  1,
+                icon = recipe.icon,
+                icon_size = recipe.icon_size,
+                icon_mipmaps = recipe.icon_mipmaps,
+                subgroup = recipe.subgroup,
+                icons = recipe.icons 
+            },
+        }
+
+        if recipe.result or recipe.normal.result then
+            CE_recipes[name].base.result = {recipe.result or recipe.normal.result}
+        else 
+            CE_recipes[name].base.results = recipe.results or recipe.normal.results
+        end
     end
 end
+
 
 for name, research in pairs(data.raw.technology) do
     if research.effects then
@@ -503,6 +405,7 @@ for name, research in pairs(data.raw.technology) do
         end
     end
 end
+
 for name, item in pairs(data.raw.item) do
     if CE_recipes[name] then
         CE_recipes[name].base.order = item.order

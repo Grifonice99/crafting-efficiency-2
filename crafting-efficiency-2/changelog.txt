@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.1.1
+Date: 10.02.2023
+  Bugfixes:
+    - Fixed internal bug
+    - Fixed game crash when adding recipe with ammount_min/amount_max 
+  Minor Features:
+    - Mod loading optimizations
+---------------------------------------------------------------------------------------------------
 Version: 0.1.0
 Date: 9.02.2023
   Bugfixes:

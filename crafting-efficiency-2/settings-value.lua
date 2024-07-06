@@ -302,7 +302,6 @@ Recipes = {
             level = 6
         }
     }
-
 }
 
 
@@ -341,8 +340,9 @@ function CE_Add_Recipe(data, name, ignore_warning, no_log)
             log("warning, it is recommended to use an efficiency divisible by 10, current efficiency = " .. tostring(data.crafting.efficiency) )
         end
     else
-        log("warning, using 5% in efficiency for the recipe".. data.name ..", it's raccomandate to add the args and use 10%" )
-        
+        log("warning, using 10% in efficiency for the recipe".. data.name ..", it's raccomandate to add the args with 10% of efficiency" )
+        item.crafting.efficiency=10
+
     end
     Recipes[name] = item
     if not no_log then
