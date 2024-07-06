@@ -1,5 +1,6 @@
 require("functions")
 
+
 function table.removekey(table, key)
     local element = table[key]
     table[key] = nil
@@ -208,12 +209,10 @@ local function add_research(name, count)
         ingredients = { { "automation-science-pack", 1 }, { "logistic-science-pack", 1 }, { "chemical-science-pack", 1 },
             { "production-science-pack", 1 } }
         cost_multiplier = 7
-    elseif level == 5 then
+    elseif level >= 5 then
         ingredients = { { "automation-science-pack", 1 }, { "logistic-science-pack", 1 }, { "chemical-science-pack", 1 },
             { "production-science-pack", 1 }, { "utility-science-pack", 1 } }
         cost_multiplier = 13
-    else
-        ingredients = { { "automation-science-pack", 1 } }
     end
 
     local tech = {
@@ -240,6 +239,11 @@ local function add_research(name, count)
                 table.insert(prerequisites, b)
             end
         end
+        for a, b in pairs(ingredients) do
+            if b[1] ~= "automation-science-pack" and b[1] ~= name then
+                table.insert(prerequisites, b[1])
+            end
+        end
     end
 
     if CE_recipes[name].base.icon then
@@ -252,11 +256,7 @@ local function add_research(name, count)
 
     
     
-    for a, b in pairs(ingredients) do
-        if b[1] ~= "automation-science-pack" and b[1] ~= name then
-            table.insert(prerequisites, b[1])
-        end
-    end
+    
     local cond = false
     local name_tech = ""
     for a, b in pairs(CE_research) do
@@ -270,15 +270,17 @@ local function add_research(name, count)
         end
     end
 
-    if cond and name_tech ~= "" then
-        table.insert(prerequisites, name_tech)
-    end
+    --if cond and name_tech ~= "" and count == 1 then
+    --    table.insert(prerequisites, name_tech)
+    --end
     local unit = {}
     unit.count = (100 * cost_multiplier) * count
     unit.ingredients = ingredients
     unit.time = 30
     tech.unit = unit
     tech.prerequisites = prerequisites
+    
+    
     data:extend({ tech })
 end
 
