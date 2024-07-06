@@ -150,7 +150,7 @@ local function add_recipe(recipe, name, count)
         name = "ce-" .. name .. "-" .. count,
         localised_name = { "recipe-name.recipes-efficiency", Recipes[name].name, " (" .. count .. ")" },
         category = CE_recipes[name].base.category,
-        order = "zz",
+        order = CE_recipes[name].base.order .. "b-" .. count,
         normal = {
             ingredients = CE_recipes[name][tostring(count)].normal.ingredients,
             energy_required=CE_recipes[name][tostring(count)].time,
@@ -340,6 +340,10 @@ CE_recipes = {}
 CE_research = {}
 
 for name, recipe in pairs(data.raw.recipe) do
+    local order
+    if recipe.order then
+        order = recipe.order
+    end
     if data.raw.recipe[name].normal then
         local time = 0
         local result_count = 0
@@ -408,7 +412,6 @@ for name, recipe in pairs(data.raw.recipe) do
                 category = category, result_count = result_count, icon = data.raw.recipe[name].icon,
                 icon_size = data.raw.recipe[name].icon_size, icon_mipmaps = data.raw.recipe[name].icon_mipmaps,
                 subgroup = data.raw.recipe[name].subgroup, icons = data.raw.recipe[name].icons } }
-
         end
     else
         local result_count = 0
@@ -483,6 +486,9 @@ for name, recipe in pairs(data.raw.recipe) do
                 subgroup = data.raw.recipe[name].subgroup, icons = data.raw.recipe[name].icons } }
         end
     end
+    if Recipes[name] then
+        CE_recipes[name].base.order = order
+    end
 end
 
 for name, research in pairs(data.raw.technology) do
@@ -495,5 +501,22 @@ for name, research in pairs(data.raw.technology) do
                 end
             end
         end
+    end
+end
+for name, item in pairs(data.raw.item) do
+    if CE_recipes[name] then
+        CE_recipes[name].base.order = item.order
+    end
+end
+
+for name, tool in pairs(data.raw.tool) do
+    if CE_recipes[name] then
+        CE_recipes[name].base.order = tool.order
+    end
+end
+
+for name, fluid in pairs(data.raw.fluid) do
+    if CE_recipes[name] then
+        CE_recipes[name].base.order = fluid.order
     end
 end

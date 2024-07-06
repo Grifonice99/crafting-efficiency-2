@@ -262,6 +262,16 @@ Recipes = {
             level = 3,
         }
     },
+    ["military-science-pack"] = {
+        name = "Military science pack efficiency",
+        max = 22,
+        crafting = {
+            efficiency = 10,
+        },
+        research = {
+            level = 3,
+        }
+    },
     ["production-science-pack"] = {
         name = "Production science pack efficiency",
         max = 22,

@@ -1,4 +1,13 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.1.0
+Date: 9.02.2023
+  Bugfixes:
+    - Fixed recipe order.
+  Features:
+    - Added recipe Military Science Pack
+  Changes:
+    - Added Military Science Pack to the list of ingredients for the technologies 
+---------------------------------------------------------------------------------------------------
 Version: 0.0.17
 Date: 10.12.2022
   Bugfixes:

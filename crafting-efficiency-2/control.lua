@@ -106,7 +106,6 @@ local function update__entity_recipe(event)
 
 				local name = base:sub(4)
 				if Recipes[name] or Recipes[recipe.name]then
-					print("aaaa")
 					local technologies = {}
 					for index, tech in pairs(game.forces.player.technologies) do
 						local base2 = tech.name:gsub("(.*)%-.*$", "%1")
@@ -125,7 +124,6 @@ local function update__entity_recipe(event)
 							end
 						end
 					end
-					print(base)
 					if #technologies[base].index > tonumber(level) then
 						local last_recipe = technologies[base][tostring(#technologies[base].index)].name
 						local ingredients = {}

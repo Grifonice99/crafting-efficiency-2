@@ -1,11 +1,11 @@
 {
   "name": "crafting-efficiency-2",
-  "version": "0.0.17",
+  "version": "0.1.0",
   "title": "Crafting Efficiency",
   "author": "Grifonice99",
   "homepage": "",
   "factorio_version": "1.1",
-  "description": "Adds technology to increase the efficiency of some recipes, auto updates recipes in assembly machines and adds a function for modders to add efficiency recipes for their items",
+  "description": "Adds technologies to increase the efficiency of some recipes, auto updates recipes in assembly machines and adds a function for modders to add efficiency recipes for their items",
   "dependencies": [
     "base >= 1.1.0",
     "? space-exploration-postprocess"
