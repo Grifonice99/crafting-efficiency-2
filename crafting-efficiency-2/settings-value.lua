@@ -3,7 +3,7 @@ New_values = {
         name = "copper cable efficiency",
         max = 14,
         crafting = {
-            efficiency = 5.0,
+            efficiency = 10,
         },
         research = {
             level = 1
@@ -13,7 +13,7 @@ New_values = {
         name = "electronic circuit efficiency",
         max = 9,
         crafting = {
-            efficiency = 5.0,
+            efficiency = 10,
         },
         research = {
             level = 1
@@ -23,7 +23,7 @@ New_values = {
         name = "iron gear wheel efficiency",
         max = 13,
         crafting = {
-            efficiency = 5.0,
+            efficiency = 10,
         },
         research = {
             level = 1
@@ -33,7 +33,7 @@ New_values = {
         name = "engine unit efficiency",
         max = 9,
         crafting = {
-            efficiency = 5.0,
+            efficiency = 10,
         },
         research = {
             level = 2,
@@ -43,7 +43,7 @@ New_values = {
         name = "battery efficiency",
         max = 6,
         crafting = {
-            efficiency = 5.0,
+            efficiency = 10,
             category = "chemistry",
         },
         research = {
@@ -54,7 +54,7 @@ New_values = {
         name = "advanced circuit efficiency",
         max = 8,
         crafting = {
-            efficiency = 5.0,
+            efficiency = 10,
         },
         research = {
             level = 2,
@@ -64,7 +64,7 @@ New_values = {
         name = "plastic bar efficiency",
         max = 7,
         crafting = {
-            efficiency = 5.0,
+            efficiency = 10,
             category = "chemistry",
         },
         research = {
@@ -75,7 +75,7 @@ New_values = {
         name = "processing unit efficiency",
         max = 8,
         crafting = {
-            efficiency = 5.0,
+            efficiency = 10,
             category = "crafting-with-fluid",
         },
         research = {
@@ -86,7 +86,7 @@ New_values = {
         name = "electric engine unit efficiency",
         max = 15,
         crafting = {
-            efficiency = 5.0,
+            efficiency = 10,
         },
         research = {
             level = 3,
@@ -96,7 +96,7 @@ New_values = {
         name = "flying robot frame efficiency",
         max = 15,
         crafting = {
-            efficiency = 5.0,
+            efficiency = 10,
         },
         research = {
             level = 3,
@@ -106,7 +106,7 @@ New_values = {
         name = "low density structure efficiency",
         max = 15,
         crafting = {
-            efficiency = 5.0,
+            efficiency = 10,
         },
         research = {
             level = 3,
@@ -116,57 +116,57 @@ New_values = {
         name = "uranium processing efficiency",
         max = 3,
         crafting = {
-            efficiency = 5.0,
+            efficiency = 10,
         },
         research = {
             level = 4,
         }
     },
     ["automation-science-pack"] = {
-        name = "flying robot frame efficiency",
+        name = "automation science pack efficiency",
         max = 18,
         crafting = {
-            efficiency = 4.5,
+            efficiency = 10,
         },
         research = {
             level = 1,
         }
     },
     ["logistic-science-pack"] = {
-        name = "flying robot frame efficiency",
+        name = "logistic science pack efficiency",
         max = 18,
         crafting = {
-            efficiency = 4.5,
+            efficiency = 10,
         },
         research = {
             level = 2,
         }
     },
     ["chemical-science-pack"] = {
-        name = "flying robot frame efficiency",
+        name = "chemical science pack efficiency",
         max = 18,
         crafting = {
-            efficiency = 4.5,
+            efficiency = 10,
         },
         research = {
             level = 3,
         }
     },
     ["production-science-pack"] = {
-        name = "flying robot frame efficiency",
+        name = "production science pack efficiency",
         max = 18,
         crafting = {
-            efficiency = 4.5,
+            efficiency = 10,
         },
         research = {
             level = 4,
         }
     },
     ["utility-science-pack"] = {
-        name = "flying robot frame efficiency",
+        name = "utility science pack efficiency",
         max = 18,
         crafting = {
-            efficiency = 4.5,
+            efficiency = 10,
         },
         research = {
             level = 5,
@@ -181,6 +181,13 @@ function CE_Add_Recipe(data, name)
         log("Missing elements in the table.")
         return
     end
+
+    -- check if  max is float or not
+    if data.max % 1 ~= 0 then
+        log("WARINING: " .. data.name .. " max is float and the cost/result of recipe can b")
+        return
+    end
+
     local item = {
         icon = data.icon,
         name = data.name,

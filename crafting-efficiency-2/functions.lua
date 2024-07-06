@@ -1,6 +1,11 @@
 function Cost_multiplier(ingredients, time, results, multiplier)
-	local decimal_count = #tostring(multiplier):match("%.(%d+)")
-
+	local decimals=tostring(multiplier):match("%.(%d+)")
+	local decimal_count
+	if decimals then
+		decimal_count = #decimals
+	else
+		decimal_count = 1
+	end
 	for i, v in ipairs(ingredients) do
 		ingredients[i] = ingredients[i] * (10 ^ decimal_count)
 	end
