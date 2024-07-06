@@ -1,5 +1,6 @@
 New_values = {
-    ["copper-cable"] = {--
+    ["copper-cable"] = {
+        name = "copper cable efficiency",
         max = 14,
         crafting = {
             efficiency = 10.0,
@@ -8,7 +9,8 @@ New_values = {
             level = 1
         }
     },
-    ["electronic-circuit"] = {--
+    ["electronic-circuit"] = {
+        name = "electronic circuit efficiency",
         max = 9,
         crafting = {
             efficiency = 10.0,
@@ -17,7 +19,8 @@ New_values = {
             level = 1
         }
     },
-    ["iron-gear-wheel"] = {--
+    ["iron-gear-wheel"] = {
+        name = "iron gear wheel efficiency",
         max = 13,
         crafting = {
             efficiency = 10.0,
@@ -26,7 +29,8 @@ New_values = {
             level = 1
         }
     },
-    ["engine-unit"] = {--
+    ["engine-unit"] = {
+        name = "engine unit efficiency",
         max = 9,
         crafting = {
             efficiency = 10.0,
@@ -36,7 +40,8 @@ New_values = {
             prerequisites = { "engine" },
         }
     },
-    ["battery"] = {--
+    ["battery"] = {
+        name = "battery efficiency",
         max = 6,
         crafting = {
             efficiency = 10.0,
@@ -47,7 +52,8 @@ New_values = {
             prerequisites = { "battery" },
         }
     },
-    ["advanced-circuit"] = {--
+    ["advanced-circuit"] = {
+        name = "advanced circuit efficiency",
         max = 8,
         crafting = {
             efficiency = 10.0,
@@ -58,6 +64,7 @@ New_values = {
         }
     },
     ["plastic-bar"] = {
+        name = "plastic bar efficiency",
         max = 7,
         crafting = {
             efficiency = 10.0,
@@ -68,7 +75,8 @@ New_values = {
             prerequisites = { "plastics" },
         }
     },
-    ["processing-unit"] = {--
+    ["processing-unit"] = {
+        name = "processing unit efficiency",
         max = 8,
         crafting = {
             efficiency = 10.0,
@@ -80,6 +88,7 @@ New_values = {
         }
     },
     ["electric-engine-unit"] = {
+        name = "electric engine unit efficiency",
         max = 15,
         crafting = {
             efficiency = 10.0,
@@ -91,6 +100,7 @@ New_values = {
         }
     },
     ["flying-robot-frame"] = {
+        name = "flying robot frame efficiency",
         max = 15,
         crafting = {
             efficiency = 10.0,
@@ -101,6 +111,7 @@ New_values = {
         }
     },
     ["low-density-structure"] = {
+        name = "low density structure efficiency",
         max = 15,
         crafting ={
             efficiency = 10.0,
@@ -111,6 +122,7 @@ New_values = {
         }
     },
     ["uranium-processing"] = {
+        name = "uranium processing efficiency",
         max = 3,
         crafting = {
             efficiency = 10.0,
@@ -121,7 +133,3 @@ New_values = {
         }
     }
 }
-
-Technology = {
-    ""
-} 

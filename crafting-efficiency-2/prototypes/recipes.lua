@@ -1,6 +1,6 @@
 require("settings-value")
 require("functions")
---local inspect = require('inspect')
+
 
 function table.removekey(table, key)
     local element = table[key]
@@ -99,6 +99,7 @@ local function add_recipe(recipe, name, count)
     local recipe = {
         type = "recipe",
         name = "ce-" .. name .. "-" .. count,
+        localised_name = { "recipe-name.recipes-effinciency", New_values[name].name, " ("..count..")" },
         category = New_values[name].crafting.category,
         enabled = false,
         ingredients = CE_recipes[name][tostring(count)].ingredients,
@@ -157,6 +158,7 @@ local function add_research(name, count)
         type = "technology",
         icon_size = 64,
         icon_mipmaps = 4,
+        localised_name = { "technology-name.technology-efficiency", New_values[name].name, " ("..count..")" },
         effects = {
             {
                 type = "unlock-recipe",
@@ -184,7 +186,7 @@ local function add_research(name, count)
     end
     if count > 1 then
         tech.enabled = false
-        table.insert(prerequisites, "ce-" .. name .. "-" .. count - 1)
+        --table.insert(prerequisites, "ce-" .. name .. "-" .. count - 1)
     end
     local cond = false
     local name_tech = ""

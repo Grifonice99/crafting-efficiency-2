@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.0.2
+Date: 03.08.2022
+  Bugfixes:
+    - Fixed mod crash when researching a technology
+    - Fixed technology name
+  Changes:
+    - Changed recipe names
+---------------------------------------------------------------------------------------------------
 Version: 0.0.1
 Date: 01.08.2022
   Features:
