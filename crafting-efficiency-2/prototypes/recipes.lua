@@ -247,6 +247,13 @@ local function add_recipe(recipe, name, count)
         recipe.normal.name = CE_recipes[name].base.name
         recipe.expensive.name = CE_recipes[name].base.name
     end
+    if CE_recipes[name].base.prod then
+        for a, b in pairs(data.raw.module) do
+            if b.limitation then
+                table.insert(b.limitation, "ce-" .. name .. "-" .. count)
+            end
+        end
+    end
     data:extend({ recipe })
 end
 
@@ -400,7 +407,6 @@ for name, recipe in pairs(data.raw.recipe) do
                 name = recipe.name,
             },
         }
-
         if recipe.result or recipe.normal.result then
             CE_recipes[name].base.result = {recipe.result or recipe.normal.result}
         else
@@ -444,5 +450,16 @@ end
 for name, fluid in pairs(data.raw.fluid) do
     if CE_recipes[name] then
         CE_recipes[name].base.order = fluid.order
+    end
+end
+if not settings.startup["ce-enable-productivity-module"].value then
+    for a, b in pairs(data.raw.module) do
+        if b.limitation then
+            for c, d in pairs(b.limitation) do
+                if CE_recipes[d] then
+                    CE_recipes[d].base.prod = true
+                end
+            end
+        end
     end
 end

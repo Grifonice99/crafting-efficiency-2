@@ -292,6 +292,16 @@ Recipes = {
             level = 5,
         }
     },
+    ["rocker-control-unit"] = {
+        name = "Rocker control unit efficiency",
+        max = 13,
+        crafting = {
+            efficiency = 10,
+        },
+        research = {
+            level = 5,
+        },
+    },
     ["satellite"] = {
         name = "Satellite efficiency",
         max=15,

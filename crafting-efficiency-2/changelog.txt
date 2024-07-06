@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.1.6
+Date: 22.11.2023
+  Bugfixes:
+    - Fixed recipe hiding system with custom recipe 
+  Features:
+    - Added rocker-control-unit efficiency
+    - Added support for productivity
+---------------------------------------------------------------------------------------------------
 Version: 0.1.5
 Date: 24.08.2023
   Bugfixes:
