@@ -48,7 +48,9 @@ local function lock_recipe()
 		local base = tech.name:gsub("(.*)%-.*$", "%1")
 		local identifier = base:sub(1, 3)
 		local level = tech.name:gsub(".*%-", "")
-		if identifier == "ce-" and tonumber(level) then
+		if identifier == "ce-" and tonumber(level) then	
+			tech.reload()
+			tech.enabled=true
 			if not technologies[base] then
 				technologies[base] = {}
 				technologies[base].index = {}
