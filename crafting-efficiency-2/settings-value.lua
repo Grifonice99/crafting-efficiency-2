@@ -175,17 +175,16 @@ New_values = {
 }
 
 
-function CE_Add_Recipe(data, name)
+function CE_Add_Recipe(data, name, ignore_warning)
     if data.name == nil or data.max == nil or data.icon == nil or data.research == nil or data.research.level == nil or
         data.crafting == nil or data.crafting.efficiency == nil or name == nil then
         log("Missing elements in the table.")
         return
     end
 
-    -- check if  max is float or not
-    if data.max % 1 ~= 0 then
-        log("WARINING: " .. data.name .. " max is float and the cost/result of recipe can b")
-        return
+    
+    if data.max % 1 ~= 0 and not ignore_warning then
+        log("WARINING: the max of " .. name .. "value is a float and the cost of the recipes and the result can be huge, It is recommended to use an integer value.")
     end
 
     local item = {

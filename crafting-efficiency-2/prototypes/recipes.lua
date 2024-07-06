@@ -1,5 +1,6 @@
 require("functions")
 
+
 function table.removekey(table, key)
     local element = table[key]
     table[key] = nil
@@ -66,6 +67,7 @@ local function add_recipe(recipe, name, count)
     conf.results = {}
     conf.result = {}
     conf.time = time
+    
 
     for a, b in pairs(CE_recipes[name].base.ingredients) do
         if b.name then
@@ -77,7 +79,9 @@ local function add_recipe(recipe, name, count)
         end
     end
     if CE_recipes[name].base.results then
+        local results = {}
         for a, b in pairs(CE_recipes[name].base.results) do
+            
             if b.name then
                 if b.probability then
                     table.insert(conf.results,
@@ -86,14 +90,17 @@ local function add_recipe(recipe, name, count)
                     table.insert(conf.results, { type = b.type, name = b.name, amount = b.amount })
                 end
             else
-                table.insert(conf.results, { b })
+                table.insert(results, b)
             end
+        end
+        if #results > 0 then
+            conf.results=results
         end
     else
         for a, b in pairs(CE_recipes[name].base.result) do
             if b.name then
                 table.insert(conf.result, { type = b.type, name = b.name, amount = b.amount })
-            else
+            else                
                 table.insert(conf.result, { b })
             end
         end
@@ -143,8 +150,12 @@ local function add_recipe(recipe, name, count)
         recipe.result_count = result_count_2[1]
     else
         if #result_count_2 == 1 and not CE_recipes[name][tostring(count)].results[1].name then
+            
             recipe.result = CE_recipes[name][tostring(count)].results[1]
             recipe.result_count = CE_recipes[name][tostring(count)].result_count
+        --elseif type(CE_recipes[name][tostring(count)].results[1]) == "tablea" and not CE_recipes[name][tostring(count)].results[1].name then 
+         --   for a, b in pairs(CE_recipes[name][tostring(count)].results) do
+        --    end
         else
             recipe.results = CE_recipes[name][tostring(count)].results
         end
@@ -154,10 +165,16 @@ local function add_recipe(recipe, name, count)
         recipe.icon_size = 64
         recipe.icon_mipmaps = 4
     end
+
+    if CE_recipes[name].base.icons then
+        recipe.icons = CE_recipes[name].base.icons
+    end
+
     if CE_recipes[name].base.subgroup then
         recipe.subgroup = CE_recipes[name].base.subgroup
     end
     recipe.energy_required = CE_recipes[name][tostring(count)].time
+    
     
     data:extend({ recipe })
 end
@@ -305,7 +322,7 @@ for name, recipe in pairs(data.raw.recipe) do
             end
             CE_recipes[name] = { base = { ingredients = ingredients, result = result, time = time,
                 category = category, result_count = result_count, icon = data.raw.recipe[name].icon,
-                subgroup = data.raw.recipe[name].subgroup } }
+                subgroup = data.raw.recipe[name].subgroup, icons = data.raw.recipe[name].icons  } }
 
         elseif data.raw.recipe[name].normal.results and New_values[name] then
 
@@ -336,7 +353,7 @@ for name, recipe in pairs(data.raw.recipe) do
             end
             CE_recipes[name] = { base = { ingredients = ingredients, results = results, time = time,
                 category = category, result_count = result_count, icon = data.raw.recipe[name].icon,
-                subgroup = data.raw.recipe[name].subgroup } }
+                subgroup = data.raw.recipe[name].subgroup, icons = data.raw.recipe[name].icons  } }
 
         end
     else
@@ -375,7 +392,7 @@ for name, recipe in pairs(data.raw.recipe) do
 
             CE_recipes[name] = { base = { ingredients = ingredients, result = result, time = time,
                 category = category, result_count = result_count, icon = data.raw.recipe[name].icon,
-                subgroup = data.raw.recipe[name].subgroup } }
+                subgroup = data.raw.recipe[name].subgroup, icons = data.raw.recipe[name].icons  } }
 
         elseif data.raw.recipe[name].results and New_values[name] then
 
@@ -407,7 +424,7 @@ for name, recipe in pairs(data.raw.recipe) do
 
             CE_recipes[name] = { base = { ingredients = ingredients, results = results, time = time,
                 category = category, result_count = result_count, icon = data.raw.recipe[name].icon,
-                subgroup = data.raw.recipe[name].subgroup } }
+                subgroup = data.raw.recipe[name].subgroup, icons = data.raw.recipe[name].icons  } }
         end
     end
 end
