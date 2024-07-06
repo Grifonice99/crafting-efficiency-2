@@ -1,0 +1,10 @@
+{
+  "name": "crafting-efficiency-2",
+  "version": "0.0.1",
+  "title": "Crafting Efficiency",
+  "author": "Grfionice99",
+  "homepage": "",
+  "factorio_version": "1.1",
+  "description": "Adds technologies to increase yield of recipes. Auto-updates entities on all surfaces with the updated recipes when research completes. Now with more-efficient recipes for items, mega-base production levels can be achieved in smaller footprints. NOTE: IT'S A REWRITE OF https://mods.factorio.com/mod/crafting-efficiency",
+  "dependencies": ["base >= 1.1.0"]
+}
