@@ -5,7 +5,7 @@ local function update_recipes(event)
 	local identifier = base:sub(1, 3)
 	local level = event.research.name:gsub(".*%-", "")
 	local name = base:sub(4)
-	if New_values[name] and tonumber(level) ~= nil and identifier == "ce-" then
+	if Recipes[name] and tonumber(level) ~= nil and identifier == "ce-" then
 		if tonumber(level) > 1 then
 			event.research.force.recipes[base .. "-" .. level - 1].enabled = false
 		end

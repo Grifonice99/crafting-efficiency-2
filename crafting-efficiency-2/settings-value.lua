@@ -1,4 +1,4 @@
-New_values = {
+Recipes = {
     ["copper-cable"] = {
         name = "copper cable efficiency",
         max = 18,
@@ -82,6 +82,17 @@ New_values = {
             level = 2,
         }
     },
+    ["basic-oil-processing"]={
+        name = "Basic oil processing efficiency",
+        max=13,
+        crafting = {
+            efficiency = 10,
+            category = "oil-processing",
+        },
+        research = {
+            level = 2
+        }
+    },
     ["processing-unit"] = {
         name = "Processing unit efficiency",
         max = 14,
@@ -91,6 +102,17 @@ New_values = {
         },
         research = {
             level = 3,
+        }
+    },
+    ["advanced-oil-processing"] = {
+        name = "Advanced oil processing efficiency",
+        max = 12,
+        crafting = {
+            efficiency = 10,
+            category = "oil-processing"
+        },
+        research = {
+            level = 3
         }
     },
     ["electric-engine-unit"] = {
@@ -131,6 +153,29 @@ New_values = {
         },
         research = {
             level = 4,
+        }
+    },
+    ["coal-liquefaction"] = {
+        name = "Coal liquefaction efficiency",
+        max = 18,
+        crafting = {
+            efficiency = 10,
+            category = "oil-processing"
+        },
+        research = {
+            level = 4
+        }
+    },
+    ["lubricant"] = {
+        name = "Lubricant efficiency",
+        max = 14,
+        fluid = true,
+        crafting = {
+            efficiency = 10,
+            category = "chemistry",
+        },
+        research = {
+            level = 4
         }
     },
     ["automation-science-pack"] = {
@@ -182,6 +227,16 @@ New_values = {
         research = {
             level = 5,
         }
+    },
+    ["satellite"] = {
+        name = "Satellite efficiency",
+        max=15,
+        crafting = {
+            efficiency = 20
+        },
+        research = {
+            level = 6
+        }
     }
 }
 
@@ -210,6 +265,6 @@ function CE_Add_Recipe(data, name, ignore_warning)
         }
     }
 
-    New_values[name] = item
+    Recipes[name] = item
     log("Added " .. name .. " to the table.")
 end

@@ -1,6 +1,5 @@
 require("functions")
 
-
 function table.removekey(table, key)
     local element = table[key]
     table[key] = nil
@@ -49,8 +48,8 @@ local function add_recipe(recipe, name, count)
         end
     end
 
-    if New_values[name].crafting.efficiency then
-        efficiency = New_values[name].crafting.efficiency / 100
+    if Recipes[name].crafting.efficiency then
+        efficiency = Recipes[name].crafting.efficiency / 100
     else
         efficiency = 0.05
     end
@@ -136,7 +135,7 @@ local function add_recipe(recipe, name, count)
     local recipe = {
         type = "recipe",
         name = "ce-" .. name .. "-" .. count,
-        localised_name = { "recipe-name.recipes-effinciency", New_values[name].name, " (" .. count .. ")" },
+        localised_name = { "recipe-name.recipes-effinciency", Recipes[name].name, " (" .. count .. ")" },
         category = CE_recipes[name].base.category,
         enabled = false,
         ingredients = CE_recipes[name][tostring(count)].ingredients,
@@ -162,7 +161,7 @@ local function add_recipe(recipe, name, count)
         recipe.icon_size = 64
         recipe.icon_mipmaps = 4
     end
-
+    
     if CE_recipes[name].base.icons then
         recipe.icons = CE_recipes[name].base.icons
     end
@@ -185,7 +184,7 @@ local function add_recipe(recipe, name, count)
 end
 
 local function add_research(name, count)
-    local level = New_values[name].research.level
+    local level = Recipes[name].research.level
     local count2 = count * 1
     local cost_multiplier = 1
     local cond = true
@@ -221,7 +220,7 @@ local function add_research(name, count)
         icon_size = 64,
         icon_mipmaps = 4,
         upgrade = false,
-        localised_name = { "technology-name.technology-efficiency", New_values[name].name, " (" .. count .. ")" },
+        localised_name = { "technology-name.technology-efficiency", Recipes[name].name, " (" .. count .. ")" },
         effects = {
             {
                 type = "unlock-recipe",
@@ -239,8 +238,8 @@ local function add_research(name, count)
                 table.insert(prerequisites, b)
             end
         end
-        if New_values[name].research.prerequisites then
-            for a, b in pairs(New_values[name].research.prerequisites) do
+        if Recipes[name].research.prerequisites then
+            for a, b in pairs(Recipes[name].research.prerequisites) do
                 table.insert(prerequisites, b)
             end
         end
@@ -253,8 +252,10 @@ local function add_research(name, count)
 
     if CE_recipes[name].base.icon then
         tech.icon = CE_recipes[name].base.icon
-    elseif New_values[name].icon then
-        tech.icon = New_values[name].icon
+    elseif Recipes[name].icon then
+        tech.icon = Recipes[name].icon
+    elseif Recipes[name].fluid then
+        tech.icon = "__base__/graphics/icons/fluid/" .. name .. ".png"
     else
         tech.icon = "__base__/graphics/icons/" .. name .. ".png"
     end
@@ -291,7 +292,7 @@ local function add_research(name, count)
 end
 
 function Add_items()
-    for i, v in pairs(New_values) do
+    for i, v in pairs(Recipes) do
 
 
         for x = 1, v.max do
@@ -315,7 +316,7 @@ for name, recipe in pairs(data.raw.recipe) do
         local results = {}
         local category = ""
 
-        if data.raw.recipe[name].normal.result and New_values[name] then
+        if data.raw.recipe[name].normal.result and Recipes[name] then
 
             table.insert(result, data.raw.recipe[name].normal.result)
 
@@ -344,7 +345,7 @@ for name, recipe in pairs(data.raw.recipe) do
                 icon_size = data.raw.recipe[name].icon_size, icon_mipmaps = data.raw.recipe[name].icon_mipmaps,
                 subgroup = data.raw.recipe[name].subgroup, icons = data.raw.recipe[name].icons } }
 
-        elseif data.raw.recipe[name].normal.results and New_values[name] then
+        elseif data.raw.recipe[name].normal.results and Recipes[name] then
 
             for index, res in pairs(data.raw.recipe[name].normal.results) do
                 table.insert(results, res)
@@ -385,7 +386,7 @@ for name, recipe in pairs(data.raw.recipe) do
         local results = {}
         local category = ""
 
-        if data.raw.recipe[name].result and New_values[name] then
+        if data.raw.recipe[name].result and Recipes[name] then
 
             table.insert(result, data.raw.recipe[name].result)
 
@@ -416,7 +417,7 @@ for name, recipe in pairs(data.raw.recipe) do
                 icon_size = data.raw.recipe[name].icon_size, icon_mipmaps = data.raw.recipe[name].icon_mipmaps,
                 subgroup = data.raw.recipe[name].subgroup, icons = data.raw.recipe[name].icons } }
 
-        elseif data.raw.recipe[name].results and New_values[name] then
+        elseif data.raw.recipe[name].results and Recipes[name] then
 
             for index, res in pairs(data.raw.recipe[name].results) do
                 table.insert(results, res)
