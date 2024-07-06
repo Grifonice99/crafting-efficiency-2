@@ -16,11 +16,11 @@ local function add_recipe(recipe, name, count)
     if recipe.category == nil then
         recipe.category = "crafting"
     end
-
+   
     local materials = {}
 
     for a, b in pairs(CE_recipes[name].base.ingredients) do
-        if b.type then
+        if b.name then
             table.insert(materials, b.amount)
         else
             table.insert(materials, b[2])
@@ -186,7 +186,6 @@ local function add_research(name, count)
     end
     if count > 1 then
         tech.enabled = false
-        --table.insert(prerequisites, "ce-" .. name .. "-" .. count - 1)
     end
     local cond = false
     local name_tech = ""
@@ -227,6 +226,7 @@ end
 
 CE_recipes = {}
 CE_research = {}
+
 
 for name, recipe in pairs(data.raw.recipe) do
     if data.raw.recipe[name].normal then
