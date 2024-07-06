@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.0.11
+Date: 30.08.2022
+  Changes:
+    - Changed name of recipe/technology of sulfur to sulfur processing
+  Bugfixes:
+    - Fixed technology start tier of sulfur processing
+    - Fixed prerequisites of technology sulfur processing
+---------------------------------------------------------------------------------------------------
 Version: 0.0.10
 Date: 29.08.2022
   Changes:

@@ -71,6 +71,18 @@ New_values = {
             level = 2,
         }
     },
+    ["sulfur"] = {
+        name = "Sulfur processing efficiency",
+        max = 22,
+        crafting = {
+            efficiency = 10,
+            category = "chemistry",
+        },
+        research = {
+            prerequisites={"sulfur-processing"},
+            level = 2,
+        }
+    },
     ["processing-unit"] = {
         name = "Processing unit efficiency",
         max = 14,
@@ -164,16 +176,6 @@ New_values = {
     },
     ["utility-science-pack"] = {
         name = "Utility science pack efficiency",
-        max = 22,
-        crafting = {
-            efficiency = 10,
-        },
-        research = {
-            level = 5,
-        }
-    },
-    ["sulfur"] = {
-        name = "Sulfur efficiency",
         max = 22,
         crafting = {
             efficiency = 10,

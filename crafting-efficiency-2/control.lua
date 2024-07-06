@@ -7,7 +7,7 @@ local function update_recipes(event)
 	local name = base:sub(4)
 	if New_values[name] and tonumber(level) ~= nil and identifier == "ce-" then
 		if tonumber(level) > 1 then
-			game.forces["player"].recipes[base .. "-" .. level - 1].enabled = false
+			event.research.force.recipes[base .. "-" .. level - 1].enabled = false
 		end
 		for _, surface in pairs(game.surfaces) do
 			for _, entity in pairs(surface.find_entities_filtered({ type = "assembling-machine" })) do

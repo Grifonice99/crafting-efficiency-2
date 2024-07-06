@@ -239,6 +239,11 @@ local function add_research(name, count)
                 table.insert(prerequisites, b)
             end
         end
+        if New_values[name].research.prerequisites then
+            for a, b in pairs(New_values[name].research.prerequisites) do
+                table.insert(prerequisites, b)
+            end
+        end
         for a, b in pairs(ingredients) do
             if b[1] ~= "automation-science-pack" and b[1] ~= name then
                 table.insert(prerequisites, b[1])
