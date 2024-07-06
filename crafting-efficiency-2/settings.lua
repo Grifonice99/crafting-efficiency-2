@@ -63,3 +63,4 @@ local function ce_new_setting_double(name, order, default, min, max, type)
 end
 
 ce_new_setting_boolean("ce-update-base-recipes", 1, true, "runtime-global")
+ce_new_setting_boolean("ce-enable-productivity-module", 1, false, "startup")

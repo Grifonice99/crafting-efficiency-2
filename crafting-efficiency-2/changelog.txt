@@ -1,4 +1,14 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.0.17
+Date: 10.12.2022
+  Bugfixes:
+    - Fixed the bug that when pressing the planner button with an item it would be destroyed
+  Features:
+    - Added recipe for "copper-plate" and "iron-plate"
+    - Added expensive level of recipe
+    - Added startup setting to enable productivity module
+    - Added support of vanilla recipe to the planner
+---------------------------------------------------------------------------------------------------
 Version: 0.0.16
 Date: 03.11.2022
   Features:

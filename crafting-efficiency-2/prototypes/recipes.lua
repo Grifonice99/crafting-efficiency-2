@@ -61,19 +61,25 @@ local function add_recipe(recipe, name, count)
     result_count_2 = multiplier_result[3]
 
     local conf = {}
-    conf.ingredients = {}
+    conf.normal = {}
+    conf.expensive = {}
+    conf.normal.ingredients = {}
+    conf.expensive.ingredients = {}
     conf.result_count = {}
     conf.results = {}
     conf.result = {}
+
     conf.time = time
 
 
     for a, b in pairs(CE_recipes[name].base.ingredients) do
         if b.name then
-            table.insert(conf.ingredients, { type = b.type, name = b.name, amount = b.amount })
+            table.insert(conf.normal.ingredients, { type = b.type, name = b.name, amount = b.amount })
+            table.insert(conf.expensive.ingredients, { type = b.type, name = b.name, amount = b.amount })
         else
             for int = 2, #b, 2 do
-                table.insert(conf.ingredients, { b[int - 1], b[int] })
+                table.insert(conf.normal.ingredients, { b[int - 1], b[int] })
+                table.insert(conf.expensive.ingredients, { b[int - 1], b[int] })
             end
         end
     end
@@ -107,11 +113,18 @@ local function add_recipe(recipe, name, count)
 
     CE_recipes[name][tostring(count)] = conf
 
-    for a, b in pairs(CE_recipes[name][tostring(count)].ingredients) do
+    for a, b in pairs(CE_recipes[name][tostring(count)].normal.ingredients) do
         if b.type then
             b.amount = materials[a]
         else
             b[2] = materials[a]
+        end
+    end
+    for a, b in pairs(CE_recipes[name][tostring(count)].expensive.ingredients) do
+        if b.type then
+            b.amount = materials[a]*2
+        else
+            b[2] = materials[a]*2
         end
     end
     if CE_recipes[name].base.results then
@@ -137,23 +150,47 @@ local function add_recipe(recipe, name, count)
         name = "ce-" .. name .. "-" .. count,
         localised_name = { "recipe-name.recipes-efficiency", Recipes[name].name, " (" .. count .. ")" },
         category = CE_recipes[name].base.category,
-        enabled = false,
-        ingredients = CE_recipes[name][tostring(count)].ingredients,
+        order = "zz",
+        normal = {
+            ingredients = CE_recipes[name][tostring(count)].normal.ingredients,
+            energy_required=CE_recipes[name][tostring(count)].time,
+            enabled = false,
+        },
+        expensive = {
+            ingredients = CE_recipes[name][tostring(count)].expensive.ingredients,
+            energy_required=CE_recipes[name][tostring(count)].time,
+            enabled = false,
+        },
     }
+
+    if settings.startup["ce-enable-productivity-module"].value then
+        for a, b in pairs(data.raw.module) do
+            if b.limitation then
+                table.insert(b.limitation, "ce-" .. name .. "-" .. count)
+            end
+        end
+    end
+
     if CE_recipes[name][tostring(count)].result_count then
-        recipe.result_count = CE_recipes[name][tostring(count)].result_count
+        recipe.normal.result_count = CE_recipes[name][tostring(count)].result_count
+        recipe.expensive.result_count = CE_recipes[name][tostring(count)].result_count
     end
 
     if #result == 1 then
-        recipe.result = result[1]
-        recipe.result_count = result_count_2[1]
+        recipe.normal.result = result[1]
+        recipe.normal.result_count = result_count_2[1]
+        recipe.expensive.result = result[1]
+        recipe.expensive.result_count = result_count_2[1]
     else
         if #result_count_2 == 1 and not CE_recipes[name][tostring(count)].results[1].name then
 
-            recipe.result = CE_recipes[name][tostring(count)].results[1]
-            recipe.result_count = CE_recipes[name][tostring(count)].result_count
+            recipe.normal.result = CE_recipes[name][tostring(count)].results[1]
+            recipe.normal.result_count = CE_recipes[name][tostring(count)].result_count
+            recipe.expensive.result = CE_recipes[name][tostring(count)].results[1]
+            recipe.expensive.result_count = CE_recipes[name][tostring(count)].result_count
         else
-            recipe.results = CE_recipes[name][tostring(count)].results
+            recipe.normal.results = CE_recipes[name][tostring(count)].results
+            recipe.expensive.results = CE_recipes[name][tostring(count)].results
         end
     end
     if CE_recipes[name].base.icon then
@@ -161,7 +198,7 @@ local function add_recipe(recipe, name, count)
         recipe.icon_size = 64
         recipe.icon_mipmaps = 4
     end
-    
+
     if CE_recipes[name].base.icons then
         recipe.icons = CE_recipes[name].base.icons
     end
@@ -177,8 +214,6 @@ local function add_recipe(recipe, name, count)
     if CE_recipes[name].base.subgroup then
         recipe.subgroup = CE_recipes[name].base.subgroup
     end
-    recipe.energy_required = CE_recipes[name][tostring(count)].time
-
 
     data:extend({ recipe })
 end
@@ -230,7 +265,7 @@ local function add_research(name, count)
     }
     local prerequisites = {}
     if count > 1 then
-        table.insert(prerequisites, "ce-" .. name .. "-" .. count-1)
+        table.insert(prerequisites, "ce-" .. name .. "-" .. count - 1)
         tech.upgrade = true
     else
         if CE_recipes[name].base.prerequisites then
@@ -260,9 +295,9 @@ local function add_research(name, count)
         tech.icon = "__base__/graphics/icons/" .. name .. ".png"
     end
 
-    
-    
-    
+
+
+
     local cond = false
     local name_tech = ""
     for a, b in pairs(CE_research) do
@@ -279,15 +314,15 @@ local function add_research(name, count)
     if cond and name_tech ~= "" and count == 1 then
         table.insert(prerequisites, name_tech)
     end
-    
+
     local unit = {}
     unit.count = (100 * cost_multiplier) * count
     unit.ingredients = ingredients
     unit.time = 30
     tech.unit = unit
     tech.prerequisites = prerequisites
-    
-    
+
+
     data:extend({ tech })
 end
 
@@ -300,8 +335,6 @@ function Add_items()
         end
     end
 end
-
-
 
 CE_recipes = {}
 CE_research = {}

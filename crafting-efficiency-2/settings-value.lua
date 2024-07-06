@@ -9,6 +9,28 @@ Recipes = {
             level = 1
         }
     },
+    ["copper-plate"] = {
+        name = "Copper plate efficiency",
+        max = 15,
+        crafting = {
+            efficiency = 20,
+            category = "smelting",
+        },
+        research = {
+            level = 1
+        }
+    },
+    ["iron-plate"] = {
+        name = "Iron plate efficiency",
+        max = 15,
+        crafting = {
+            efficiency = 20,
+            category = "smelting",
+        },
+        research = {
+            level = 1
+        }
+    },
     ["electronic-circuit"] = {
         name = "Electronic circuit efficiency",
         max = 16,
@@ -230,6 +252,16 @@ Recipes = {
             level = 3,
         }
     },
+    ["electric-furnace"] = {
+        name = "Electric Furnace efficiency",
+        max = 15,
+        crafting = {
+            efficiency = 10,
+        },
+        research = {
+            level = 3,
+        }
+    },
     ["production-science-pack"] = {
         name = "Production science pack efficiency",
         max = 22,
@@ -260,6 +292,7 @@ Recipes = {
             level = 6
         }
     }
+
 }
 
 

@@ -87,11 +87,11 @@ end
 
 local function give_switcher(event)
 	local player = game.get_player(event.player_index)
-	player.clear_console()
+	player.clear_cursor()
 	player.cursor_stack.set_stack({ name = "ce-switcher", count = 1 })
 end
 
-local function test_a(event)
+local function update__entity_recipe(event)
 	for a, b in pairs(event.entities) do
 		if b.type == "assembling-machine" then
 			local recipe = b.get_recipe()
@@ -99,27 +99,33 @@ local function test_a(event)
 				local base = recipe.name:gsub("(.*)%-.*$", "%1")
 				local identifier = base:sub(1, 3)
 				local level = recipe.name:gsub(".*%-", "")
-				local name = base:sub(4)				
-				if Recipes[name] and tonumber(level) ~= nil and identifier == "ce-" then
+				if tonumber(level) == nil then
+					base = "ce-"..recipe.name
+					level = 1
+				end
+
+				local name = base:sub(4)
+				if Recipes[name] or Recipes[recipe.name]then
+					print("aaaa")
 					local technologies = {}
 					for index, tech in pairs(game.forces.player.technologies) do
-						local base = tech.name:gsub("(.*)%-.*$", "%1")
-						local identifier = base:sub(1, 3)
-						local level = tech.name:gsub(".*%-", "")
-						if identifier == "ce-" and tonumber(level) then
+						local base2 = tech.name:gsub("(.*)%-.*$", "%1")
+						local identifier2 = base2:sub(1, 3)
+						local level2 = tech.name:gsub(".*%-", "")
+						if identifier2 == "ce-" and tonumber(level2) then
 							tech.reload()
 							tech.enabled = true
-							if not technologies[base] then
-								technologies[base] = {}
-								technologies[base].index = {}
+							if not technologies[base2] then
+								technologies[base2] = {}
+								technologies[base2].index = {}
 							end
 							if tech.researched then
-								table.insert(technologies[base].index, tonumber(level))
-								technologies[base][level] = tech
+								table.insert(technologies[base2].index, tonumber(level2))
+								technologies[base2][level2] = tech
 							end
 						end
 					end
-					print(#technologies[base].index , tonumber(level))
+					print(base)
 					if #technologies[base].index > tonumber(level) then
 						local last_recipe = technologies[base][tostring(#technologies[base].index)].name
 						local ingredients = {}
@@ -155,7 +161,9 @@ script.on_event("ce-switcher", function(event)
 end)
 
 script.on_event(defines.events.on_lua_shortcut, function(event)
-	give_switcher(event)
+	if event.prototype_name == "ce-switcher" then
+		give_switcher(event)
+	end
 end)
 
 script.on_event(defines.events.on_technology_effects_reset, function(event)
@@ -164,13 +172,13 @@ end)
 
 script.on_event(defines.events.on_player_selected_area, function(event)
 	if event.item == "ce-switcher" then
-		test_a(event)
+		update__entity_recipe(event)
 	end
 end)
 
 script.on_event(defines.events.on_player_alt_selected_area, function(event)
 	if event.item == "ce-switcher" then
-		test_a(event)
+		update__entity_recipe(event)
 	end
 end)
 
