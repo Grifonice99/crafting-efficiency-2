@@ -1,4 +1,5 @@
 require("settings-value")
+require("prototypes.switcher")
 
 local solid_fuel = { "solid-fuel-from-light-oil", "solid-fuel-from-petroleum-gas", "solid-fuel-from-heavy-oil" }
 for _, name in pairs(solid_fuel) do
