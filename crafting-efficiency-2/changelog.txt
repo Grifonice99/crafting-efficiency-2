@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.0.12
+Date: 03.09.2022
+  Features:
+    - Add setting to turn on/off for replacing vanilla recipe
+  Bugfixes:
+    - Fixed technology prerequisites that not include base research
+    - Fixed the bug that when a mod is updated all the old recipes appear
+---------------------------------------------------------------------------------------------------
 Version: 0.0.11
 Date: 30.08.2022
   Changes:

@@ -79,7 +79,6 @@ New_values = {
             category = "chemistry",
         },
         research = {
-            prerequisites={"sulfur-processing"},
             level = 2,
         }
     },

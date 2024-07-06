@@ -275,9 +275,10 @@ local function add_research(name, count)
         end
     end
 
-    --if cond and name_tech ~= "" and count == 1 then
-    --    table.insert(prerequisites, name_tech)
-    --end
+    if cond and name_tech ~= "" and count == 1 then
+        table.insert(prerequisites, name_tech)
+    end
+    
     local unit = {}
     unit.count = (100 * cost_multiplier) * count
     unit.ingredients = ingredients
