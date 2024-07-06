@@ -1,6 +1,0 @@
-{
-    "name" : "crafting-efficiency-2",
-    "exec" : "./fact", 
-    "args" : "--executable-path ~/Desktop/factorio/bin/x64/factorio --mod-directory ./mods --load-game ~/Desktop/factorio/saves/crafting-efficiency.zip --graphics-quality very-low"
-}   
-

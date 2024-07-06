@@ -1,5 +1,6 @@
 require("functions")
 
+
 function table.removekey(table, key)
     local element = table[key]
     table[key] = nil
@@ -207,6 +208,7 @@ local function add_recipe(recipe, name, count)
             recipe.normal.result_count = CE_recipes[name][tostring(count)].result_count
             recipe.expensive.result = CE_recipes[name][tostring(count)].results[1]
             recipe.expensive.result_count = CE_recipes[name][tostring(count)].result_count
+            
         else
             recipe.normal.results = CE_recipes[name][tostring(count)].results
             recipe.expensive.results = CE_recipes[name][tostring(count)].results
@@ -232,6 +234,10 @@ local function add_recipe(recipe, name, count)
 
     if CE_recipes[name].base.subgroup then
         recipe.subgroup = CE_recipes[name].base.subgroup
+    end
+    if CE_recipes[name].base.main_product then
+        recipe.normal.main_product = CE_recipes[name].base.main_product
+        recipe.expensive.main_product = CE_recipes[name].base.main_product
     end
 
     data:extend({ recipe })
@@ -357,13 +363,15 @@ end
 CE_recipes = {}
 CE_research = {}
 
+local recipe_copy = deepcopy(Recipes)
+
 for name, recipe in pairs(data.raw.recipe) do
     local order
     if recipe.order then
         order = recipe.order
     end
-
     if Recipes[name] then
+        recipe_copy[name] = nil
         recipe = deepcopy(recipe)
         if recipe.normal == nil then
             recipe.normal = {}
@@ -380,7 +388,8 @@ for name, recipe in pairs(data.raw.recipe) do
                 icon_size = recipe.icon_size,
                 icon_mipmaps = recipe.icon_mipmaps,
                 subgroup = recipe.subgroup,
-                icons = recipe.icons 
+                icons = recipe.icons,
+                main_product = recipe.main_product or recipe.normal.main_product,
             },
         }
 
@@ -392,6 +401,10 @@ for name, recipe in pairs(data.raw.recipe) do
     end
 end
 
+for a, b in pairs(recipe_copy) do
+    log("WARNING: " .. a .. " Recipe not found, removing it.")
+    Recipes[a] = nil
+end
 
 for name, research in pairs(data.raw.technology) do
     if research.effects then
@@ -405,6 +418,7 @@ for name, research in pairs(data.raw.technology) do
         end
     end
 end
+
 
 for name, item in pairs(data.raw.item) do
     if CE_recipes[name] then
