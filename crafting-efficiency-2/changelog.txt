@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.1.9
+Date: 21.03.2024
+  Bugfixes:
+    - Bugfix with non sequential fluid ingredients/results (thanks to nihilistzsche for the fix)
+---------------------------------------------------------------------------------------------------
 Version: 0.1.8
 Date: 21.03.2024
   Bugfixes:
