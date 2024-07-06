@@ -135,7 +135,7 @@ local function add_recipe(recipe, name, count)
     local recipe = {
         type = "recipe",
         name = "ce-" .. name .. "-" .. count,
-        localised_name = { "recipe-name.recipes-effinciency", Recipes[name].name, " (" .. count .. ")" },
+        localised_name = { "recipe-name.recipes-efficiency", Recipes[name].name, " (" .. count .. ")" },
         category = CE_recipes[name].base.category,
         enabled = false,
         ingredients = CE_recipes[name][tostring(count)].ingredients,
@@ -293,7 +293,6 @@ end
 
 function Add_items()
     for i, v in pairs(Recipes) do
-
 
         for x = 1, v.max do
             add_recipe(v, i, x)

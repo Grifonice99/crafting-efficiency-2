@@ -42,7 +42,7 @@ local function update_recipes(event)
 	end
 end
 
-local function lock_recipe()
+local function reset_forces()
 	local technologies = {}
 	for index, tech in pairs(game.forces.player.technologies) do
 		local base = tech.name:gsub("(.*)%-.*$", "%1")
@@ -79,16 +79,17 @@ local function lock_recipe()
 		local base = b.name:gsub("(.*)%-.*$", "%1")
 		local identifier = base:sub(1, 3)
 		for level = b.level - 1, 1, -1 do
+			game.forces.player.technologies[base .. "-" .. tostring(level)].researched=true
 			game.forces.player.technologies[base .. "-" .. tostring(level)].force.recipes[base .. "-" .. tostring(level)].enabled = false
 			game.forces.player.recipes[base .. "-" .. tostring(level)].enabled = false
 		end
 	end
 end
 
-script.on_configuration_changed(lock_recipe)
+script.on_configuration_changed(reset_forces)
 
 script.on_event(defines.events.on_technology_effects_reset, function (event)
-	lock_recipe()
+	reset_forces()
 end)
 script.on_event(defines.events.on_research_finished, function(event)
 	update_recipes(event)

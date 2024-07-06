@@ -1,6 +1,6 @@
 Recipes = {
     ["copper-cable"] = {
-        name = "copper cable efficiency",
+        name = "Copper cable efficiency",
         max = 18,
         crafting = {
             efficiency = 10,
@@ -10,7 +10,7 @@ Recipes = {
         }
     },
     ["electronic-circuit"] = {
-        name = "electronic circuit efficiency",
+        name = "Electronic circuit efficiency",
         max = 16,
         crafting = {
             efficiency = 10,
@@ -20,10 +20,21 @@ Recipes = {
         }
     },
     ["iron-gear-wheel"] = {
-        name = "iron gear wheel efficiency",
+        name = "Iron gear wheel efficiency",
         max = 18,
         crafting = {
             efficiency = 10,
+        },
+        research = {
+            level = 1
+        }
+    },
+    ["steel-plate"] = {
+        name = "Steel plate efficiency",
+        max = 15,
+        crafting = {
+            efficiency = 20,
+            category = "smelting",
         },
         research = {
             level = 1
@@ -145,6 +156,17 @@ Recipes = {
             level = 3,
         }
     },
+    ["rocket-fuel"] = {
+        name = "Rocket fuel efficiency",
+        max = 12,
+        crafting = {
+            efficiency = 10,
+            category = "crafting-with-fluid",
+        },
+        research = {
+            level = 3
+        }
+    },
     ["uranium-processing"] = {
         name = "Uranium processing efficiency",
         max = 3,
@@ -241,20 +263,20 @@ Recipes = {
 }
 
 
-function CE_Add_Recipe(data, name, ignore_warning)
-    if data.name == nil or data.max == nil or data.icon == nil or data.research == nil or data.research.level == nil or
-        data.crafting == nil or data.crafting.efficiency == nil or name == nil then
+function CE_Add_Recipe(data, name, ignore_warning, no_log)
+    if no_log == nil then
+        no_log = false
+    end
+    if data.name == nil or data.max == nil or data.research == nil or data.research.level == nil or
+        data.crafting == nil or name == nil then
         log("Missing elements in the table.")
         return
     end
 
     
-    if data.max % 1 ~= 0 and not ignore_warning then
-        log("WARINING: the max of " .. name .. "value is a float and the cost of the recipes and the result can be huge, It is recommended to use an integer value.")
-    end
+    
 
     local item = {
-        icon = data.icon,
         name = data.name,
         max = data.max,
         crafting = {
@@ -264,7 +286,23 @@ function CE_Add_Recipe(data, name, ignore_warning)
             level = data.research.level,
         }
     }
-
+    if data.icon then
+        item.icon=data.icon
+    end
+    if data.fluid then
+        item.fluid=data.fluid
+    end
+    if data.crafting.efficiency then
+        item.crafting.efficiency=data.crafting.efficiency
+        if data.crafting.efficiency % 1 ~= 0 and not ignore_warning then
+            log("warning, it is recommended to use an efficiency divisible by 10, current efficiency = " .. tostring(data.crafting.efficiency) )
+        end
+    else
+        log("warning, using 5% in efficiency for the recipe".. data.name ..", it's raccomandate to add the args and use 10%" )
+        
+    end
     Recipes[name] = item
-    log("Added " .. name .. " to the table.")
+    if not no_log then
+        log("Added " .. name .. " to the table.")
+    end
 end

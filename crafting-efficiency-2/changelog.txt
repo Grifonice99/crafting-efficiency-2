@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.0.15
+Date: 13.09.2022
+  Features:
+    - unlocks technologies that were blocked by the old technology management system
+    - Added Steel plate efficiency
+    - Added Solid fuel efficiency *for all fluids*
+    - Added Rocket fuel efficiency
+---------------------------------------------------------------------------------------------------
 Version: 0.0.14
 Date: 12.09.2022
   Features:
