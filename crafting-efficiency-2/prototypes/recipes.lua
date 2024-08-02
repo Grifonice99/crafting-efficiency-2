@@ -19,7 +19,7 @@ local function add_recipe(recipe, name, count)
     local efficiency = 0
     local single_result = false
 
-    
+
     local materials = {}
 
     for a, b in pairs(CE_recipes[name].base.ingredients) do
@@ -43,7 +43,6 @@ local function add_recipe(recipe, name, count)
                     table.insert(result_count1, b.amount)
                 end
             else
-                
                 if #b > 2 and math.floor(#b / 2) == #b / 2 then
                     for i = 0, #b, 2 do
                         table.insert(results, b[i - 1])
@@ -68,10 +67,10 @@ local function add_recipe(recipe, name, count)
 
     time = CE_recipes[name].base.time
     multiplier_result = Cost_multiplier(materials, time, result_count1, 1 + (efficiency * count), result_count2)
-    
+
     materials = multiplier_result[1]
     time = multiplier_result[2]
-    
+
     result_count1_2 = multiplier_result[3]
     result_count2_2 = multiplier_result[4]
 
@@ -127,7 +126,7 @@ local function add_recipe(recipe, name, count)
             end
         end
     end
-    
+
     CE_recipes[name][tostring(count)] = conf
 
     for a, b in pairs(CE_recipes[name][tostring(count)].normal.ingredients) do
@@ -187,7 +186,7 @@ local function add_recipe(recipe, name, count)
             enabled = false,
         },
     }
-    
+
     if settings.startup["ce-enable-productivity-module"].value then
         for a, b in pairs(data.raw.module) do
             if b.limitation then
@@ -211,11 +210,9 @@ local function add_recipe(recipe, name, count)
         recipe.normal.result_count = result_count1_2[1]
         recipe.expensive.result = results[1]
         recipe.expensive.result_count = result_count1_2[1]
-
-    else        
-            recipe.normal.results = CE_recipes[name][tostring(count)].results
-            recipe.expensive.results = CE_recipes[name][tostring(count)].results
-        
+    else
+        recipe.normal.results = CE_recipes[name][tostring(count)].results
+        recipe.expensive.results = CE_recipes[name][tostring(count)].results
     end
 
     if CE_recipes[name].base.icon then
@@ -284,11 +281,11 @@ local function add_research(name, count)
     local count2 = count * 1
     local cost_multiplier = 1
     local cond = true
-    if count2 - 5 > 0 and level < 6 then
+    if count2 - 6 > 0 and level < 7 then
         repeat
-            count2 = count2 - 5
+            count2 = count2 - 6
             level = level + 1
-            cond = (count2 - 5 > 0 and level < 6)
+            cond = (count2 - 6 > 0 and level < 7)
         until (not cond)
     end
     local ingredients = {}
@@ -296,18 +293,22 @@ local function add_research(name, count)
         ingredients = { { "automation-science-pack", 1 } }
     elseif level == 2 then
         ingredients = { { "automation-science-pack", 1 }, { "logistic-science-pack", 1 } }
-        cost_multiplier = 2
+        cost_multiplier = 4
     elseif level == 3 then
         ingredients = { { "automation-science-pack", 1 }, { "logistic-science-pack", 1 }, { "chemical-science-pack", 1 } }
-        cost_multiplier = 4
+        cost_multiplier = 8
     elseif level == 4 then
         ingredients = { { "automation-science-pack", 1 }, { "logistic-science-pack", 1 }, { "chemical-science-pack", 1 },
             { "production-science-pack", 1 } }
-        cost_multiplier = 7
-    elseif level >= 5 then
+        cost_multiplier = 14
+    elseif level == 5 then
         ingredients = { { "automation-science-pack", 1 }, { "logistic-science-pack", 1 }, { "chemical-science-pack", 1 },
             { "production-science-pack", 1 }, { "utility-science-pack", 1 } }
-        cost_multiplier = 13
+        cost_multiplier = 20
+    elseif level >= 6 then
+        ingredients = { { "automation-science-pack", 1 }, { "logistic-science-pack", 1 }, { "chemical-science-pack", 1 },
+            { "production-science-pack", 1 }, { "utility-science-pack", 1 }, { "space-science-pack", 1 } }
+        cost_multiplier = 28
     end
 
     local tech = {
@@ -347,8 +348,6 @@ local function add_research(name, count)
     end
     if type(CE_recipes[name].base.icons) == "table" then
         tech.icon = CE_recipes[name].base.icons[1].icon
-
-        
     elseif CE_recipes[name].base and CE_recipes[name].base.icon then
         tech.icon = CE_recipes[name].base.icon
         tech.icon_size = CE_recipes[name].base.icon_size
@@ -376,13 +375,13 @@ local function add_research(name, count)
             end
         end
     end
-
-    if cond and name_tech ~= "" and count == 1 then
+    if cond and name_tech ~= "" and count == 1 and not Contain(prerequisites, name_tech) then
         table.insert(prerequisites, name_tech)
     end
 
     local unit = {}
-    unit.count = (100 * cost_multiplier) * count
+    unit.count = (100 * cost_multiplier) * (1+count^2/8)
+
     unit.ingredients = ingredients
     unit.time = 30
     tech.unit = unit
@@ -404,7 +403,7 @@ end
 CE_recipes = {}
 CE_research = {}
 
-local recipe_copy = deepcopy(Recipes)
+local recipe_copy = DeepCopy(Recipes)
 
 for name, recipe in pairs(data.raw.recipe) do
     local order
@@ -413,18 +412,18 @@ for name, recipe in pairs(data.raw.recipe) do
     end
     if Recipes[name] then
         recipe_copy[name] = nil
-        recipe = deepcopy(recipe)
+        recipe = DeepCopy(recipe)
         if recipe.normal == nil then
             recipe.normal = {}
         end
-        
+
         CE_recipes[name] = {
             base = {
                 order = order or "",
-                ingredients = recipe.ingredients or recipe.normal.ingredients ,
+                ingredients = recipe.ingredients or recipe.normal.ingredients,
                 time = recipe.energy_required or recipe.normal.energy_required or 0.5,
                 category = recipe.category or "crafting",
-                result_count = recipe.result_count or recipe.normal.result_count or  1,
+                result_count = recipe.result_count or recipe.normal.result_count or 1,
                 icon = recipe.icon,
                 icon_size = recipe.icon_size,
                 icon_mipmaps = recipe.icon_mipmaps,
@@ -435,7 +434,7 @@ for name, recipe in pairs(data.raw.recipe) do
             },
         }
         if recipe.result or recipe.normal.result then
-            CE_recipes[name].base.result = {recipe.result or recipe.normal.result}
+            CE_recipes[name].base.result = { recipe.result or recipe.normal.result }
         else
             CE_recipes[name].base.results = recipe.results or recipe.normal.results
             CE_recipes[name].base.result_count = nil

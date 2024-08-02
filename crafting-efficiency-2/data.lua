@@ -7,7 +7,7 @@ for _, name in pairs(solid_fuel) do
         name = "Solid fuel efficiency",
         max = 13,
         crafting = {
-            efficiency = 10,
+            efficiency = 20,
             category = "chemistry"
         },
         research = {

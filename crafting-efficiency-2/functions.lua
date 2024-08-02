@@ -119,17 +119,26 @@ function Cost_multiplier(ingredients, time, results1, multiplier, results2)
 	return ret
 end
 
-function deepcopy(orig)
+function DeepCopy(orig)
     local orig_type = type(orig)
     local copy
     if orig_type == 'table' then
         copy = {}
         for orig_key, orig_value in next, orig, nil do
-            copy[deepcopy(orig_key)] = deepcopy(orig_value)
+            copy[DeepCopy(orig_key)] = DeepCopy(orig_value)
         end
-        setmetatable(copy, deepcopy(getmetatable(orig)))
+        setmetatable(copy, DeepCopy(getmetatable(orig)))
     else 
         copy = orig
     end
     return copy
+end
+
+function Contain(table, value)
+	for i, v in ipairs(table) do
+		if v == value then
+			return true
+		end
+	end
+	return false
 end

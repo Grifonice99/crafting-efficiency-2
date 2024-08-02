@@ -3,7 +3,7 @@ Recipes = {
         name = "Copper cable efficiency",
         max = 18,
         crafting = {
-            efficiency = 10,
+            efficiency = 20,
         },
         research = {
             level = 1
@@ -13,7 +13,7 @@ Recipes = {
         name = "Copper plate efficiency",
         max = 15,
         crafting = {
-            efficiency = 20,
+            efficiency = 40,
             category = "smelting",
         },
         research = {
@@ -24,7 +24,7 @@ Recipes = {
         name = "Iron plate efficiency",
         max = 15,
         crafting = {
-            efficiency = 20,
+            efficiency = 40,
             category = "smelting",
         },
         research = {
@@ -35,7 +35,7 @@ Recipes = {
         name = "Electronic circuit efficiency",
         max = 16,
         crafting = {
-            efficiency = 10,
+            efficiency = 20,
         },
         research = {
             level = 1
@@ -45,7 +45,7 @@ Recipes = {
         name = "Iron gear wheel efficiency",
         max = 18,
         crafting = {
-            efficiency = 10,
+            efficiency = 20,
         },
         research = {
             level = 1
@@ -55,7 +55,7 @@ Recipes = {
         name = "Steel plate efficiency",
         max = 15,
         crafting = {
-            efficiency = 20,
+            efficiency = 40,
             category = "smelting",
         },
         research = {
@@ -66,7 +66,7 @@ Recipes = {
         name = "Engine unit efficiency",
         max = 16,
         crafting = {
-            efficiency = 10,
+            efficiency = 20,
         },
         research = {
             level = 2,
@@ -76,7 +76,7 @@ Recipes = {
         name = "Battery efficiency",
         max = 10,
         crafting = {
-            efficiency = 10,
+            efficiency = 20,
             category = "chemistry",
         },
         research = {
@@ -87,7 +87,7 @@ Recipes = {
         name = "Advanced circuit efficiency",
         max = 16,
         crafting = {
-            efficiency = 10,
+            efficiency = 20,
         },
         research = {
             level = 2,
@@ -97,7 +97,7 @@ Recipes = {
         name = "Plastic bar efficiency",
         max = 12,
         crafting = {
-            efficiency = 10,
+            efficiency = 20,
             category = "chemistry",
         },
         research = {
@@ -108,7 +108,7 @@ Recipes = {
         name = "Sulfur processing efficiency",
         max = 22,
         crafting = {
-            efficiency = 10,
+            efficiency = 20,
             category = "chemistry",
         },
         research = {
@@ -119,7 +119,7 @@ Recipes = {
         name = "Basic oil processing efficiency",
         max=13,
         crafting = {
-            efficiency = 10,
+            efficiency = 20,
             category = "oil-processing",
         },
         research = {
@@ -130,7 +130,7 @@ Recipes = {
         name = "Processing unit efficiency",
         max = 14,
         crafting = {
-            efficiency = 10,
+            efficiency = 20,
             category = "crafting-with-fluid",
         },
         research = {
@@ -141,7 +141,7 @@ Recipes = {
         name = "Advanced oil processing efficiency",
         max = 12,
         crafting = {
-            efficiency = 10,
+            efficiency = 20,
             category = "oil-processing"
         },
         research = {
@@ -152,7 +152,7 @@ Recipes = {
         name = "Electric engine unit efficiency",
         max = 15,
         crafting = {
-            efficiency = 10,
+            efficiency = 20,
         },
         research = {
             level = 3,
@@ -162,7 +162,7 @@ Recipes = {
         name = "Flying robot frame efficiency",
         max = 15,
         crafting = {
-            efficiency = 10,
+            efficiency = 20,
         },
         research = {
             level = 3,
@@ -172,7 +172,7 @@ Recipes = {
         name = "Low density structure efficiency",
         max = 15,
         crafting = {
-            efficiency = 10,
+            efficiency = 20,
         },
         research = {
             level = 3,
@@ -182,7 +182,7 @@ Recipes = {
         name = "Rocket fuel efficiency",
         max = 12,
         crafting = {
-            efficiency = 10,
+            efficiency = 20,
             category = "crafting-with-fluid",
         },
         research = {
@@ -193,7 +193,7 @@ Recipes = {
         name = "Uranium processing efficiency",
         max = 3,
         crafting = {
-            efficiency = 10,
+            efficiency = 20,
         },
         research = {
             level = 4,
@@ -203,7 +203,7 @@ Recipes = {
         name = "Coal liquefaction efficiency",
         max = 18,
         crafting = {
-            efficiency = 10,
+            efficiency = 20,
             category = "oil-processing"
         },
         research = {
@@ -215,7 +215,7 @@ Recipes = {
         max = 14,
         fluid = true,
         crafting = {
-            efficiency = 10,
+            efficiency = 20,
             category = "chemistry",
         },
         research = {
@@ -226,7 +226,7 @@ Recipes = {
         name = "Automation science pack efficiency",
         max = 22,
         crafting = {
-            efficiency = 10,
+            efficiency = 20,
         },
         research = {
             level = 1,
@@ -236,7 +236,7 @@ Recipes = {
         name = "Logistic science pack efficiency",
         max = 22,
         crafting = {
-            efficiency = 10,
+            efficiency = 20,
         },
         research = {
             level = 2,
@@ -246,7 +246,7 @@ Recipes = {
         name = "Chemical science pack efficiency",
         max = 22,
         crafting = {
-            efficiency = 10,
+            efficiency = 20,
         },
         research = {
             level = 3,
@@ -256,7 +256,7 @@ Recipes = {
         name = "Electric Furnace efficiency",
         max = 15,
         crafting = {
-            efficiency = 10,
+            efficiency = 20,
         },
         research = {
             level = 3,
@@ -266,7 +266,7 @@ Recipes = {
         name = "Military science pack efficiency",
         max = 22,
         crafting = {
-            efficiency = 10,
+            efficiency = 20,
         },
         research = {
             level = 3,
@@ -276,7 +276,7 @@ Recipes = {
         name = "Production science pack efficiency",
         max = 22,
         crafting = {
-            efficiency = 10,
+            efficiency = 20,
         },
         research = {
             level = 4,
@@ -286,17 +286,17 @@ Recipes = {
         name = "Utility science pack efficiency",
         max = 22,
         crafting = {
-            efficiency = 10,
+            efficiency = 20,
         },
         research = {
             level = 5,
         }
     },
-    ["rocker-control-unit"] = {
-        name = "Rocker control unit efficiency",
+    ["rocket-control-unit"] = {
+        name = "Rocket control unit efficiency",
         max = 13,
         crafting = {
-            efficiency = 10,
+            efficiency = 20,
         },
         research = {
             level = 5,
@@ -309,7 +309,7 @@ Recipes = {
             efficiency = 20
         },
         research = {
-            level = 6
+            level = 5
         }
     }
 }
@@ -325,7 +325,10 @@ function CE_Add_Recipe(data, name, ignore_warning, no_log)
         return
     end
 
-    
+    if data.research.level >= 6 then 
+       log("research.level must be between 1 and 6")
+       return    
+    end   
     
 
     local item = {
