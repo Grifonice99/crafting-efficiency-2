@@ -17,7 +17,7 @@ run: zip
 	~/factorio/bin/x64/factorio --executable-path ~/factorio/bin/x64/factorio --mod-directory ./private/mods --load-game ~/factorio/saves/crafting-efficiency.zip --graphics-quality very-low
 
 ft:
-	~/factorio/bin/x64/factorio --executable-path ~/factorio/bin/x64/factorio --mod-directory ./private/mods --load-game ~//saves/crafting-efficiency.zip --graphics-quality very-low
+	~/factorio/bin/x64/factorio --executable-path ~/factorio/bin/x64/factorio --mod-directory ./private/mods --load-game ~/factorio/saves/crafting-efficiency.zip --graphics-quality very-low
 
 ft_multi:
 	~/factorio/bin/x64/factorio --executable-path ~/factorio/bin/x64/factorio --mod-directory ./private/mods --graphics-quality very-low
