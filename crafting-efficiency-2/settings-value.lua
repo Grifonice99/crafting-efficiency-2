@@ -175,7 +175,7 @@ Recipes = {
             efficiency = 10,
         },
         research = {
-            level = 3,
+            level = 5,
         }
     },
     ["rocket-fuel"] = {
@@ -186,7 +186,7 @@ Recipes = {
             category = "crafting-with-fluid",
         },
         research = {
-            level = 3
+            level = 5
         }
     },
     ["uranium-processing"] = {
@@ -292,8 +292,8 @@ Recipes = {
             level = 5,
         }
     },
-    ["rocker-control-unit"] = {
-        name = "Rocker control unit efficiency",
+    ["rocket-control-unit"] = {
+        name = "Rocket control unit efficiency",
         max = 13,
         crafting = {
             efficiency = 10,
@@ -301,16 +301,6 @@ Recipes = {
         research = {
             level = 5,
         },
-    },
-    ["satellite"] = {
-        name = "Satellite efficiency",
-        max=15,
-        crafting = {
-            efficiency = 20
-        },
-        research = {
-            level = 6
-        }
     }
 }
 

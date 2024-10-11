@@ -20,103 +20,73 @@ function Cost_multiplier(ingredients, time, results1, multiplier, results2)
 		results2[i] = results2[i] * multiplier * (10 ^ decimal_count)
 	end
 
-	local signal = false
-	local ingredients_old = {}
-	local results1_old = {}
-	local results2_old = {}
+	local ingredients_old = deepcopy(ingredients)
+	local results1_old = deepcopy(results1)
+	local results2_old = deepcopy(results2)
 	local time_old = time*1
 
-	for x, y in ipairs(ingredients) do
-		ingredients_old[x] = y
-	end
-	for x, y in ipairs(results1) do
-		results1_old[x] = y
-	end
-	for x, y in ipairs(results2) do
-		results2_old[x] = y
+
+
+	local result = Division(ingredients, results1, results2, time, 10, decimal_count)	
+	if result[1] then
+		ingredients = deepcopy(ingredients_old)
+		results1 = deepcopy(results1_old)
+		results2 = deepcopy(results2_old)
+		time = time_old*1
+	else 
+		return result[2]
 	end
 
 
 
+	local result = Division(ingredients, results1, results2, time, 5, decimal_count)
+	if result[1] then
+		ingredients = deepcopy(ingredients_old)
+		results1 = deepcopy(results1_old)
+		results2 = deepcopy(results2_old)
+		time = time_old*1
+	else 
+		return result[2]
+	end
+
+
+
+	local result = Division(ingredients, results1, results2, time, 2, decimal_count)
+	if result[1] then
+		ingredients = deepcopy(ingredients_old)
+		results1 = deepcopy(results1_old)
+		results2 = deepcopy(results2_old)
+		time = time_old*1
+	else 
+		return result[2]
+	end
+
+	return { ingredients, time, results1, results2}
+end
+
+
+function Division(ingredients, results1, results2, time, divider, decimal_count)
+	local signal
 	for i, v in ipairs(ingredients) do
-		ingredients[i] = ingredients[i] / 2
+		ingredients[i] = Round(ingredients[i] / divider, decimal_count)
 		if ingredients[i] ~= math.floor(ingredients[i]) then
 			signal = true
 		end
 	end
 	for i, v in ipairs(results1) do
-		results1[i] = results1[i] / 2
+		results1[i] = Round(results1[i] / divider, decimal_count)
 		if results1[i] ~= math.floor(results1[i]) then
 			signal = true
 		end
 	end
 	for i, v in ipairs(results2) do
-		results2[i] = results2[i] / 2
+		results2[i] = Round(results2[i] / divider, decimal_count)
 		if results2[i] ~= math.floor(results2[i]) then
 			signal = true
 		end
 	end
-
-	time = time / 2
-
-
-	if signal == false then
-
-
-		local ingredients_old2 = {}
-		local results1_old2 = {}
-		local results2_old2 = {}
-		local time_old2 = time*1
-
-
-		for x, y in ipairs(ingredients) do
-			ingredients_old2[x] = y
-		end
-		for x, y in ipairs(results1) do
-			results1_old2[x] = y
-		end
-		for x, y in ipairs(results2) do
-			results2_old2[x] = y
-		end
-
-
-		for i, v in ipairs(ingredients) do
-			ingredients[i] = ingredients_old[i] / 5
-			if ingredients[i] ~= math.floor(ingredients[i]) then
-				signal = true
-			end
-		end
-
-		for i, v in ipairs(results1) do
-			results1[i] = results1_old[i] / 5
-			if results1[i] ~= math.floor(results1[i]) then
-				signal = true
-			end
-		end
-		for i, v in ipairs(results2) do
-			results2[i] = results2_old[i] / 5
-			if results2[i] ~= math.floor(results2[i]) then
-				signal = true
-			end
-		end
-
-		time = time / 5
-
-		if signal == true then
-			ingredients = ingredients_old2
-			results1 = results1_old2
-			results2 = results2_old2
-			time = time_old2
-		end
-
-	else
-		ingredients = ingredients_old
-		results1 = results1_old
-		results2 = results2_old
-		time = time_old
-	end
-	local ret = { ingredients, time, results1, results2}
-	return ret
+	time = Round(time / divider, decimal_count)
+	return {signal, {ingredients, time, results1, results2}}
 end
 
 function deepcopy(orig)
@@ -132,4 +102,9 @@ function deepcopy(orig)
         copy = orig
     end
     return copy
+end
+
+function Round(number, decimals)
+	local power = 10^decimals
+	return math.floor(number * power) / power
 end

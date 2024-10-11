@@ -1,4 +1,38 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.1.16
+Date: 04.10.2024
+  Bugfixes:
+    - Fixed wrong result count in certain recipes
+---------------------------------------------------------------------------------------------------
+Version: 0.1.15
+Date: 03.10.2024
+  Bugfixes:
+    - Fixed wrong time/input ratio with certain recipes
+---------------------------------------------------------------------------------------------------
+Version: 0.1.14
+Date: 21.09.2024
+  Bugfixes:
+    - Fixed wrong result count with multiple result
+---------------------------------------------------------------------------------------------------
+Version: 0.1.13
+Date: 15.09.2024
+  Bugfixes:
+    - Fixed crash at startup.
+    - Fixed missing technology (Reactor Control Unit)
+  Changes:
+    - Changed research level of Low Density Structure and Rocket Fuel from 3 to 5
+    - Removed Satellite efficiency
+---------------------------------------------------------------------------------------------------
+Version: 0.1.12
+Date: 10.09.2024
+  Features:
+    - Added electronic circuit stone efficiency (aai industry)
+---------------------------------------------------------------------------------------------------
+Version: 0.1.11
+Date: 10.09.2024
+  Bugfixes:
+    - Fixed crash at startup with "Angels Smelting"
+---------------------------------------------------------------------------------------------------
 Version: 0.1.10
 Date: 30.06.2024
   Bugfixes:

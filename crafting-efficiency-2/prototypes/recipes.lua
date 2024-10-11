@@ -19,7 +19,7 @@ local function add_recipe(recipe, name, count)
     local efficiency = 0
     local single_result = false
 
-    
+
     local materials = {}
 
     for a, b in pairs(CE_recipes[name].base.ingredients) do
@@ -43,7 +43,6 @@ local function add_recipe(recipe, name, count)
                     table.insert(result_count1, b.amount)
                 end
             else
-                
                 if #b > 2 and math.floor(#b / 2) == #b / 2 then
                     for i = 0, #b, 2 do
                         table.insert(results, b[i - 1])
@@ -67,11 +66,12 @@ local function add_recipe(recipe, name, count)
     end
 
     time = CE_recipes[name].base.time
+
     multiplier_result = Cost_multiplier(materials, time, result_count1, 1 + (efficiency * count), result_count2)
-    
+
     materials = multiplier_result[1]
     time = multiplier_result[2]
-    
+
     result_count1_2 = multiplier_result[3]
     result_count2_2 = multiplier_result[4]
 
@@ -100,7 +100,8 @@ local function add_recipe(recipe, name, count)
     end
     if CE_recipes[name].base.results then
         local results = {}
-        for a, b in pairs(CE_recipes[name].base.results) do
+        local table_result = deepcopy(CE_recipes[name].base.results)
+        for a, b in pairs(table_result) do
             if b.name then
                 if b.probability then
                     table.insert(results,
@@ -127,7 +128,7 @@ local function add_recipe(recipe, name, count)
             end
         end
     end
-    
+
     CE_recipes[name][tostring(count)] = conf
 
     for a, b in pairs(CE_recipes[name][tostring(count)].normal.ingredients) do
@@ -158,12 +159,16 @@ local function add_recipe(recipe, name, count)
                 elseif b.amount_min then
                     b.amount_min = result_count1_2[a]
                     b.amount_max = result_count2_2[a]
+                else
+                    b[2] = result_count1_2[a]
                 end
             end
         end
     else
         CE_recipes[name][tostring(count)].result_count = result_count1_2[1]
     end
+
+
     if type(CE_recipes[name][tostring(count)].result_count) == "table" then
         table.removekey(CE_recipes[name][tostring(count)], "result_count")
     end
@@ -187,7 +192,7 @@ local function add_recipe(recipe, name, count)
             enabled = false,
         },
     }
-    
+
     if settings.startup["ce-enable-productivity-module"].value then
         for a, b in pairs(data.raw.module) do
             if b.limitation then
@@ -211,11 +216,9 @@ local function add_recipe(recipe, name, count)
         recipe.normal.result_count = result_count1_2[1]
         recipe.expensive.result = results[1]
         recipe.expensive.result_count = result_count1_2[1]
-
-    else        
-            recipe.normal.results = CE_recipes[name][tostring(count)].results
-            recipe.expensive.results = CE_recipes[name][tostring(count)].results
-        
+    else
+        recipe.normal.results = CE_recipes[name][tostring(count)].results
+        recipe.expensive.results = CE_recipes[name][tostring(count)].results
     end
 
     if CE_recipes[name].base.icon then
@@ -276,6 +279,7 @@ local function add_recipe(recipe, name, count)
             idx = idx + 1
         end
     end
+    
     data:extend({ recipe })
 end
 
@@ -313,8 +317,8 @@ local function add_research(name, count)
     local tech = {
         name = "ce-" .. name .. "-" .. count,
         type = "technology",
-        icon_size = 64,
-        icon_mipmaps = 4,
+        icon_size = CE_recipes[name].base.icon_size or 64,
+        icon_mipmaps = CE_recipes[name].base.icon_mipmaps or 4,
         upgrade = false,
         localised_name = { "technology-name.technology-efficiency", Recipes[name].name, " (" .. count .. ")" },
         effects = {
@@ -346,13 +350,9 @@ local function add_research(name, count)
         end
     end
     if type(CE_recipes[name].base.icons) == "table" then
-        tech.icon = CE_recipes[name].base.icons[1].icon
-
-        
+        tech.icons = CE_recipes[name].base.icons
     elseif CE_recipes[name].base and CE_recipes[name].base.icon then
         tech.icon = CE_recipes[name].base.icon
-        tech.icon_size = CE_recipes[name].base.icon_size
-        tech.icon_mipmaps = CE_recipes[name].base.icon_mipmaps
     elseif Recipes[name].icon then
         tech.icon = Recipes[name].icon
     elseif Recipes[name].fluid then
@@ -388,7 +388,6 @@ local function add_research(name, count)
     tech.unit = unit
     tech.prerequisites = prerequisites
 
-
     data:extend({ tech })
 end
 
@@ -417,14 +416,14 @@ for name, recipe in pairs(data.raw.recipe) do
         if recipe.normal == nil then
             recipe.normal = {}
         end
-        
+
         CE_recipes[name] = {
             base = {
                 order = order or "",
-                ingredients = recipe.ingredients or recipe.normal.ingredients ,
+                ingredients = recipe.ingredients or recipe.normal.ingredients,
                 time = recipe.energy_required or recipe.normal.energy_required or 0.5,
                 category = recipe.category or "crafting",
-                result_count = recipe.result_count or recipe.normal.result_count or  1,
+                result_count = recipe.result_count or recipe.normal.result_count or 1,
                 icon = recipe.icon,
                 icon_size = recipe.icon_size,
                 icon_mipmaps = recipe.icon_mipmaps,
@@ -435,7 +434,7 @@ for name, recipe in pairs(data.raw.recipe) do
             },
         }
         if recipe.result or recipe.normal.result then
-            CE_recipes[name].base.result = {recipe.result or recipe.normal.result}
+            CE_recipes[name].base.result = { recipe.result or recipe.normal.result }
         else
             CE_recipes[name].base.results = recipe.results or recipe.normal.results
             CE_recipes[name].base.result_count = nil

@@ -16,3 +16,17 @@ for _, name in pairs(solid_fuel) do
     }
     CE_Add_Recipe(data, name, false, true)
 end
+if mods["aai-industry"] then
+    local data = {
+        name = "Electronic circuit (stone) efficiency",
+        max = 16,
+        icon = "__base__/graphics/icons/electronic-circuit.png",
+        crafting = {
+            efficiency = 10,
+        },
+        research = {
+            level = 1
+        }
+    }
+    CE_Add_Recipe(data, "electronic-circuit-stone", false, true)
+end
