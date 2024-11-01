@@ -14,9 +14,6 @@ local function ce_new_setting_boolean(name, order, default, type)
 end
 
 local function ce_new_setting_int(name, order, default, min, max, type)
-    if not type then
-        type="startup"
-    end
     data:extend({
         {
             type = "int-setting",
@@ -31,9 +28,6 @@ local function ce_new_setting_int(name, order, default, min, max, type)
 end
 
 local function ce_new_setting_string(name, order, default, type)
-    if not type then
-        type="startup"
-    end
     data:extend({
         {
             type = "string-setting",
@@ -46,9 +40,6 @@ local function ce_new_setting_string(name, order, default, type)
 end
 
 local function ce_new_setting_double(name, order, default, min, max, type)
-    if not type then
-        type="startup"
-    end
     data:extend({
         {
             type = "double-setting",

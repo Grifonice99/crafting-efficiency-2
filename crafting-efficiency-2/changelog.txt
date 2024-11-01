@@ -1,6 +1,13 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.1.18
+Date: 18.10.2024
+  Features:
+    - Added planner to set vanilla recipe
+  Bugfixes:
+    - Fixed setting "productivity module" that enable every time productivity module
+---------------------------------------------------------------------------------------------------
 Version: 0.1.17
-Date: 04.10.2024
+Date: 11.10.2024
   Bugfixes:
     - Fixed wrong result count in certain recipes
 ---------------------------------------------------------------------------------------------------

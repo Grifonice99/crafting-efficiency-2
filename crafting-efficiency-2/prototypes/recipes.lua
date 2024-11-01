@@ -191,15 +191,7 @@ local function add_recipe(recipe, name, count)
             enabled = false,
         },
     }
-
-    if settings.startup["ce-enable-productivity-module"].value then
-        for a, b in pairs(data.raw.module) do
-            if b.limitation then
-                table.insert(b.limitation, "ce-" .. name .. "-" .. count)
-            end
-        end
-    end
-
+    
     if CE_recipes[name][tostring(count)].result_count then
         recipe.normal.result_count = CE_recipes[name][tostring(count)].result_count
         recipe.expensive.result_count = CE_recipes[name][tostring(count)].result_count
@@ -477,9 +469,11 @@ for name, fluid in pairs(data.raw.fluid) do
         CE_recipes[name].base.order = fluid.order
     end
 end
-if not settings.startup["ce-enable-productivity-module"].value then
+if settings.startup["ce-enable-productivity-module"].value then
+    local ends = false
     for a, b in pairs(data.raw.module) do
-        if b.limitation then
+        if b.limitation and not ends then
+            ends = true
             for c, d in pairs(b.limitation) do
                 if CE_recipes[d] then
                     CE_recipes[d].base.prod = true

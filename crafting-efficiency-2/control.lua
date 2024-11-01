@@ -85,13 +85,50 @@ local function reset_forces()
 	end
 end
 
-local function give_switcher(event)
+local function give_update(event, name)
 	local player = game.get_player(event.player_index)
 	player.clear_cursor()
-	player.cursor_stack.set_stack({ name = "ce-switcher", count = 1 })
+	player.cursor_stack.set_stack({ name = name, count = 1 })
 end
 
-local function update__entity_recipe(event)
+local function reset_entity_recipe(event)
+	for a, b in pairs(event.entities) do
+		if b.type == "assembling-machine" then
+			local recipe = b.get_recipe()
+			if recipe then
+				local base = recipe.name:gsub("(.*)%-.*$", "%1")
+				local identifier = base:sub(1, 3)
+				local level = recipe.name:gsub(".*%-", "")
+				local name = base:sub(4)
+
+				if Recipes[name] and identifier == "ce-" and level ~= 0 then
+					local ingredients = {}
+					if b.is_crafting() then
+						ingredients = recipe.ingredients or {}
+					end
+					b.set_recipe(name)
+					local updated_ingredients = 0
+					for _, ingredient in pairs(ingredients) do
+						if ingredient.type == "item" then
+							updated_ingredients = updated_ingredients + b.insert({
+								name = ingredient.name,
+								count = ingredient.amount
+							})
+						elseif ingredient.type == "fluid" then
+							updated_ingredients = updated_ingredients + b.insert_fluid({
+								name = ingredient.name,
+								amount = ingredient.amount
+							})
+						end
+					
+					end
+				end
+			end
+		end
+	end
+end
+
+local function update_entity_recipe(event)
 	for a, b in pairs(event.entities) do
 		if b.type == "assembling-machine" then
 			local recipe = b.get_recipe()
@@ -152,15 +189,26 @@ local function update__entity_recipe(event)
 	end
 end
 
+
+
+
+
+
+
+
+
 script.on_configuration_changed(reset_forces)
 
-script.on_event("ce-switcher", function(event)
-	give_switcher(event)
+script.on_event("ce-update", function(event)
+	give_update(event, "ce-update")
+end)
+script.on_event("ce-reset", function(event)
+	give_update(event, "ce-reset")
 end)
 
 script.on_event(defines.events.on_lua_shortcut, function(event)
-	if event.prototype_name == "ce-switcher" then
-		give_switcher(event)
+	if event.prototype_name == "ce-update" or event.prototype_name == "ce-reset" then
+		give_update(event, event.prototype_name)
 	end
 end)
 
@@ -169,14 +217,18 @@ script.on_event(defines.events.on_technology_effects_reset, function(event)
 end)
 
 script.on_event(defines.events.on_player_selected_area, function(event)
-	if event.item == "ce-switcher" then
-		update__entity_recipe(event)
+	if event.item == "ce-update" then
+		update_entity_recipe(event)
+	elseif event.item == "ce-reset" then
+		reset_entity_recipe(event)
 	end
 end)
 
 script.on_event(defines.events.on_player_alt_selected_area, function(event)
-	if event.item == "ce-switcher" then
-		update__entity_recipe(event)
+	if event.item == "ce-update" then
+		update_entity_recipe(event)
+	elseif event.item == "ce-reset" then
+		reset_entity_recipe(event)
 	end
 end)
 
