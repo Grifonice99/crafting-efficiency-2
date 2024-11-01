@@ -1,6 +1,5 @@
 require("functions")
 
-
 function table.removekey(table, key)
     local element = table[key]
     table[key] = nil
@@ -76,10 +75,7 @@ local function add_recipe(recipe, name, count)
     result_count2_2 = multiplier_result[4]
 
     local conf = {}
-    conf.normal = {}
-    conf.expensive = {}
-    conf.normal.ingredients = {}
-    conf.expensive.ingredients = {}
+    conf.ingredients = {}
     conf.result_count = {}
     conf.results = {}
     conf.result = {}
@@ -89,12 +85,10 @@ local function add_recipe(recipe, name, count)
 
     for a, b in pairs(CE_recipes[name].base.ingredients) do
         if b.name then
-            table.insert(conf.normal.ingredients, { type = b.type, name = b.name, amount = b.amount })
-            table.insert(conf.expensive.ingredients, { type = b.type, name = b.name, amount = b.amount })
+            table.insert(conf.ingredients, { type = b.type, name = b.name, amount = b.amount })
         else
             for int = 2, #b, 2 do
-                table.insert(conf.normal.ingredients, { b[int - 1], b[int] })
-                table.insert(conf.expensive.ingredients, { b[int - 1], b[int] })
+                table.insert(conf.ingredients, { b[int - 1], b[int] })
             end
         end
     end
@@ -131,18 +125,11 @@ local function add_recipe(recipe, name, count)
 
     CE_recipes[name][tostring(count)] = conf
 
-    for a, b in pairs(CE_recipes[name][tostring(count)].normal.ingredients) do
+    for a, b in pairs(CE_recipes[name][tostring(count)].ingredients) do
         if b.amount then
             b.amount = materials[a]
         else
             b[2] = materials[a]
-        end
-    end
-    for a, b in pairs(CE_recipes[name][tostring(count)].expensive.ingredients) do
-        if b.amount then
-            b.amount = materials[a] * 2
-        else
-            b[2] = materials[a] * 2
         end
     end
     if CE_recipes[name].base.results then
@@ -181,36 +168,25 @@ local function add_recipe(recipe, name, count)
         localised_name = { "recipe-name.recipes-efficiency", Recipes[name].name, " (" .. count .. ")" },
         category = CE_recipes[name].base.category,
         order = CE_recipes[name].base.order .. "b-" .. count,
-        normal = {
-            ingredients = CE_recipes[name][tostring(count)].normal.ingredients,
+        
+            ingredients = CE_recipes[name][tostring(count)].ingredients,
             energy_required = CE_recipes[name][tostring(count)].time,
             enabled = false,
-        },
-        expensive = {
-            ingredients = CE_recipes[name][tostring(count)].expensive.ingredients,
-            energy_required = CE_recipes[name][tostring(count)].time,
-            enabled = false,
-        },
+        
     }
-    
+
     if CE_recipes[name][tostring(count)].result_count then
-        recipe.normal.result_count = CE_recipes[name][tostring(count)].result_count
-        recipe.expensive.result_count = CE_recipes[name][tostring(count)].result_count
+        recipe.result_count = CE_recipes[name][tostring(count)].result_count
     end
 
     if #result == 1 then
-        recipe.normal.result = result[1]
-        recipe.normal.result_count = result_count1_2[1]
-        recipe.expensive.result = result[1]
-        recipe.expensive.result_count = result_count1_2[1]
+        recipe.result = result[1]
+        recipe.result_count = result_count1_2[1]
     elseif #results == 1 and single_result then
-        recipe.normal.result = results[1]
-        recipe.normal.result_count = result_count1_2[1]
-        recipe.expensive.result = results[1]
-        recipe.expensive.result_count = result_count1_2[1]
+        recipe.result = results[1]
+        recipe.result_count = result_count1_2[1]
     else
-        recipe.normal.results = CE_recipes[name][tostring(count)].results
-        recipe.expensive.results = CE_recipes[name][tostring(count)].results
+        recipe.results = CE_recipes[name][tostring(count)].results
     end
 
     if CE_recipes[name].base.icon then
@@ -233,17 +209,14 @@ local function add_recipe(recipe, name, count)
 
     if CE_recipes[name].base.subgroup then
         recipe.subgroup = CE_recipes[name].base.subgroup
-        recipe.normal.subgroup = CE_recipes[name].base.subgroup
-        recipe.expensive.subgroup = CE_recipes[name].base.subgroup
+        recipe.subgroup = CE_recipes[name].base.subgroup
     end
     if CE_recipes[name].base.main_product then
-        recipe.normal.main_product = CE_recipes[name].base.main_product
-        recipe.expensive.main_product = CE_recipes[name].base.main_product
+        recipe.main_product = CE_recipes[name].base.main_product
     end
-    if CE_recipes[name].base.name then
-        recipe.normal.name = CE_recipes[name].base.name
-        recipe.expensive.name = CE_recipes[name].base.name
-    end
+    --if CE_recipes[name].base.name then
+    --    recipe.name = CE_recipes[name].base.name
+    --end
     if CE_recipes[name].base.prod then
         for a, b in pairs(data.raw.module) do
             if b.limitation then
@@ -255,8 +228,7 @@ local function add_recipe(recipe, name, count)
         local idx = 1
         for a, b in pairs(CE_recipes[name].base.ingredients) do
             if b.type == "fluid" then
-                recipe.normal.ingredients[idx].fluidbox_index = b.fluidbox_index
-                recipe.expensive.ingredients[idx].fluidbox_index = b.fluidbox_index
+                recipe.ingredients[idx].fluidbox_index = b.fluidbox_index
             end
             idx = idx + 1
         end
@@ -265,8 +237,7 @@ local function add_recipe(recipe, name, count)
         local idx = 1
         for a, b in pairs(CE_recipes[name].base.results) do
             if b.type == "fluid" then
-                recipe.normal.results[idx].fluidbox_index = b.fluidbox_index
-                recipe.expensive.results[idx].fluidbox_index = b.fluidbox_index
+                recipe.results[idx].fluidbox_index = b.fluidbox_index
             end
             idx = idx + 1
         end
@@ -429,15 +400,6 @@ for name, recipe in pairs(data.raw.recipe) do
         else
             CE_recipes[name].base.results = recipe.results or recipe.normal.results
             CE_recipes[name].base.result_count = nil
-        end
-        if not CE_recipes[name].base.icon and not CE_recipes[name].base.icon_size and not CE_recipes[name].base.icon_mipmaps and not CE_recipes[name].base.icons then
-            if not Recipes[name].fluid then
-
-                CE_recipes[name].base.icon = "__base__/graphics/icons/"..name..".png"
-            else
-                CE_recipes[name].base.icon = "__base__/graphics/icons/fluid/"..name..".png"
-            end
-            
         end
     end
 end
