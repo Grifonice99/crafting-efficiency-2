@@ -1,6 +1,5 @@
 require("functions")
 
-
 function table.removekey(table, key)
     local element = table[key]
     table[key] = nil
@@ -68,7 +67,7 @@ local function add_recipe(recipe, name, count)
     time = CE_recipes[name].base.time
 
     multiplier_result = Cost_multiplier(materials, time, result_count1, 1 + (efficiency * count), result_count2)
-
+    
     materials = multiplier_result[1]
     time = multiplier_result[2]
 
@@ -132,14 +131,14 @@ local function add_recipe(recipe, name, count)
     CE_recipes[name][tostring(count)] = conf
 
     for a, b in pairs(CE_recipes[name][tostring(count)].normal.ingredients) do
-        if b.type then
+        if b.amount then
             b.amount = materials[a]
         else
             b[2] = materials[a]
         end
     end
     for a, b in pairs(CE_recipes[name][tostring(count)].expensive.ingredients) do
-        if b.type then
+        if b.amount then
             b.amount = materials[a] * 2
         else
             b[2] = materials[a] * 2
