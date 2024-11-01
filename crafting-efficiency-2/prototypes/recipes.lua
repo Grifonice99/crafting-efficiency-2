@@ -214,15 +214,9 @@ local function add_recipe(recipe, name, count)
     if CE_recipes[name].base.main_product then
         recipe.main_product = CE_recipes[name].base.main_product
     end
-    --if CE_recipes[name].base.name then
-    --    recipe.name = CE_recipes[name].base.name
-    --end
-    if CE_recipes[name].base.prod then
-        for a, b in pairs(data.raw.module) do
-            if b.limitation then
-                table.insert(b.limitation, "ce-" .. name .. "-" .. count)
-            end
-        end
+
+    if CE_recipes[name].base.prod and settings.startup["ce-enable-productivity-module"].value then
+        recipe.allow_productivity = true
     end
     if CE_recipes[name].base.ingredients then
         local idx = 1
@@ -391,6 +385,7 @@ for name, recipe in pairs(data.raw.recipe) do
                 category = recipe.category or "crafting",
                 result_count = recipe.result_count or recipe.normal.result_count or 1,
                 icon = recipe.icon,
+                prod = recipe.allow_productivity,
                 icon_size = recipe.icon_size,
                 icon_mipmaps = recipe.icon_mipmaps,
                 subgroup = recipe.subgroup,
@@ -399,6 +394,7 @@ for name, recipe in pairs(data.raw.recipe) do
                 name = recipe.name,
             },
         }
+        print(recipe.allow_productivity)
         if recipe.result or recipe.normal.result then
             CE_recipes[name].base.result = { recipe.result or recipe.normal.result }
         else
@@ -442,18 +438,5 @@ end
 for name, fluid in pairs(data.raw.fluid) do
     if CE_recipes[name] then
         CE_recipes[name].base.order = fluid.order
-    end
-end
-if settings.startup["ce-enable-productivity-module"].value then
-    local ends = false
-    for a, b in pairs(data.raw.module) do
-        if b.limitation and not ends then
-            ends = true
-            for c, d in pairs(b.limitation) do
-                if CE_recipes[d] then
-                    CE_recipes[d].base.prod = true
-                end
-            end
-        end
     end
 end

@@ -291,16 +291,6 @@ Recipes = {
         research = {
             level = 5,
         }
-    },
-    ["rocket-control-unit"] = {
-        name = "Rocket control unit efficiency",
-        max = 13,
-        crafting = {
-            efficiency = 10,
-        },
-        research = {
-            level = 5,
-        },
     }
 }
 
