@@ -325,19 +325,22 @@ local function add_research(name, count)
 
 
 
-
     local cond = false
     local name_tech = ""
-    for a, b in pairs(CE_research) do
-        for d, c in pairs(b[1].effects) do
-            if c.type == "unlock-recipe" then
-                if c.recipe == name then
-                    name_tech = a
-                    cond = true
+    if count == 1 then
+        for a, b in pairs(CE_research) do
+            
+            for d, c in pairs(b[1].effects) do
+                if c.type == "unlock-recipe" then
+                    if c.recipe == name and not b[1].hidden then
+                        name_tech = a
+                        cond = true
+                    end
                 end
             end
         end
     end
+
 
     if cond and name_tech ~= "" and count == 1 then
         table.insert(prerequisites, name_tech)
@@ -352,6 +355,7 @@ local function add_research(name, count)
 
     data:extend({ tech })
 end
+
 
 function Add_items()
     for i, v in pairs(Recipes) do

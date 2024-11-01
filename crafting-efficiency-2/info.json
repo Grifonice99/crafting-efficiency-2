@@ -1,6 +1,6 @@
 {
   "name": "crafting-efficiency-2",
-  "version": "0.1.20",
+  "version": "0.1.21",
   "title": "Crafting Efficiency",
   "author": "Grifonice99",
   "homepage": "",
@@ -8,6 +8,7 @@
   "description": "Adds technologies to increase the efficiency of some recipes, auto updates recipes in assembly machines and adds a function for modders to add efficiency recipes for their items",
   "dependencies": [
     "base >= 1.1.0",
+    "? pypostprocessing",
     "? space-exploration-postprocess"
   ]
 }
