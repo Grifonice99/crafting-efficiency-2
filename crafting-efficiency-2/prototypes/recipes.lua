@@ -1,5 +1,6 @@
 require("functions")
 
+
 function table.removekey(table, key)
     local element = table[key]
     table[key] = nil
@@ -270,7 +271,6 @@ local function add_recipe(recipe, name, count)
             idx = idx + 1
         end
     end
-    
     data:extend({ recipe })
 end
 
@@ -429,6 +429,15 @@ for name, recipe in pairs(data.raw.recipe) do
         else
             CE_recipes[name].base.results = recipe.results or recipe.normal.results
             CE_recipes[name].base.result_count = nil
+        end
+        if not CE_recipes[name].base.icon and not CE_recipes[name].base.icon_size and not CE_recipes[name].base.icon_mipmaps and not CE_recipes[name].base.icons then
+            if not Recipes[name].fluid then
+
+                CE_recipes[name].base.icon = "__base__/graphics/icons/"..name..".png"
+            else
+                CE_recipes[name].base.icon = "__base__/graphics/icons/fluid/"..name..".png"
+            end
+            
         end
     end
 end
