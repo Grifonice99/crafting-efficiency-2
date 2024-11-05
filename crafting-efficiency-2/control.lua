@@ -11,7 +11,7 @@ local function update_recipes(event)
 		end
 		for _, surface in pairs(game.surfaces) do
 			for _, entity in pairs(surface.find_entities_filtered({ type = "assembling-machine" })) do
-				local recipe = entity.get_recipe()
+				local recipe, quality = entity.get_recipe()
 
 				if recipe then
 					if recipe.name == base .. "-" .. level - 1 or
@@ -20,7 +20,7 @@ local function update_recipes(event)
 						if entity.is_crafting() then
 							ingredients = recipe.ingredients or {}
 						end
-						entity.set_recipe(base .. "-" .. level)
+						entity.set_recipe(base .. "-" .. level, quality)
 						local updated_ingredients = 0
 						for _, ingredient in pairs(ingredients) do
 							if ingredient.type == "item" then
@@ -94,7 +94,7 @@ end
 local function reset_entity_recipe(event)
 	for a, b in pairs(event.entities) do
 		if b.type == "assembling-machine" then
-			local recipe = b.get_recipe()
+			local recipe, quality = b.get_recipe()
 			if recipe then
 				local base = recipe.name:gsub("(.*)%-.*$", "%1")
 				local identifier = base:sub(1, 3)
@@ -106,7 +106,7 @@ local function reset_entity_recipe(event)
 					if b.is_crafting() then
 						ingredients = recipe.ingredients or {}
 					end
-					b.set_recipe(name)
+					b.set_recipe(name, quality)
 					local updated_ingredients = 0
 					for _, ingredient in pairs(ingredients) do
 						if ingredient.type == "item" then
@@ -131,7 +131,7 @@ end
 local function update_entity_recipe(event)
 	for a, b in pairs(event.entities) do
 		if b.type == "assembling-machine" then
-			local recipe = b.get_recipe()
+			local recipe, quality = b.get_recipe()
 			if recipe then
 				local base = recipe.name:gsub("(.*)%-.*$", "%1")
 				local identifier = base:sub(1, 3)
@@ -167,7 +167,7 @@ local function update_entity_recipe(event)
 						if b.is_crafting() then
 							ingredients = recipe.ingredients or {}
 						end
-						b.set_recipe(last_recipe)
+						b.set_recipe(last_recipe, quality)
 						local updated_ingredients = 0
 						for _, ingredient in pairs(ingredients) do
 							if ingredient.type == "item" then
