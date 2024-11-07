@@ -1,18 +1,10 @@
-require("functions")
-
-function table.removekey(table, key)
-    local element = table[key]
-    table[key] = nil
-    return element
-end
-
-local function add_research(name, stage, stage_level)
+function Add_research(name, stage, stage_level)
     local packs = stage.stages_packs[stage_level]
     local max_level = 0
     local tech = {
         type = "technology",
         upgrade = false,
-        localised_name = { "technology-name.technology-productivity", stage.name, " (" .. stage_level .. ")" },
+        localised_name = { "technology-name.technology-productivity", stage.name},
         effects = {
             {
                 change = stage.stages_productivities[stage_level] / 100,
@@ -109,7 +101,7 @@ end
 function Add_items()
     for i, v in pairs(Recipes) do
         for x = 1, v.stages do
-            add_research(i, v, x)
+            Add_research(i, v, x)
         end
     end
 end

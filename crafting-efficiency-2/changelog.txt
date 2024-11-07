@@ -1,10 +1,15 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.2.0
-Date: 02.11.2024
+Date: 07.11.2024
   Major Features:
     - Vanilla efficiency support
   Minor Features:
     - Renamed all recipe from "efficiency" to "productivity"
+    - Removed old productivity recipe method
+  Bugfixes:
+    - Fixed technology icon not showing correctly
+  Info:
+    - Before updating from older release, revert all productivity recipe to the vanilla one, using the Tool "Revert recipe"
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.23
 Date: 02.11.2024

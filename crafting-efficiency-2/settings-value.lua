@@ -1,4 +1,4 @@
-local packs = {
+Packs = {
     { { "automation-science-pack", 1 } },
     { { "automation-science-pack", 1 }, { "logistic-science-pack", 1 } },
     { { "automation-science-pack", 1 }, { "logistic-science-pack", 1 }, { "chemical-science-pack", 1 } },
@@ -11,7 +11,7 @@ Recipes = {
     ["copper-cable"] = {
         name = "Copper cable productivity",
         stages = 6,
-        stages_packs = packs,
+        stages_packs = Packs,
         stages_levels = { 3, 3, 3, 4, 5 },
         stages_costs = { 1000, 1000, 1000, 1000, 1000, 1200 },
         stages_cost_multipliers = { 1, 1, 1, 1, 1, 1.5 },
@@ -21,7 +21,7 @@ Recipes = {
     ["copper-plate"] = {
         name = "Copper plate productivity",
         stages = 6,
-        stages_packs = packs,
+        stages_packs = Packs,
         stages_levels = { 3, 3, 3, 4, 5 },
         stages_costs = { 1000, 1000, 1000, 1000, 1000, 1200 },
         stages_cost_multipliers = { 1, 1, 1, 1, 1, 1.5 },
@@ -31,7 +31,7 @@ Recipes = {
     ["iron-plate"] = {
         name = "Iron plate productivity",
         stages = 6,
-        stages_packs = packs,
+        stages_packs = Packs,
         stages_levels = { 3, 3, 3, 4, 5 },
         stages_costs = { 1000, 1000, 1000, 1000, 1000, 1200 },
         stages_cost_multipliers = { 1, 1, 1, 1, 1, 1.5 },
@@ -41,7 +41,7 @@ Recipes = {
     ["electronic-circuit"] = {
         name = "Electronic circuit productivity",
         stages = 6,
-        stages_packs = packs,
+        stages_packs = Packs,
         stages_levels = { 3, 3, 3, 4, 5 },
         stages_costs = { 1000, 1000, 1000, 1000, 1000, 1200 },
         stages_cost_multipliers = { 1, 1, 1, 1, 1, 1.5 },
@@ -51,7 +51,7 @@ Recipes = {
     ["iron-gear-wheel"] = {
         name = "Iron gear wheel productivity",
         stages = 6,
-        stages_packs = packs,
+        stages_packs = Packs,
         stages_levels = { 3, 3, 3, 4, 5 },
         stages_costs = { 1000, 1000, 1000, 1000, 1000, 1200 },
         stages_cost_multipliers = { 1, 1, 1, 1, 1, 1.5 },
@@ -61,7 +61,7 @@ Recipes = {
     ["steel-plate"] = {
         name = "Steel plate productivity",
         stages = 6,
-        stages_packs = packs,
+        stages_packs = Packs,
         stages_levels = { 3, 3, 3, 4, 5 },
         stages_costs = { 1000, 1000, 1000, 1000, 1000, 1200 },
         stages_cost_multipliers = { 1, 1, 1, 1, 1, 1.5 },
@@ -71,7 +71,7 @@ Recipes = {
     ["engine-unit"] = {
         name = "Engine unit productivity",
         stages = 6,
-        stages_packs = packs,
+        stages_packs = Packs,
         stages_levels = { 3, 3, 3, 4, 5 },
         stages_costs = { 1000, 1000, 1000, 1000, 1000, 1200 },
         stages_cost_multipliers = { 1, 1, 1, 1, 1, 1.5 },
@@ -81,7 +81,7 @@ Recipes = {
     ["battery"] = {
         name = "Battery productivity",
         stages = 5,
-        stages_packs = { packs[2], packs[3], packs[4], packs[5], packs[6] },
+        stages_packs = { Packs[2], Packs[3], Packs[4], Packs[5], Packs[6] },
         stages_levels = { 3, 3, 4, 5 },
         stages_costs = { 1500, 1500, 1500, 1500, 2000 },
         stages_cost_multipliers = { 1, 1, 1, 1, 1.5 },
@@ -91,7 +91,7 @@ Recipes = {
     ["advanced-circuit"] = {
         name = "Advanced circuit productivity",
         stages = 5,
-        stages_packs = { packs[2], packs[3], packs[4], packs[5], packs[6] },
+        stages_packs = { Packs[2], Packs[3], Packs[4], Packs[5], Packs[6] },
         stages_levels = { 3, 3, 4, 5 },
         stages_costs = { 1500, 1500, 1500, 1500, 2000 },
         stages_cost_multipliers = { 1, 1, 1, 1, 1.5 },
@@ -101,7 +101,7 @@ Recipes = {
     ["plastic-bar"] = {
         name = "Plastic bar productivity",
         stages = 5,
-        stages_packs = { packs[2], packs[3], packs[4], packs[5], packs[6] },
+        stages_packs = { Packs[2], Packs[3], Packs[4], Packs[5], Packs[6] },
         stages_levels = { 3, 3, 4, 5 },
         stages_costs = { 1500, 1500, 1500, 1500, 2000 },
         stages_cost_multipliers = { 1, 1, 1, 1, 1.5 },
@@ -111,7 +111,7 @@ Recipes = {
     ["sulfur"] = {
         name = "Sulfur processing productivity",
         stages = 5,
-        stages_packs = { packs[2], packs[3], packs[4], packs[5], packs[6] },
+        stages_packs = { Packs[2], Packs[3], Packs[4], Packs[5], Packs[6] },
         stages_levels = { 3, 3, 4, 5 },
         stages_costs = { 1200, 1200, 1200, 1500, 2000 },
         stages_cost_multipliers = { 1, 1, 1, 1, 1.5 },
@@ -121,17 +121,47 @@ Recipes = {
     ["basic-oil-processing"] = {
         name = "Basic oil processing productivity",
         stages = 5,
-        stages_packs = { packs[2], packs[3], packs[4], packs[5], packs[6] },
+        stages_packs = { Packs[2], Packs[3], Packs[4], Packs[5], Packs[6] },
         stages_levels = { 3, 3, 4, 5 },
         stages_costs = { 1500, 1500, 1500, 1500, 2000 },
         stages_cost_multipliers = { 1, 1, 1, 1, 1.5 },
         stages_productivities = { 10, 10, 10, 10, 10 },
         stages_times = { 45, 45, 45, 45, 45 }
     },
+    ["solid-fuel-from-petroleum-gas"] = {
+        name = "Solid fuel efficiency",
+        stages = 4,
+        stages_packs = { Packs[3], Packs[4], Packs[5], Packs[6] },
+        stages_levels = { 3, 3, 4, 5 },
+        stages_costs = { 1500, 1500, 1500, 2000 },
+        stages_cost_multipliers = { 1, 1, 1, 1.5 },
+        stages_productivities = { 10, 10, 10, 10 },
+        stages_times = { 45, 45, 45, 45 }
+    },
+    ["solid-fuel-from-light-oil"] = {
+        name = "Solid fuel efficiency",
+        stages = 4,
+        stages_packs = { Packs[3], Packs[4], Packs[5], Packs[6] },
+        stages_levels = { 3, 3, 4, 5 },
+        stages_costs = { 1500, 1500, 1500, 2000 },
+        stages_cost_multipliers = { 1, 1, 1, 1.5 },
+        stages_productivities = { 10, 10, 10, 10 },
+        stages_times = { 45, 45, 45, 45 }
+    },
+    ["solid-fuel-from-heavy-oil"] = {
+        name = "Solid fuel efficiency",
+        stages = 4,
+        stages_packs = { Packs[3], Packs[4], Packs[5], Packs[6] },
+        stages_levels = { 3, 3, 4, 5 },
+        stages_costs = { 1500, 1500, 1500, 2000 },
+        stages_cost_multipliers = { 1, 1, 1, 1.5 },
+        stages_productivities = { 10, 10, 10, 10 },
+        stages_times = { 45, 45, 45, 45 }
+    },
     ["electric-furnace"] = {
         name = "Electric Furnace productivity",
         stages = 4,
-        stages_packs = { packs[3], packs[4], packs[5], packs[6] },
+        stages_packs = { Packs[3], Packs[4], Packs[5], Packs[6] },
         stages_levels = { 3, 3, 4, 5 },
         stages_costs = { 1500, 1500, 1500, 2000 },
         stages_cost_multipliers = { 1, 1, 1, 1.5 },
@@ -141,7 +171,7 @@ Recipes = {
     ["processing-unit"] = {
         name = "Processing unit productivity",
         stages = 4,
-        stages_packs = { packs[3], packs[4], packs[5], packs[6] },
+        stages_packs = { Packs[3], Packs[4], Packs[5], Packs[6] },
         stages_levels = { 3, 3, 4, 5 },
         stages_costs = { 1500, 1500, 1500, 2000 },
         stages_cost_multipliers = { 1, 1, 1, 1.5 },
@@ -151,7 +181,7 @@ Recipes = {
     ["advanced-oil-processing"] = {
         name = "Advanced oil processing productivity",
         stages = 4,
-        stages_packs = { packs[3], packs[4], packs[5], packs[6] },
+        stages_packs = { Packs[3], Packs[4], Packs[5], Packs[6] },
         stages_levels = { 3, 3, 4, 5 },
         stages_costs = { 1500, 1500, 1500, 2000 },
         stages_cost_multipliers = { 1, 1, 1, 1.5 },
@@ -161,7 +191,7 @@ Recipes = {
     ["electric-engine-unit"] = {
         name = "Electric engine unit productivity",
         stages = 4,
-        stages_packs = { packs[3], packs[4], packs[5], packs[6] },
+        stages_packs = { Packs[3], Packs[4], Packs[5], Packs[6] },
         stages_levels = { 3, 3, 4, 5 },
         stages_costs = { 1500, 1500, 1500, 2000 },
         stages_cost_multipliers = { 1, 1, 1, 1.5 },
@@ -171,7 +201,7 @@ Recipes = {
     ["flying-robot-frame"] = {
         name = "Flying robot frame productivity",
         stages = 4,
-        stages_packs = { packs[3], packs[4], packs[5], packs[6] },
+        stages_packs = { Packs[3], Packs[4], Packs[5], Packs[6] },
         stages_levels = { 3, 3, 4, 5 },
         stages_costs = { 1500, 1500, 1500, 2000 },
         stages_cost_multipliers = { 1, 1, 1, 1.5 },
@@ -181,7 +211,7 @@ Recipes = {
     ["low-density-structure"] = {
         name = "Low density structure productivity",
         stages = 2,
-        stages_packs = { packs[5], packs[6] },
+        stages_packs = { Packs[5], Packs[6] },
         stages_levels = { 4, 5 },
         stages_costs = { 1500, 2000 },
         stages_cost_multipliers = { 1, 1.5 },
@@ -191,7 +221,7 @@ Recipes = {
     ["rocket-fuel"] = {
         name = "Rocket fuel productivity",
         stages = 2,
-        stages_packs = { packs[5], packs[6] },
+        stages_packs = { Packs[5], Packs[6] },
         stages_levels = { 4, 5 },
         stages_costs = { 1500, 2000 },
         stages_cost_multipliers = { 1, 1.5 },
@@ -201,7 +231,7 @@ Recipes = {
     ["uranium-processing"] = {
         name = "Uranium processing productivity",
         stages = 3,
-        stages_packs = { packs[4], packs[5], packs[6] },
+        stages_packs = { Packs[4], Packs[5], Packs[6] },
         stages_levels = { 3, 4, 5 },
         stages_costs = { 1500, 1500, 2000 },
         stages_cost_multipliers = { 4, 4, 8 },
@@ -211,7 +241,7 @@ Recipes = {
     ["coal-liquefaction"] = {
         name = "Coal liquefaction productivity",
         stages = 3,
-        stages_packs = { packs[4], packs[5], packs[6] },
+        stages_packs = { Packs[4], Packs[5], Packs[6] },
         stages_levels = { 3, 4, 5 },
         stages_costs = { 1500, 1500, 2000 },
         stages_cost_multipliers = { 1, 1, 1.5 },
@@ -221,7 +251,7 @@ Recipes = {
     ["lubricant"] = {
         name = "Lubricant productivity",
         stages = 3,
-        stages_packs = { packs[4], packs[5], packs[6] },
+        stages_packs = { Packs[4], Packs[5], Packs[6] },
         stages_levels = { 3, 4, 5 },
         stages_costs = { 1500, 1500, 2000 },
         stages_cost_multipliers = { 1, 1, 1.5 },
@@ -231,7 +261,7 @@ Recipes = {
     ["automation-science-pack"] = {
         name = "Automation science pack productivity",
         stages = 6,
-        stages_packs = packs,
+        stages_packs = Packs,
         stages_levels = { 6, 6, 6, 9, 14 },
         stages_costs = { 2000, 2000, 2000, 2000, 2000, 2400 },
         stages_cost_multipliers = { 1, 1, 1, 1, 1, 1.5 },
@@ -241,7 +271,7 @@ Recipes = {
     ["logistic-science-pack"] = {
         name = "Logistic science pack productivity",
         stages = 5,
-        stages_packs = { packs[2], packs[3], packs[4], packs[5], packs[6] },
+        stages_packs = { Packs[2], Packs[3], Packs[4], Packs[5], Packs[6] },
         stages_levels = { 6, 6, 9, 14 },
         stages_costs = { 2000, 2000, 2000, 2000, 2400 },
         stages_cost_multipliers = { 1, 1, 1, 1, 1.5 },
@@ -251,7 +281,7 @@ Recipes = {
     ["chemical-science-pack"] = {
         name = "Chemical science pack productivity",
         stages = 4,
-        stages_packs = { packs[3], packs[4], packs[5], packs[6] },
+        stages_packs = { Packs[3], Packs[4], Packs[5], Packs[6] },
         stages_levels = { 6, 9, 14 },
         stages_costs = { 2000, 2000, 2000, 2400 },
         stages_cost_multipliers = { 1, 1, 1, 1.5 },
@@ -261,7 +291,7 @@ Recipes = {
     ["military-science-pack"] = {
         name = "Military science pack productivity",
         stages = 4,
-        stages_packs = { packs[3], packs[4], packs[5], packs[6] },
+        stages_packs = { Packs[3], Packs[4], Packs[5], Packs[6] },
         stages_levels = { 6, 9, 14 },
         stages_costs = { 2000, 2000, 2000, 2400 },
         stages_cost_multipliers = { 1, 1, 1, 1.5 },
@@ -271,7 +301,7 @@ Recipes = {
     ["production-science-pack"] = {
         name = "Production science pack productivity",
         stages = 3,
-        stages_packs = { packs[4], packs[5], packs[6] },
+        stages_packs = { Packs[4], Packs[5], Packs[6] },
         stages_levels = { 9, 14 },
         stages_costs = { 2000, 2000, 2400 },
         stages_cost_multipliers = { 1, 1, 1.5 },
@@ -281,7 +311,7 @@ Recipes = {
     ["utility-science-pack"] = {
         name = "Utility science pack productivity",
         stages = 2,
-        stages_packs = { packs[5], packs[6] },
+        stages_packs = { Packs[5], Packs[6] },
         stages_levels = { 14 },
         stages_costs = { 2000, 2400 },
         stages_cost_multipliers = { 1, 1.5 },
@@ -291,35 +321,13 @@ Recipes = {
 }
 
 
-function CE_Add_Recipe(data, name, ignore_warning, no_log)
-    if no_log == nil then
-        no_log = false
-    end
-    if data.name == nil or data.max == nil or data.research == nil or data.research.level == nil or
-        data.crafting == nil or name == nil then
-        log("Missing elements in the table.")
+function CE_Add_Recipe(data, name)
+    if data.name and data.stages and data.stages_packs and data.stages_levels and data.stages_costs and data.stages_cost_multipliers and data.stages_productivities and data.stages_times then
+    else
+        log("Missing values")
         return
     end
-
-    local item = {
-        name = data.name,
-        max = data.max,
-        old_method = data.old_method,
-        crafting = {
-            efficiency = data.crafting.efficiency,
-        },
-        research = {
-            level = data.research.level,
-        }
-    }
-    if data.icon then
-        item.icon = data.icon
-    end
-    if data.fluid then
-        item.fluid = data.fluid
-    end
-    --Recipes[name] = item
-    if not no_log then
-        log("Added " .. name .. " to the table.")
+    for x = 1, data.stages do
+        Add_research(name, data, x)
     end
 end
