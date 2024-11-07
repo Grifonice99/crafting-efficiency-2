@@ -305,12 +305,10 @@ function CE_Add_Recipe(data, name, ignore_warning, no_log)
         return
     end
 
-    
-    
-
     local item = {
         name = data.name,
         max = data.max,
+        old_method = data.old_method,
         crafting = {
             efficiency = data.crafting.efficiency,
         },
@@ -323,16 +321,6 @@ function CE_Add_Recipe(data, name, ignore_warning, no_log)
     end
     if data.fluid then
         item.fluid=data.fluid
-    end
-    if data.crafting.efficiency then
-        item.crafting.efficiency=data.crafting.efficiency
-        if data.crafting.efficiency % 1 ~= 0 and not ignore_warning then
-            log("warning, it is recommended to use an efficiency divisible by 10, current efficiency = " .. tostring(data.crafting.efficiency) )
-        end
-    else
-        log("warning, using 10% in efficiency for the recipe".. data.name ..", it's raccomandate to add the args with 10% of efficiency" )
-        item.crafting.efficiency=10
-
     end
     Recipes[name] = item
     if not no_log then

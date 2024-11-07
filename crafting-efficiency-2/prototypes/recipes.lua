@@ -239,7 +239,7 @@ local function add_recipe(recipe, name, count)
     data:extend({ recipe })
 end
 
-local function add_research(name, count)
+local function add_research(name, count, old_method)
     local level = Recipes[name].research.level
     local count2 = count * 1
     local cost_multiplier = 1
@@ -277,13 +277,28 @@ local function add_research(name, count)
         icon_mipmaps = CE_recipes[name].base.icon_mipmaps or 4,
         upgrade = false,
         localised_name = { "technology-name.technology-efficiency", Recipes[name].name, " (" .. count .. ")" },
-        effects = {
+    }
+
+
+    if old_method then
+        tech.effects = {
             {
                 type = "unlock-recipe",
                 recipe = "ce-" .. name .. "-" .. count,
             },
-        },
-    }
+        }
+    else 
+        tech.effects = {
+            {
+                change = Recipes[name].crafting.efficiency/100,
+                recipe = name,
+                type = "change-recipe-productivity"
+            },
+        }
+    end
+
+
+
     local prerequisites = {}
     if count > 1 then
         table.insert(prerequisites, "ce-" .. name .. "-" .. count - 1)
@@ -322,8 +337,7 @@ local function add_research(name, count)
     local cond = false
     local name_tech = ""
     if count == 1 then
-        for a, b in pairs(CE_research) do
-            
+        for a, b in pairs(CE_research) do            
             for d, c in pairs(b[1].effects) do
                 if c.type == "unlock-recipe" then
                     if c.recipe == name and not b[1].hidden then
@@ -354,8 +368,10 @@ end
 function Add_items()
     for i, v in pairs(Recipes) do
         for x = 1, v.max do
-            add_recipe(v, i, x)
-            add_research(i, x)
+            add_research(i, x, v.old_method)
+            if v.old_method then
+                add_recipe(v, i, x)
+            end
         end
     end
 end
@@ -394,7 +410,6 @@ for name, recipe in pairs(data.raw.recipe) do
                 name = recipe.name,
             },
         }
-        print(recipe.allow_productivity)
         if recipe.result or recipe.normal.result then
             CE_recipes[name].base.result = { recipe.result or recipe.normal.result }
         else

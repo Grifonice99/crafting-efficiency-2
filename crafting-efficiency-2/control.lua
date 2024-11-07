@@ -79,8 +79,10 @@ local function reset_forces()
 		local base = b.name:gsub("(.*)%-.*$", "%1")
 		for level = b.level - 1, 1, -1 do
 			game.forces.player.technologies[base .. "-" .. tostring(level)].researched = true
-			game.forces.player.technologies[base .. "-" .. tostring(level)].force.recipes[base .. "-" .. tostring(level)].enabled = false
-			game.forces.player.recipes[base .. "-" .. tostring(level)].enabled = false
+			if game.forces.player.recipes[base .. "-" .. tostring(level)] then
+			    game.forces.player.technologies[base .. "-" .. tostring(level)].force.recipes[base .. "-" .. tostring(level)].enabled = false
+			    game.forces.player.recipes[base .. "-" .. tostring(level)].enabled = false
+			end
 		end
 	end
 end
