@@ -3,6 +3,8 @@ Version: 0.2.0
 Date: 02.11.2024
   Major Features:
     - Vanilla efficiency support
+  Minor Features:
+    - Renamed all recipe from "efficiency" to "productivity"
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.23
 Date: 02.11.2024

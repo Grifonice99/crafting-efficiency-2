@@ -1,10 +1,9 @@
 require("settings-value")
-require("prototypes.tools")
 
 local solid_fuel = { "solid-fuel-from-light-oil", "solid-fuel-from-petroleum-gas", "solid-fuel-from-heavy-oil" }
 for _, name in pairs(solid_fuel) do
     local data = {
-        name = "Solid fuel efficiency",
+        name = "Solid fuel productivity",
         max = 13,
         crafting = {
             efficiency = 10,
@@ -18,7 +17,7 @@ for _, name in pairs(solid_fuel) do
 end
 if mods["aai-industry"] then
     local data = {
-        name = "Electronic circuit (stone) efficiency",
+        name = "Electronic circuit (stone) productivity",
         max = 16,
         icon = "__base__/graphics/icons/electronic-circuit.png",
         crafting = {

@@ -1,0 +1,14 @@
+[recipe-id]{ (Ex: "copper-cable)
+    name = recipe locale name (Ex: "Copper Cable productivity")
+    productivity = percetage (Ex: 10 for 10%)
+    max = integer (Default to nil, use this to limit the maxinum number of research) --not implemented yet
+
+
+    stages = stages from 1 to 7 (How many steps of research with differenet science pack) 
+    stages_packs = {{{"automation-science-pack", 1}}, {{"automation-science-pack", 1}, {"logistics-science-pack", 1}}} (The list of required Sciece pack for every stage and their count)
+    stages_levels = {2, 2} (The number of research for level, )
+    stages_costs = {10, 20} (The tech countfor each stage)
+    stages_cost_multipliers = {1.5, 2} (The tech cost multiplerfor the levels of the stages)
+    stages_productivities = {10, 15} (The productivity for every stage, not allowed with the key "productivity" declared )    
+    stages_times = {30, 30} (Time to consume 1 set of science pack for each stage)
+}
