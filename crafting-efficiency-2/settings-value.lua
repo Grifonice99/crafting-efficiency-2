@@ -10,6 +10,7 @@ Packs = {
 Recipes = {
     ["copper-cable"] = {
         name = "Copper cable productivity",
+        recipe_icon = true,
         stages = 6,
         stages_packs = Packs,
         stages_levels = { 3, 3, 3, 4, 5 },
@@ -130,6 +131,7 @@ Recipes = {
     },
     ["solid-fuel-from-petroleum-gas"] = {
         name = "Solid fuel efficiency",
+        recipe_icon = true,
         stages = 4,
         stages_packs = { Packs[3], Packs[4], Packs[5], Packs[6] },
         stages_levels = { 3, 3, 4, 5 },
@@ -140,6 +142,7 @@ Recipes = {
     },
     ["solid-fuel-from-light-oil"] = {
         name = "Solid fuel efficiency",
+        recipe_icon = true,
         stages = 4,
         stages_packs = { Packs[3], Packs[4], Packs[5], Packs[6] },
         stages_levels = { 3, 3, 4, 5 },
@@ -150,6 +153,7 @@ Recipes = {
     },
     ["solid-fuel-from-heavy-oil"] = {
         name = "Solid fuel efficiency",
+        recipe_icon = true,
         stages = 4,
         stages_packs = { Packs[3], Packs[4], Packs[5], Packs[6] },
         stages_levels = { 3, 3, 4, 5 },

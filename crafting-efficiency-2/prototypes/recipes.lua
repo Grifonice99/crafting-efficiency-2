@@ -49,9 +49,11 @@ function Add_research(name, stage, stage_level)
             end
         end
     end
-    if Icons[name] and Icons[name].icons then
+
+    
+    if Icons[name] and stage.recipe_icon == nil and Icons[name].icons then
         tech.icons = Icons[name].icons
-    elseif Icons[name] and Icons[name].icon then
+    elseif Icons[name] and stage.recipe_icon == nil and Icons[name].icon then
         tech.icon = Icons[name].icon
         tech.icon_size = Icons[name].icon_size
     elseif stage.icon then
