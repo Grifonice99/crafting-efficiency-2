@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.2.2
+Date: 03.04.2025
+  Features:
+    - Added support for multiple recipes per research
+  Changes:
+    - Merged all solid fuel research into one
+---------------------------------------------------------------------------------------------------
 Version: 0.2.1
 Date: 08.11.2024
   Bugfixes:

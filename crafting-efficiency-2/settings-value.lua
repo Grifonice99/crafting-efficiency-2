@@ -129,31 +129,9 @@ Recipes = {
         stages_productivities = { 10, 10, 10, 10, 10 },
         stages_times = { 45, 45, 45, 45, 45 }
     },
-    ["solid-fuel-from-petroleum-gas"] = {
+    ["solid-fuel"] = {
         name = "Solid fuel efficiency",
-        recipe_icon = true,
-        stages = 4,
-        stages_packs = { Packs[3], Packs[4], Packs[5], Packs[6] },
-        stages_levels = { 3, 3, 4, 5 },
-        stages_costs = { 1500, 1500, 1500, 2000 },
-        stages_cost_multipliers = { 1, 1, 1, 1.5 },
-        stages_productivities = { 10, 10, 10, 10 },
-        stages_times = { 45, 45, 45, 45 }
-    },
-    ["solid-fuel-from-light-oil"] = {
-        name = "Solid fuel efficiency",
-        recipe_icon = true,
-        stages = 4,
-        stages_packs = { Packs[3], Packs[4], Packs[5], Packs[6] },
-        stages_levels = { 3, 3, 4, 5 },
-        stages_costs = { 1500, 1500, 1500, 2000 },
-        stages_cost_multipliers = { 1, 1, 1, 1.5 },
-        stages_productivities = { 10, 10, 10, 10 },
-        stages_times = { 45, 45, 45, 45 }
-    },
-    ["solid-fuel-from-heavy-oil"] = {
-        name = "Solid fuel efficiency",
-        recipe_icon = true,
+        recipes = {"solid-fuel-from-petroleum-gas", "solid-fuel-from-light-oil", "solid-fuel-from-heavy-oil"},
         stages = 4,
         stages_packs = { Packs[3], Packs[4], Packs[5], Packs[6] },
         stages_levels = { 3, 3, 4, 5 },

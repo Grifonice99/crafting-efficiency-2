@@ -1,4 +1,4 @@
-function Add_research(name, stage, stage_level)
+function Add_research(name, stage, stage_level, recipe_list)
     local packs = stage.stages_packs[stage_level]
     local max_level = 0
     local tech = {
@@ -6,13 +6,23 @@ function Add_research(name, stage, stage_level)
         upgrade = false,
         localised_name = { "technology-name.technology-productivity", stage.name},
         effects = {
-            {
-                change = stage.stages_productivities[stage_level] / 100,
-                recipe = name,
-                type = "change-recipe-productivity"
-            },
         },
     }
+    if recipe_list ~= nil then
+        for a, b in pairs(recipe_list) do
+            tech.effects[a]= {
+                change = stage.stages_productivities[stage_level] / 100,
+                recipe = b,
+                type = "change-recipe-productivity"
+            }
+        end
+    else
+        tech.effects={{
+            change = stage.stages_productivities[stage_level] / 100,
+            recipe = name,
+            type = "change-recipe-productivity"
+        }}
+    end
     for x = 1 , stage_level-1 do
         if type(stage.stages_levels[x]) == "number" then 
             max_level = max_level + stage.stages_levels[x]
@@ -103,7 +113,7 @@ end
 function Add_items()
     for i, v in pairs(Recipes) do
         for x = 1, v.stages do
-            Add_research(i, v, x)
+            Add_research(i, v, x, v.recipes)
         end
     end
 end
