@@ -1,4 +1,10 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.2.3
+Date: 05.04.2025
+  Bugfixes:
+    - Fixed API support for multiple recipes in research
+    - Fixed loading error with "Pyanodons"
+---------------------------------------------------------------------------------------------------
 Version: 0.2.2
 Date: 03.04.2025
   Features:
