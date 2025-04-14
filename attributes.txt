@@ -4,7 +4,7 @@
     max = integer (Default to nil, use this to limit the maxinum number of research) --not implemented yet
     recipe_icon = Boolean (set to true to force using the recipe icon, optional)
     fluid = Boolean (set to true to define that the result type are fluids, optional)
-    icons = {} (use custom icon, see https://lua-api.factorio.com/latest/types/IconData.html for more information)
+     
 
     stages = stages from 1 to 7 (How many steps of research with differenet science pack) 
     stages_packs = {{{"automation-science-pack", 1}}, {{"automation-science-pack", 1}, {"logistics-science-pack", 1}}} (The list of required Sciece pack for every stage and their count)
@@ -30,3 +30,6 @@ data = {
     }
 
 CE_Add_Recipe(data, name)
+
+
+NOTE: To use custom Icons define icon and icon_size (see https://lua-api.factorio.com/latest/types/IconData.html for more information)

@@ -78,7 +78,6 @@ function Add_research(name, stage, stage_level)
     end
 
 
-
     local cond = false
     local name_tech = ""
     if stage_level == 1 then
@@ -97,6 +96,7 @@ function Add_research(name, stage, stage_level)
 
     if cond and name_tech ~= "" and stage_level == 1 then
         table.insert(prerequisites, name_tech)
+        table.insert(prerequisites, stage.prerequisites)
     end
     local unit = {}
     unit.count_formula = tostring(stage.stages_costs[stage_level]) ..
@@ -106,13 +106,12 @@ function Add_research(name, stage, stage_level)
     tech.unit = unit
     tech.prerequisites = prerequisites
 
-
     data:extend({ tech })
 end
 
 function Add_items()
     for i, v in pairs(Recipes) do
-        if not v.never_unlock then
+        if not v.never_unlock and v.name then
             for x = 1, v.stages do
                 Add_research(i, v, x)
             end
@@ -143,10 +142,16 @@ for name, research in pairs(data.raw.technology) do
         for a, b in pairs(research.effects) do
             if b.type == "unlock-recipe" then
                 if local_recipes[b.recipe] then
+                    
                     local recipe_name = local_recipes[b.recipe]
                     Recipes[recipe_name].never_unlock = false
                     CE_research[name] = { research }
                     Icons[recipe_name] = research
+
+                    if settings.startup["ce-bypass-vanilla-limit"].value then
+                        data.raw.recipe[b.recipe].maximum_productivity = 4294967296
+                    end
+                    
                     if not research.icon and not research.icons then
                         table.insert(Icons[name], data.raw.recipe.icon)
                         table.insert(Icons[name], data.raw.recipe.icon_size)
@@ -158,8 +163,14 @@ for name, research in pairs(data.raw.technology) do
         end
     end
 end
+
+
+
 for i, v in pairs(Recipes) do
     if data.raw.recipe[i] and data.raw.recipe[i].enabled == nil then
+        if settings.startup["ce-bypass-vanilla-limit"].value then
+            data.raw.recipe[i].maximum_productivity = 4294967296
+        end
         Recipes[i].never_unlock = false
     end
 end

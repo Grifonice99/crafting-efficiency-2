@@ -131,7 +131,12 @@ Recipes = {
     },
     ["solid-fuel"] = {
         name = "Solid fuel efficiency",
-        recipes = {"solid-fuel-from-petroleum-gas", "solid-fuel-from-light-oil", "solid-fuel-from-heavy-oil"},
+        recipes = { "solid-fuel-from-petroleum-gas",
+            "solid-fuel-from-light-oil",
+            "solid-fuel-from-heavy-oil"
+        },
+        recipe_icon = true,
+        prerequisites = {"advanced-oil-processing", "oil-processing"},
         stages = 4,
         stages_packs = { Packs[3], Packs[4], Packs[5], Packs[6] },
         stages_levels = { 3, 3, 4, 5 },

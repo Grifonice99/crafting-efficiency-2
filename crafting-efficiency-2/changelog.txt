@@ -1,16 +1,27 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.2.4
+Date: 14.04.2025
+  Features:
+    - Added option to disable productivity limit (default off)
+    - Added support for "Bob's Mods" recipes 
+    - Added some "Space-age" only productivities 
+  Bugfixes:
+    - Fixed technology prerequisites when they have multiple productivity effect
+  Changes:
+    - Removed requirements for "pypostprocessing" and "space-exploration-postprocess" 
+---------------------------------------------------------------------------------------------------
 Version: 0.2.3
 Date: 05.04.2025
   Bugfixes:
-    - Fixed API support for multiple recipes in research
+    - Fixed API support for multiple recipes in technology
     - Fixed loading error with "Pyanodons"
 ---------------------------------------------------------------------------------------------------
 Version: 0.2.2
 Date: 03.04.2025
   Features:
-    - Added support for multiple recipes per research
+    - Added support for multiple recipes per technology
   Changes:
-    - Merged all solid fuel research into one
+    - Merged all solid fuel technology into one
 ---------------------------------------------------------------------------------------------------
 Version: 0.2.1
 Date: 08.11.2024
@@ -42,7 +53,7 @@ Date: 01.11.2024
 Version: 0.1.21
 Date: 30.10.2024
   Bugfixes:
-    - Fixed unable to research "Copper cable efficiency" with "PY" mods
+    - Fixed unable to technology "Copper cable efficiency" with "PY" mods
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.20
 Date: 27.10.2024
@@ -87,7 +98,7 @@ Date: 15.09.2024
     - Fixed crash at startup.
     - Fixed missing technology (Reactor Control Unit)
   Changes:
-    - Changed research level of Low Density Structure and Rocket Fuel from 3 to 5
+    - Changed technology level of Low Density Structure and Rocket Fuel from 3 to 5
     - Removed Satellite efficiency
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.12
@@ -207,7 +218,7 @@ Date: 03.09.2022
   Features:
     - Add setting to turn on/off for replacing vanilla recipe
   Bugfixes:
-    - Fixed technology prerequisites that not include base research
+    - Fixed technology prerequisites that not include base technology
     - Fixed the bug that when a mod is updated all the old recipes appear
 ---------------------------------------------------------------------------------------------------
 Version: 0.0.11
@@ -229,8 +240,8 @@ Date: 29.08.2022
 Version: 0.0.9
 Date: 28.08.2022
   Bugfixes:
-    - Fixed the cost of research after level 15
-    - Fixed the prerequisites of research
+    - Fixed the cost of technology after level 15
+    - Fixed the prerequisites of technology
 ---------------------------------------------------------------------------------------------------
 Version: 0.0.8
 Date: 27.08.2022
