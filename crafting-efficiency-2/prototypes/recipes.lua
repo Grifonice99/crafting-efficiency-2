@@ -61,14 +61,14 @@ function Add_research(name, stage, stage_level)
     end
 
 
-    if Icons[name] and stage.recipe_icon == nil and Icons[name].icons then
+    if stage.icon then
+        tech.icon = stage.icon
+        tech.icon_size = stage.icon_size
+    elseif Icons[name] and stage.recipe_icon == nil and Icons[name].icons then
         tech.icons = Icons[name].icons
     elseif Icons[name] and stage.recipe_icon == nil and Icons[name].icon then
         tech.icon = Icons[name].icon
         tech.icon_size = Icons[name].icon_size
-    elseif stage.icon then
-        tech.icon = stage.icon
-        tech.icon_size = stage.icon_size
     elseif stage.icons then
         tech.icons = stage.icons
     elseif stage.fluid then
@@ -121,17 +121,16 @@ function Add_items()
     end
 end
 
-
 local local_recipes = {}
 CE_research = {}
 Icons = {}
 
 for a, b in pairs(Recipes) do
     if not b.recipes then
-        local_recipes[a]=a
-    else 
-        for c,d in pairs(b.recipes) do
-            local_recipes[d]=a
+        local_recipes[a] = a
+    else
+        for c, d in pairs(b.recipes) do
+            local_recipes[d] = a
         end
     end
     Recipes[a].never_unlock = true
@@ -142,7 +141,6 @@ for name, research in pairs(data.raw.technology) do
         for a, b in pairs(research.effects) do
             if b.type == "unlock-recipe" then
                 if local_recipes[b.recipe] then
-                    
                     local recipe_name = local_recipes[b.recipe]
                     Recipes[recipe_name].never_unlock = false
                     CE_research[name] = { research }
@@ -151,14 +149,13 @@ for name, research in pairs(data.raw.technology) do
                     if settings.startup["ce-bypass-vanilla-limit"].value then
                         data.raw.recipe[b.recipe].maximum_productivity = 4294967296
                     end
-                    
+
                     if not research.icon and not research.icons then
                         table.insert(Icons[name], data.raw.recipe.icon)
                         table.insert(Icons[name], data.raw.recipe.icon_size)
                         table.insert(Icons[name], data.raw.recipe.icons)
                     end
                 end
-
             end
         end
     end
