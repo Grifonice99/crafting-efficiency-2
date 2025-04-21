@@ -304,8 +304,29 @@ Recipes = {
         stages_cost_multipliers = { 1, 1.5 },
         stages_productivities = { 10, 10 },
         stages_times = { 90, 90 }
+    },
+    ["space-science-pack"] = {
+        name = "Space science pack productivity",
+        stages = 2,
+        stages_packs = { Packs[6], Packs[6] },
+        stages_levels = { 14 },
+        stages_costs = { 2000, 2400 },
+        stages_cost_multipliers = { 1, 1.5 },
+        stages_productivities = { 10, 10 },
+        stages_times = { 90, 90 }
     }
 }
+
+
+function CE_Insert_recipe(name, recipe, multi) 
+    if Recipes[name].recipes == nil then
+        Recipes[name].single_recipe = not multi
+        Recipes[name].recipes = {name, recipe}
+    else
+        table.insert(Recipes[name].recipes, recipe)
+    end
+    Recipes[name].recipe_icon = true
+end
 
 
 function CE_Add_Recipe(data, name)

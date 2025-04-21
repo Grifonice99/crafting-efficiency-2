@@ -64,9 +64,9 @@ function Add_research(name, stage, stage_level)
     if stage.icon then
         tech.icon = stage.icon
         tech.icon_size = stage.icon_size
-    elseif Icons[name] and stage.recipe_icon == nil and Icons[name].icons then
+    elseif Icons[name] and (stage.recipe_icon == nil or stage.single_recipe) and Icons[name].icons then
         tech.icons = Icons[name].icons
-    elseif Icons[name] and stage.recipe_icon == nil and Icons[name].icon then
+    elseif Icons[name] and (stage.recipe_icon == nil or stage.single_recipe) and Icons[name].icon then
         tech.icon = Icons[name].icon
         tech.icon_size = Icons[name].icon_size
     elseif stage.icons then
@@ -129,13 +129,13 @@ for a, b in pairs(Recipes) do
     if not b.recipes then
         local_recipes[a] = a
     else
+
         for c, d in pairs(b.recipes) do
             local_recipes[d] = a
         end
     end
     Recipes[a].never_unlock = true
 end
-
 for name, research in pairs(data.raw.technology) do
     if research.effects then
         for a, b in pairs(research.effects) do
@@ -144,16 +144,19 @@ for name, research in pairs(data.raw.technology) do
                     local recipe_name = local_recipes[b.recipe]
                     Recipes[recipe_name].never_unlock = false
                     CE_research[name] = { research }
-                    Icons[recipe_name] = research
+
+                    if Recipes[recipe_name].single_recipe and recipe_name == b.recipe or Recipes[recipe_name].recipes == nil then 
+                        Icons[recipe_name] = research
+                    end
 
                     if settings.startup["ce-bypass-vanilla-limit"].value then
                         data.raw.recipe[b.recipe].maximum_productivity = 4294967296
                     end
 
                     if not research.icon and not research.icons then
-                        table.insert(Icons[name], data.raw.recipe.icon)
-                        table.insert(Icons[name], data.raw.recipe.icon_size)
-                        table.insert(Icons[name], data.raw.recipe.icons)
+                        table.insert(Icons[recipe_name], data.raw.recipe[recipe_name].icon)
+                        table.insert(Icons[recipe_name], data.raw.recipe[recipe_name].icon_size)
+                        table.insert(Icons[recipe_name], data.raw.recipe[recipe_name].icons)
                     end
                 end
             end
