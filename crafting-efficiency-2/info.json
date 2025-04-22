@@ -9,8 +9,8 @@
   "dependencies": [
     "base >= 2.0.0",
     "?space-age >= 2.0.0",
-    "?vanilla-galore-continued",
-    "?space-age-galore",
+    "?vanilla_galore_continued",
+    "?space_age_galore",
     "?bobplates"
   ]
 }

@@ -116,7 +116,7 @@ function Add_items()
                 Add_research(i, v, x)
             end
         else
-            print("ignoring recipe: " .. i .. " because it's never unlocked")
+            log("ignoring recipe: " .. i .. " because it's never unlocked")
         end
     end
 end
