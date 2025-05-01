@@ -16,6 +16,6 @@ And so i started to work on a new mod from scratch based on the same concept but
 It's still not perfect and i will continue to work on it and any type of suggestion it's appreciated.
 
 ---
-If you want to support me you can do it by buying me a coffee.
+If you want to support me, you can do it by buying me a coffee.
 
 [![](https://img.shields.io/badge/Support-A%20coffee%20it's%20apprecieated%20%20-0074b4?logo=kofi&logoColor=ffff1f&style=for-the-badge)](https://ko-fi.com/Grifonice99) 
