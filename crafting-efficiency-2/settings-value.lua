@@ -99,9 +99,17 @@ Recipes = {
         stages_productivities = { 10, 10, 10, 10, 10 },
         stages_times = { 45, 45, 45, 45, 45 }
     },
-    ["concrete"] = {
+    ["concretes"] = {
         name = "Concrete productivity",
         stages = 5,
+        recipes = {
+            "concrete",
+            "hazard-concrete",
+            "refined-concrete",
+            "refined-hazard-concrete",
+        },
+        icon = "__base__/graphics/technology/concrete.png",
+        icon_size = 256,
         stages_packs = { Packs[2], Packs[3], Packs[4], Packs[5], Packs[6] },
         stages_levels = { 3, 3, 4, 5 },
         stages_costs = { 1500, 1500, 1500, 1500, 2000 },

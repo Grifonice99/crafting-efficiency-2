@@ -75,6 +75,7 @@ if mods["space-age"] then
     CE_Insert_recipe("rocket-fuel", "rocket-fuel-from-jelly")
     CE_Insert_recipe("sulfur", "biosulfur")
     CE_Insert_recipe("low-density-structure", "casting-low-density-structure")
+    CE_Insert_recipe("concretes", "concrete-from-molten-iron")
 
 
     for a, b in pairs(Space_age_recipes) do
