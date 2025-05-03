@@ -10,12 +10,9 @@ if mods["ev-refining"] then
 	}
 	
 	EV_Refining_Recipes = {
-		["gravel"] = {
+		["stone-to-gravel"] = {
 			name = "Gravel productivity",
-			recipes = { "stone-to-gravel"
-			},
 			icon = mod_name.."/graphics/icons/gravel-1.png",
-			--prerequisites = {"base-ore-processing"},
 			stages = 5,
 			stages_packs = { Packs[2], Packs[3], Packs[4], Packs[5], Packs[6] },
 			stages_levels = { 3, 3, 4, 5 },
@@ -26,9 +23,6 @@ if mods["ev-refining"] then
 		},
 		["coal-dust"] = {
 			name = "Coal dust productivity",
-			recipes = { "coal-dust"
-			},
-			--prerequisites = {"base-ore-processing"},
 			icon = mod_name.."/graphics/icons/coal-dust.png",
 			stages = 5,
 			stages_packs = { Packs[2], Packs[3], Packs[4], Packs[5], Packs[6] },
@@ -45,7 +39,6 @@ if mods["ev-refining"] then
 				"coal-chunk-enrichment"
 			},
 			icon = mod_name.."/graphics/icons/enriched-coal-1.png",
-			--prerequisites = {"base-ore-processing"},
 			stages = 5,
 			stages_packs = { Packs[2], Packs[3], Packs[4], Packs[5], Packs[6] },
 			stages_levels = { 3, 3, 4, 5 },
@@ -54,11 +47,8 @@ if mods["ev-refining"] then
 			stages_productivities = { 15, 15, 15, 15, 15 },
 			stages_times = { 45, 45, 45, 45, 45 }
 		},
-		["steel-dust"] = {
+		["advanced-steel-processing"] = {
 			name = "Steel dust productivity",
-			recipes = { "advanced-steel-processing"
-			},
-			--prerequisites = {"advanced-material-processing"},
 			icon = mod_name.."/graphics/icons/steel-dust.png",
 			stages = 5,
 			stages_packs = { Packs[2], Packs[3], Packs[4], Packs[5], Packs[6] },
@@ -74,7 +64,6 @@ if mods["ev-refining"] then
 			"iron-ore-crushing",
 			"iron-clump-processing"
 			},
-			--prerequisites = {"advanced-material-processing"},
 			icon = mod_name.."/graphics/icons/iron-dust.png",
 			stages = 5,
 			stages_packs = { Packs[2], Packs[3], Packs[4], Packs[5], Packs[6] },
@@ -90,7 +79,6 @@ if mods["ev-refining"] then
 			"copper-ore-crushing",
 			"copper-clump-processing"
 			},
-			--prerequisites = {"advanced-material-processing"},
 			icon = mod_name.."/graphics/icons/copper-dust.png",
 			stages = 5,
 			stages_packs = { Packs[2], Packs[3], Packs[4], Packs[5], Packs[6] },
@@ -105,7 +93,6 @@ if mods["ev-refining"] then
 			recipes = { "iron-ore-enriching",
 			"iron-chunk-processing"
 			},
-			--prerequisites = {"advanced-ore-processing"},
 			icon = mod_name.."/graphics/icons/iron-clump-1.png",
 			stages = 3,
 			stages_packs = { Packs[6], Packs[6], Packs[6] },
@@ -120,7 +107,6 @@ if mods["ev-refining"] then
 			recipes = { "copper-ore-enriching",
 			"copper-chunk-processing"
 			},
-			--prerequisites = {"advanced-ore-processing"},
 			icon = mod_name.."/graphics/icons/copper-clump-1.png",
 			stages = 3,
 			stages_packs = { Packs[6], Packs[6], Packs[6] },
@@ -130,11 +116,8 @@ if mods["ev-refining"] then
 			stages_productivities = { 15, 15, 15 },
 			stages_times = { 45, 45, 45 }
 		},
-		["iron-chunk"] = {
+		["iron-ore-purifying"] = {
 			name = "Iron chunk productivity",
-			recipes = { "iron-ore-purifying"
-			},
-			--prerequisites = {"advanced-ore-processing"},
 			icon = mod_name.."/graphics/icons/iron-chunk-1.png",
 			stages = 3,
 			stages_packs = { Packs[6], Packs[6], Packs[6] },
@@ -144,11 +127,8 @@ if mods["ev-refining"] then
 			stages_productivities = { 15, 15, 15 },
 			stages_times = { 45, 45, 45 }
 		},
-		["copper-chunk"] = {
+		["copper-ore-purifying"] = {
 			name = "Copper chunk productivity",
-			recipes = { "copper-ore-purifying"
-			},
-			--prerequisites = {"elite-ore-processing"},
 			icon = mod_name.."/graphics/icons/copper-chunk-1.png",
 			stages = 3,
 			stages_packs = { Packs[6], Packs[6], Packs[6] },
@@ -163,7 +143,6 @@ if mods["ev-refining"] then
 			recipes = { "coal-clump",
 				"advanced-coal-enriching"
 			},
-			--prerequisites = {"advanced-ore-processing"},
 			icon = mod_name.."/graphics/icons/coal-clump-2.png",
 			stages = 3,
 			stages_packs = { Packs[6], Packs[6], Packs[6] },
@@ -175,9 +154,6 @@ if mods["ev-refining"] then
 		},
 		["coal-chunk"] = {
 			name = "Coal chunk productivity",
-			recipes = { "coal-chunk"
-			},
-			--prerequisites = {"elite-ore-processing"},
 			icon = mod_name.."/graphics/icons/coal-chunk-1.png",
 			stages = 3,
 			stages_packs = { Packs[6], Packs[6], Packs[6] },
@@ -187,11 +163,8 @@ if mods["ev-refining"] then
 			stages_productivities = { 15, 15, 15 },
 			stages_times = { 45, 45, 45 }
 		},
-		["fine-sand"] = {
+		["gravel-to-sand"] = {
 			name = "Fine sand productivity",
-			recipes = { "gravel-to-sand"
-			},
-			--prerequisites = {"advanced-ore-processing"},
 			icon = mod_name.."/graphics/icons/sand-1.png",
 			stages = 3,
 			stages_packs = { Packs[6], Packs[6], Packs[6] },
@@ -208,7 +181,7 @@ if mods["ev-refining"] then
     CE_Insert_recipe("plastic-bar", "plastics-from-enriched-coal")
     CE_Insert_recipe("rocket-fuel", "rocket-fuel-from-coal-chunk")
     CE_Insert_recipe("grenade", "grenades-from-enriched-coal")
-    CE_Insert_recipe("concrete", "concrete-finishing")
+    CE_Insert_recipe("concretes", "concrete-finishing")
     CE_Insert_recipe("stone-brick", "gravel-to-brick")
     CE_Insert_recipe("stone-brick", "sand-to-brick")
 	

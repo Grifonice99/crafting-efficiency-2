@@ -345,8 +345,6 @@ Recipes = {
     },
     ["grenade"] = {
         name = "Grenade productivity",
-        recipes = {"grenade"},
-        --prerequisites = {"military-2"},
         stages = 5,
         stages_packs = { Packs[2], Packs[3], Packs[4], Packs[5], Packs[6] },
         stages_levels = { 3, 3, 3, 4, 5 },
@@ -357,8 +355,6 @@ Recipes = {
     },
     ["firearm-magazine"] = {
         name = "Magazine productivity",
-        recipes = {"firearm-magazine"},
-        --prerequisites = {"military"},
         stages = 6,
         stages_packs = Packs,
         stages_levels = { 3, 3, 3, 3, 4, 5 },
@@ -369,9 +365,7 @@ Recipes = {
     },
     ["piercing-rounds-magazine"] = {
         name = "Piercing magazine productivity",
-        recipes = {"piercing-rounds-magazine"},
         stages = 5,
-        --prerequisites = {"military-2"},
         stages_packs = { Packs[2], Packs[3], Packs[4], Packs[5], Packs[6] },
         stages_levels = { 3, 3, 3, 4, 5 },
         stages_costs = { 1500, 1500, 1500, 1500, 2000 },
@@ -381,8 +375,6 @@ Recipes = {
     },
     ["uranium-rounds-magazine"] = {
         name = "Uranium magazine productivity",
-        recipes = {"uranium-rounds-magazine"},
-        --prerequisites = {"uranium-ammo"},
         stages = 2,
         stages_packs = { Packs[5], Packs[6] },
         stages_levels = { 10,15 },
