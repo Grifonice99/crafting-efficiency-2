@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.2.8
+Date: 03.05.2025
+  Features:
+    - Added (Concrete, Hazard concrete, Refined concrete, Refined hazard concrete, Concrete from molten iron[space-age only]) productivity
+---------------------------------------------------------------------------------------------------
 Version: 0.2.7
 Date: 01.05.2025
   Changes:
