@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.2.9
+Date: 03.05.2025
+  Changes:
+    - Added support for "Extended Vanilla Refining" recipes 
+    - Added support for "Extended Vanilla Machines" recipes
+    - Add Grenade Recipes
+    - Add Firearm Tier 1,2,3 Recipes
+---------------------------------------------------------------------------------------------------
 Version: 0.2.8
 Date: 03.05.2025
   Features:

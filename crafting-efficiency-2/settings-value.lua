@@ -39,6 +39,16 @@ Recipes = {
         stages_productivities = { 20, 20, 20, 20, 20, 20 },
         stages_times = { 45, 45, 45, 45, 45, 45 }
     },
+    ["stone-brick"] = {
+        name = "Stone brick productivity",
+        stages = 6,
+        stages_packs = Packs,
+        stages_levels = { 3, 3, 3, 4, 5 },
+        stages_costs = { 1000, 1000, 1000, 1000, 1000, 1200 },
+        stages_cost_multipliers = { 1, 1, 1, 1, 1, 1.5 },
+        stages_productivities = { 20, 20, 20, 20, 20, 20 },
+        stages_times = { 45, 45, 45, 45, 45, 45 }
+    },
     ["electronic-circuit"] = {
         name = "Electronic circuit productivity",
         stages = 6,
@@ -332,6 +342,46 @@ Recipes = {
         stages_cost_multipliers = { 1, 1.5 },
         stages_productivities = { 10, 10 },
         stages_times = { 90, 90 }
+    },
+    ["grenade"] = {
+        name = "Grenade productivity",
+        stages = 5,
+        stages_packs = { Packs[2], Packs[3], Packs[4], Packs[5], Packs[6] },
+        stages_levels = { 3, 3, 3, 4, 5 },
+        stages_costs = { 1500, 1500, 1500, 1500, 2000 },
+        stages_cost_multipliers = { 1, 1, 1, 1, 1.5 },
+        stages_productivities = { 10, 10, 10, 10, 10 },
+        stages_times = { 45, 45, 45, 45, 45 }
+    },
+    ["firearm-magazine"] = {
+        name = "Magazine productivity",
+        stages = 6,
+        stages_packs = Packs,
+        stages_levels = { 3, 3, 3, 3, 4, 5 },
+        stages_costs = { 1000, 1000, 1000, 1000, 1000, 1200 },
+        stages_cost_multipliers = { 1, 1, 1, 1, 1, 1.5 },
+        stages_productivities = { 10, 10, 10, 10, 10, 10 },
+        stages_times = { 45, 45, 45, 45, 45, 45 }
+    },
+    ["piercing-rounds-magazine"] = {
+        name = "Piercing magazine productivity",
+        stages = 5,
+        stages_packs = { Packs[2], Packs[3], Packs[4], Packs[5], Packs[6] },
+        stages_levels = { 3, 3, 3, 4, 5 },
+        stages_costs = { 1500, 1500, 1500, 1500, 2000 },
+        stages_cost_multipliers = { 1, 1, 1, 1, 1.5 },
+        stages_productivities = { 10, 10, 10, 10, 10 },
+        stages_times = { 45, 45, 45, 45, 45 }
+    },
+    ["uranium-rounds-magazine"] = {
+        name = "Uranium magazine productivity",
+        stages = 2,
+        stages_packs = { Packs[5], Packs[6] },
+        stages_levels = { 10,15 },
+        stages_costs = { 1000, 1200 },
+        stages_cost_multipliers = { 1, 1.5 },
+        stages_productivities = { 10, 10 },
+        stages_times = { 45, 45 }
     }
 }
 
