@@ -1,14 +1,5 @@
 local mod_name = "__ev-assets__"
 if mods["ev-refining"] then
-	Packs = {
-		{ { "automation-science-pack", 1 } },
-		{ { "automation-science-pack", 1 }, { "logistic-science-pack", 1 } },
-		{ { "automation-science-pack", 1 }, { "logistic-science-pack", 1 }, { "chemical-science-pack", 1 } },
-		{ { "automation-science-pack", 1 }, { "logistic-science-pack", 1 }, { "chemical-science-pack", 1 }, { "production-science-pack", 1 } },
-		{ { "automation-science-pack", 1 }, { "logistic-science-pack", 1 }, { "chemical-science-pack", 1 }, { "production-science-pack", 1 }, { "utility-science-pack", 1 } },
-		{ { "automation-science-pack", 1 }, { "logistic-science-pack", 1 }, { "chemical-science-pack", 1 }, { "production-science-pack", 1 }, { "utility-science-pack", 1 }, { "space-science-pack", 1 } },
-	}
-	
 	EV_Refining_Recipes = {
 		["stone-to-gravel"] = {
 			name = "Gravel productivity",
