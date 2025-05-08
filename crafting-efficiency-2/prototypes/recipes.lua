@@ -80,7 +80,7 @@ function Add_research(name, stage, stage_level)
 
     local cond = false
     local name_tech = ""
-    if stage_level == 1 then
+    if stage_level == 1 and not stage.ignore_auto_prerequisite then
         for a, b in pairs(CE_research) do
             for d, c in pairs(b[1].effects) do
                 if c.type == "unlock-recipe" then
