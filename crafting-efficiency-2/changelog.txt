@@ -1,6 +1,13 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.2.10
+Date: 15.05.2025
+  Bugfixes:
+    - Fixed "stone-brick" productivity
+  Features:
+    - Added "Nutrients" recipe productivity
+---------------------------------------------------------------------------------------------------
 Version: 0.2.9
-Date: 03.05.2025
+Date: 08.05.2025
   Features:
     - Added support for "Extended Vanilla Refining, Extended Vanilla Machines" recipes 
     - Added "Iron stick, Grenade, Firearm Tier 1-2-3" recipes productivity

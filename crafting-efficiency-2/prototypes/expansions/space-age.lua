@@ -13,6 +13,26 @@ if mods["space-age"] then
 
 
     Space_age_recipes = {
+        ["Nutrients"] = {
+            name = "Nutrients productivity",
+            stages = 4,
+            stages_packs = { Space_Packs[1], Space_Packs[7], Space_Packs[8], Space_Packs[9] },
+            recipes = {
+            "nutrients-from-spoilage",
+            "nutrients-from-biter-egg",
+            "nutrients-from-fish",
+            "nutrients-from-bioflux",
+            "nutrients-from-yumako-mash"
+            },
+            icon = "__space-age__/graphics/icons/nutrients.png",
+            recipe_icon = true,
+            prerequisites = {"agriculture"},
+            stages_levels = { 6, 9, 14 },
+            stages_costs = {  2000, 2000, 2000, 2400 },
+            stages_cost_multipliers = {  1, 1, 1, 1.5 },
+            stages_productivities = { 10, 10, 10, 10 },
+            stages_times = { 90, 90, 90, 90 }
+        },
         ["agricultural-science-pack"] = {
             name = "Agricultural science pack productivity",
             stages = 4,

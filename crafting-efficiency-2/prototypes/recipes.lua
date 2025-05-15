@@ -173,4 +173,7 @@ for i, v in pairs(Recipes) do
         end
         Recipes[i].never_unlock = false
     end
+    if v.prerequisites then
+        Recipes[i].never_unlock = false
+    end
 end

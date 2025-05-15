@@ -42,6 +42,7 @@ Recipes = {
     ["stone-brick"] = {
         name = "Stone brick productivity",
         stages = 6,
+        prerequisites = {},
         stages_packs = Packs,
         stages_levels = { 3, 3, 3, 4, 5 },
         stages_costs = { 1000, 1000, 1000, 1000, 1000, 1200 },
