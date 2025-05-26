@@ -5,6 +5,7 @@ if mods["bobplates"] then
         ["bob-tin-plate"] = {
             name = "Tin plate productivity",
             icon = "__bobplates__/graphics/icons/plate/tin-plate.png",
+            icon_size = 32,
             stages = 6,
             stages_packs = packs_basic_plates,
             stages_levels = { 3, 3, 3, 4, 5 },
@@ -16,6 +17,7 @@ if mods["bobplates"] then
         ["bob-silver-plate"] = {
             name = "Silver plate productivity",
             icon = "__bobplates__/graphics/icons/plate/silver-plate.png",
+            icon_size = 32,
             stages = 6,
             stages_packs = packs_basic_plates,
             stages_levels = { 3, 3, 3, 4, 5 },
@@ -27,6 +29,7 @@ if mods["bobplates"] then
         ["bob-lead-plates"] = {
             name = "Lead plate productivity",
             icon = "__bobplates__/graphics/icons/plate/lead-plate.png",
+            icon_size = 32,
             prerequisites = {"bob-lead-processing"},
             recipes = {
                 "bob-lead-plate",
@@ -44,6 +47,7 @@ if mods["bobplates"] then
         ["bob-gold-plate"] = {
             name = "Gold plate productivity",
             icon = "__bobplates__/graphics/icons/plate/gold-plate.png",
+            icon_size = 32,
             stages = 6,
             stages_packs = packs_basic_plates,
             stages_levels = { 3, 3, 3, 4, 5 },
@@ -55,6 +59,7 @@ if mods["bobplates"] then
         ["bob-cobalt-plates"] = {
             name = "Cobalt plate productivity",
             icon = "__bobplates__/graphics/icons/plate/cobalt-plate.png",
+            icon_size = 32,
             recipes = {
                 "bob-cobalt-steel-alloy",
                 "bob-cobalt-plate",
@@ -90,6 +95,7 @@ if mods["bobplates"] then
         ["bob-silicon-plate"] = {
             name = "Silicon plate productivity",
             icon = "__bobplates__/graphics/icons/plate/silicon-plate.png",
+            icon_size = 32,
             stages = 6,
             stages_packs = packs_basic_plates,
             stages_levels = { 3, 3, 3, 4, 5 },
@@ -101,6 +107,7 @@ if mods["bobplates"] then
         ["bob-nickel-plate"] = {
             name = "Nickel plate productivity",
             icon = "__bobplates__/graphics/icons/plate/nickel-plate.png",
+            icon_size = 32,
             stages = 6,
             stages_packs = Packs,
             stages_levels = { 3, 3, 3, 4, 5 },
@@ -112,6 +119,7 @@ if mods["bobplates"] then
         ["bob-aluminium-plate"] = {
             name = "Aluminium plate productivity",
             icon = "__bobplates__/graphics/icons/plate/aluminium-plate.png",
+            icon_size = 32,
             stages = 6,
             stages_packs = packs_basic_plates,
             stages_levels = { 3, 3, 3, 4, 5 },
@@ -124,6 +132,7 @@ if mods["bobplates"] then
         ["bob-titanium-plate"] = {
             name = "Titanium plate productivity",
             icon = "__bobplates__/graphics/icons/plate/titanium-plate.png",
+            icon_size = 32,
             stages = 3,
             stages_packs = packs_medium_plates,
             stages_levels = { 6, 7, 8 },
@@ -136,6 +145,7 @@ if mods["bobplates"] then
         ["bob-bronze-alloy"] = {
             name = "Bronze plate productivity",
             icon = "__bobplates__/graphics/icons/plate/bronze-plate.png",
+            icon_size = 32,
             stages = 6,
             stages_packs = Packs,
             stages_levels = { 3, 3, 3, 4, 5 },
@@ -147,6 +157,7 @@ if mods["bobplates"] then
         ["bob-copper-tungsten-alloys"] = {
             name = "Tungsten alloy productivity",
             icon = "__bobplates__/graphics/icons/plate/copper-tungsten-plate.png",
+            icon_size = 32,
             recipes = {
                 "bob-copper-tungsten-alloy",
                 "bob-tungsten-carbide",
@@ -164,6 +175,7 @@ if mods["bobplates"] then
         ["bob-invar-alloy"] = {
             name = "Invar plate productivity",
             icon = "__bobplates__/graphics/icons/plate/invar-plate.png",
+            icon_size = 32,
             stages = 6,
             stages_packs = packs_basic_plates,
             stages_levels = { 3, 3, 3, 4, 5 },
@@ -175,6 +187,7 @@ if mods["bobplates"] then
         ["bob-nitinol-alloy"] = {
             name = "Nitinol plate productivity",
             icon = "__bobplates__/graphics/icons/plate/titanium-plate.png",
+            icon_size = 32,
             stages = 3,
             stages_packs = packs_medium_plates,
             stages_levels = { 6, 7, 8 },
@@ -187,6 +200,7 @@ if mods["bobplates"] then
         {
             name = "Thorium Processing productivity",
             icon = "__bobplates__/graphics/icons/technology/thorium-processing.png",
+            icon_size = 32,
             stages = 3,
             stages_packs = packs_medium_plates,
             stages_levels = { 6, 7, 8 },
