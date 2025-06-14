@@ -171,7 +171,7 @@ Recipes = {
         stages_times = { 45, 45, 45, 45, 45 }
     },
     ["solid-fuel"] = {
-        name = "Solid fuel efficiency",
+        name = "Solid fuel productivity",
         recipes = { "solid-fuel-from-petroleum-gas",
             "solid-fuel-from-light-oil",
             "solid-fuel-from-heavy-oil"

@@ -50,11 +50,15 @@ function Add_research(name, stage, stage_level)
     else
         if stage.prerequisites then
             for a, b in pairs(stage.prerequisites) do
-                table.insert(prerequisites, b)
+                local tech = data.raw["technology"][b]
+                if tech ~= false then
+                    table.insert(prerequisites, b)
+                end
             end
         end
         for a, b in pairs(packs) do
-            if b[1] ~= name then
+            local tech = data.raw["technology"][b[1]]
+            if b[1] ~= name and tech.enabled ~= false then
                 table.insert(prerequisites, b[1])
             end
         end
@@ -82,11 +86,13 @@ function Add_research(name, stage, stage_level)
     local name_tech = ""
     if stage_level == 1 and not stage.ignore_auto_prerequisite then
         for a, b in pairs(CE_research) do
-            for d, c in pairs(b[1].effects) do
-                if c.type == "unlock-recipe" then
-                    if c.recipe == name and not b[1].hidden then
-                        name_tech = a
-                        cond = true
+            if not b.enabled == false then
+                for d, c in pairs(b[1].effects) do
+                    if c.type == "unlock-recipe" then
+                        if c.recipe == name and not b[1].hidden then
+                            name_tech = a
+                            cond = true
+                        end
                     end
                 end
             end
@@ -129,13 +135,13 @@ for a, b in pairs(Recipes) do
     if not b.recipes then
         local_recipes[a] = a
     else
-
         for c, d in pairs(b.recipes) do
             local_recipes[d] = a
         end
     end
     Recipes[a].never_unlock = true
 end
+
 for name, research in pairs(data.raw.technology) do
     if research.effects then
         for a, b in pairs(research.effects) do
@@ -145,7 +151,7 @@ for name, research in pairs(data.raw.technology) do
                     Recipes[recipe_name].never_unlock = false
                     CE_research[name] = { research }
 
-                    if Recipes[recipe_name].single_recipe and recipe_name == b.recipe or Recipes[recipe_name].recipes == nil then 
+                    if Recipes[recipe_name].single_recipe and recipe_name == b.recipe or Recipes[recipe_name].recipes == nil then
                         Icons[recipe_name] = research
                     end
 
@@ -163,8 +169,6 @@ for name, research in pairs(data.raw.technology) do
         end
     end
 end
-
-
 
 for i, v in pairs(Recipes) do
     if data.raw.recipe[i] and data.raw.recipe[i].enabled == nil then
