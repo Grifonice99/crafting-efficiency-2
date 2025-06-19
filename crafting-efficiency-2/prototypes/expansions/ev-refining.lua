@@ -166,15 +166,15 @@ if mods["ev-refining"] then
 			stages_times = { 45, 45, 45 }
 		}
 	}
-    CE_Insert_recipe("copper-plate", "copper-dust-smelting")
-    CE_Insert_recipe("iron-plate", "iron-dust-smelting")
-    CE_Insert_recipe("steel-plate", "steel-dust-smelting")
-    CE_Insert_recipe("plastic-bar", "plastics-from-enriched-coal")
-    CE_Insert_recipe("rocket-fuel", "rocket-fuel-from-coal-chunk")
-    CE_Insert_recipe("grenade", "grenades-from-enriched-coal")
-    CE_Insert_recipe("concretes", "concrete-finishing")
-    CE_Insert_recipe("stone-brick", "gravel-to-brick")
-    CE_Insert_recipe("stone-brick", "sand-to-brick")
+    CE_Insert_Recipe("copper-plate", "copper-dust-smelting")
+    CE_Insert_Recipe("iron-plate", "iron-dust-smelting")
+    CE_Insert_Recipe("steel-plate", "steel-dust-smelting")
+    CE_Insert_Recipe("plastic-bar", "plastics-from-enriched-coal")
+    CE_Insert_Recipe("rocket-fuel", "rocket-fuel-from-coal-chunk")
+    CE_Insert_Recipe("grenade", "grenades-from-enriched-coal")
+    CE_Insert_Recipe("concretes", "concrete-finishing")
+    CE_Insert_Recipe("stone-brick", "gravel-to-brick")
+    CE_Insert_Recipe("stone-brick", "sand-to-brick")
 	
     for a, b in pairs(EV_Refining_Recipes) do
         Recipes[a] = b

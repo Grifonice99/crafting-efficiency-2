@@ -399,7 +399,14 @@ Recipes = {
 }
 
 
-function CE_Insert_recipe(name, recipe, multi) 
+function CE_Insert_recipe(name, recipe, multi)
+    log("This method will be removed in future releases, please switch to CE_Insert_Recipe.")
+    CE_Insert_Recipe(name, recipe, multi)
+
+end
+
+
+function CE_Insert_Recipe(name, recipe, multi)
     if Recipes[name].recipes == nil then
         Recipes[name].single_recipe = not multi
         Recipes[name].recipes = {name, recipe}

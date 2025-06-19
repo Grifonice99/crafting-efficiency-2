@@ -84,18 +84,18 @@ if mods["space-age"] then
             stages_times = { 90, 90}
         },
     }
-    CE_Insert_recipe("solid-fuel", "solid-fuel-from-ammonia")
-    CE_Insert_recipe("steel-plate", "casting-steel")
-    CE_Insert_recipe("iron-gear-wheel", "casting-iron-gear-wheel")
-    CE_Insert_recipe("iron-plate", "casting-iron")
-    CE_Insert_recipe("copper-plate", "casting-copper")
-    CE_Insert_recipe("copper-cable", "casting-copper-cable", true)
-    CE_Insert_recipe("plastic-bar", "bioplastic")
-    CE_Insert_recipe("rocket-fuel", "ammonia-rocket-fuel")
-    CE_Insert_recipe("rocket-fuel", "rocket-fuel-from-jelly")
-    CE_Insert_recipe("sulfur", "biosulfur")
-    CE_Insert_recipe("low-density-structure", "casting-low-density-structure")
-    CE_Insert_recipe("concretes", "concrete-from-molten-iron")
+    CE_Insert_Recipe("solid-fuel", "solid-fuel-from-ammonia")
+    CE_Insert_Recipe("steel-plate", "casting-steel")
+    CE_Insert_Recipe("iron-gear-wheel", "casting-iron-gear-wheel")
+    CE_Insert_Recipe("iron-plate", "casting-iron")
+    CE_Insert_Recipe("copper-plate", "casting-copper")
+    CE_Insert_Recipe("copper-cable", "casting-copper-cable", true)
+    CE_Insert_Recipe("plastic-bar", "bioplastic")
+    CE_Insert_Recipe("rocket-fuel", "ammonia-rocket-fuel")
+    CE_Insert_Recipe("rocket-fuel", "rocket-fuel-from-jelly")
+    CE_Insert_Recipe("sulfur", "biosulfur")
+    CE_Insert_Recipe("low-density-structure", "casting-low-density-structure")
+    CE_Insert_Recipe("concretes", "concrete-from-molten-iron")
 
 
     for a, b in pairs(Space_age_recipes) do
