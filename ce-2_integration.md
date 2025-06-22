@@ -9,6 +9,7 @@ WIP
         fluid = boolean --(set to true to define that the result type are fluids, optional)     
         ignore_auto_prerequisite = boolean --(if sets to true ignore the technology that unlock the recipe, optional)
         icon = string -- optional, icon path to use custom icon in research 
+        enable_by = string -- optional, name of the setting to enable/disable the productivity 
         
         stages = number --(How many steps of research with differenet science pack) 
         stages_packs = table->table->{string, number} -- Each sub-table for each stage contains the respective science-pack with their amount 
@@ -28,6 +29,7 @@ Example:
 name = "copper-cable"
 data = {
         name = "Copper cable productivity",
+        enable_by = "ce-intermediate",
         stages = 6,
         stages_packs = Packs,
         stages_levels = { 3, 3, 3, 4, 5 },

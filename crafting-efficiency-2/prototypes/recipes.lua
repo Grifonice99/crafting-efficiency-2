@@ -84,9 +84,10 @@ function Add_research(name, stage, stage_level)
 
     local cond = false
     local name_tech = ""
+
     if stage_level == 1 and not stage.ignore_auto_prerequisite then
         for a, b in pairs(CE_research) do
-            if not b.enabled == false then
+            if b.enabled ~= false then
                 for d, c in pairs(b[1].effects) do
                     if c.type == "unlock-recipe" then
                         if c.recipe == name and not b[1].hidden then
@@ -99,8 +100,7 @@ function Add_research(name, stage, stage_level)
         end
     end
 
-
-    if cond and name_tech ~= "" and stage_level == 1 then
+    if cond and name_tech ~= "" then
         table.insert(prerequisites, name_tech)
         table.insert(prerequisites, stage.prerequisites)
     end
@@ -117,12 +117,16 @@ end
 
 function Add_items()
     for i, v in pairs(Recipes) do
-        if not v.never_unlock and v.name then
+        if not v.enable_by and not settings.startup["ce-common"].value then
+            log("Ignoring recipe: " .. i .. "  because disabled by settings")
+        elseif settings.startup[v.enable_by] and not settings.startup[v.enable_by].value then
+            log("Ignoring recipe: " .. i .. "  because disabled by settings")
+        elseif not v.never_unlock and v.name then
             for x = 1, v.stages do
                 Add_research(i, v, x)
             end
         else
-            log("ignoring recipe: " .. i .. " because it's never unlocked")
+            log("Ignoring recipe: " .. i .. "  because it's never unlocked")
         end
     end
 end
@@ -169,7 +173,6 @@ for name, research in pairs(data.raw.technology) do
         end
     end
 end
-
 for i, v in pairs(Recipes) do
     if data.raw.recipe[i] and data.raw.recipe[i].enabled == nil then
         if settings.startup["ce-bypass-vanilla-limit"].value then

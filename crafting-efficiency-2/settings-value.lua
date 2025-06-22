@@ -10,6 +10,7 @@ Packs = {
 Recipes = {
     ["copper-cable"] = {
         name = "Copper cable productivity",
+        enable_by = "ce-intermediate",
         recipe_icon = true,
         stages = 6,
         stages_packs = Packs,
@@ -21,6 +22,7 @@ Recipes = {
     },
     ["copper-plate"] = {
         name = "Copper plate productivity",
+        enable_by = "ce-intermediate",
         stages = 6,
         stages_packs = Packs,
         stages_levels = { 3, 3, 3, 4, 5 },
@@ -31,6 +33,7 @@ Recipes = {
     },
     ["iron-plate"] = {
         name = "Iron plate productivity",
+        enable_by = "ce-intermediate",
         stages = 6,
         stages_packs = Packs,
         stages_levels = { 3, 3, 3, 4, 5 },
@@ -52,6 +55,7 @@ Recipes = {
     },
     ["electronic-circuit"] = {
         name = "Electronic circuit productivity",
+        enable_by = "ce-intermediate",
         stages = 6,
         stages_packs = Packs,
         stages_levels = { 3, 3, 3, 4, 5 },
@@ -62,6 +66,7 @@ Recipes = {
     },
     ["iron-gear-wheel"] = {
         name = "Iron gear wheel productivity",
+        enable_by = "ce-intermediate",
         stages = 6,
         stages_packs = Packs,
         stages_levels = { 3, 3, 3, 4, 5 },
@@ -72,6 +77,7 @@ Recipes = {
     },
     ["iron-stick"] = {
         name = "Iron stick productivity",
+        enable_by = "ce-intermediate",
         stages = 6,
         ignore_auto_prerequisite = true,
         prerequisites = {"electric-energy-distribution-1"},
@@ -84,6 +90,7 @@ Recipes = {
     },
     ["steel-plate"] = {
         name = "Steel plate productivity",
+        enable_by = "ce-intermediate",
         stages = 6,
         stages_packs = Packs,
         stages_levels = { 3, 3, 3, 4, 5 },
@@ -94,6 +101,7 @@ Recipes = {
     },
     ["engine-unit"] = {
         name = "Engine unit productivity",
+        enable_by = "ce-intermediate",
         stages = 6,
         stages_packs = Packs,
         stages_levels = { 3, 3, 3, 4, 5 },
@@ -104,6 +112,7 @@ Recipes = {
     },
     ["battery"] = {
         name = "Battery productivity",
+        enable_by = "ce-intermediate",
         stages = 5,
         stages_packs = { Packs[2], Packs[3], Packs[4], Packs[5], Packs[6] },
         stages_levels = { 3, 3, 4, 5 },
@@ -132,6 +141,7 @@ Recipes = {
     },
     ["advanced-circuit"] = {
         name = "Advanced circuit productivity",
+        enable_by = "ce-intermediate",
         stages = 5,
         stages_packs = { Packs[2], Packs[3], Packs[4], Packs[5], Packs[6] },
         stages_levels = { 3, 3, 4, 5 },
@@ -142,6 +152,7 @@ Recipes = {
     },
     ["plastic-bar"] = {
         name = "Plastic bar productivity",
+        enable_by = "ce-intermediate",
         stages = 5,
         stages_packs = { Packs[2], Packs[3], Packs[4], Packs[5], Packs[6] },
         stages_levels = { 3, 3, 4, 5 },
@@ -152,6 +163,7 @@ Recipes = {
     },
     ["sulfur"] = {
         name = "Sulfur processing productivity",
+        enable_by = "ce-intermediate",
         stages = 5,
         stages_packs = { Packs[2], Packs[3], Packs[4], Packs[5], Packs[6] },
         stages_levels = { 3, 3, 4, 5 },
@@ -162,6 +174,7 @@ Recipes = {
     },
     ["basic-oil-processing"] = {
         name = "Basic oil processing productivity",
+        enable_by = "ce-intermediate",
         stages = 5,
         stages_packs = { Packs[2], Packs[3], Packs[4], Packs[5], Packs[6] },
         stages_levels = { 3, 3, 4, 5 },
@@ -172,6 +185,7 @@ Recipes = {
     },
     ["solid-fuel"] = {
         name = "Solid fuel productivity",
+        enable_by = "ce-intermediate",
         recipes = { "solid-fuel-from-petroleum-gas",
             "solid-fuel-from-light-oil",
             "solid-fuel-from-heavy-oil"
@@ -198,6 +212,7 @@ Recipes = {
     },
     ["processing-unit"] = {
         name = "Processing unit productivity",
+        enable_by = "ce-intermediate",
         stages = 4,
         stages_packs = { Packs[3], Packs[4], Packs[5], Packs[6] },
         stages_levels = { 3, 3, 4, 5 },
@@ -208,6 +223,7 @@ Recipes = {
     },
     ["advanced-oil-processing"] = {
         name = "Advanced oil processing productivity",
+        enable_by = "ce-intermediate",
         stages = 4,
         stages_packs = { Packs[3], Packs[4], Packs[5], Packs[6] },
         stages_levels = { 3, 3, 4, 5 },
@@ -218,6 +234,7 @@ Recipes = {
     },
     ["electric-engine-unit"] = {
         name = "Electric engine unit productivity",
+        enable_by = "ce-intermediate",
         stages = 4,
         stages_packs = { Packs[3], Packs[4], Packs[5], Packs[6] },
         stages_levels = { 3, 3, 4, 5 },
@@ -228,6 +245,7 @@ Recipes = {
     },
     ["flying-robot-frame"] = {
         name = "Flying robot frame productivity",
+        enable_by = "ce-intermediate",
         stages = 4,
         stages_packs = { Packs[3], Packs[4], Packs[5], Packs[6] },
         stages_levels = { 3, 3, 4, 5 },
@@ -238,6 +256,7 @@ Recipes = {
     },
     ["low-density-structure"] = {
         name = "Low density structure productivity",
+        enable_by = "ce-intermediate",
         stages = 2,
         stages_packs = { Packs[5], Packs[6] },
         stages_levels = { 4, 5 },
@@ -248,6 +267,7 @@ Recipes = {
     },
     ["rocket-fuel"] = {
         name = "Rocket fuel productivity",
+        enable_by = "ce-intermediate",
         stages = 2,
         stages_packs = { Packs[5], Packs[6] },
         stages_levels = { 4, 5 },
@@ -258,6 +278,7 @@ Recipes = {
     },
     ["uranium-processing"] = {
         name = "Uranium processing productivity",
+        enable_by = "ce-intermediate",
         stages = 3,
         stages_packs = { Packs[4], Packs[5], Packs[6] },
         stages_levels = { 3, 4, 5 },
@@ -268,6 +289,7 @@ Recipes = {
     },
     ["coal-liquefaction"] = {
         name = "Coal liquefaction productivity",
+        enable_by = "ce-intermediate",
         stages = 3,
         stages_packs = { Packs[4], Packs[5], Packs[6] },
         stages_levels = { 3, 4, 5 },
@@ -278,6 +300,7 @@ Recipes = {
     },
     ["lubricant"] = {
         name = "Lubricant productivity",
+        enable_by = "ce-intermediate",
         stages = 3,
         stages_packs = { Packs[4], Packs[5], Packs[6] },
         stages_levels = { 3, 4, 5 },
@@ -288,6 +311,7 @@ Recipes = {
     },
     ["automation-science-pack"] = {
         name = "Automation science pack productivity",
+        enable_by = "ce-science_pack",
         stages = 6,
         stages_packs = Packs,
         stages_levels = { 6, 6, 6, 9, 14 },
@@ -298,6 +322,7 @@ Recipes = {
     },
     ["logistic-science-pack"] = {
         name = "Logistic science pack productivity",
+        enable_by = "ce-science_pack",
         stages = 5,
         stages_packs = { Packs[2], Packs[3], Packs[4], Packs[5], Packs[6] },
         stages_levels = { 6, 6, 9, 14 },
@@ -308,6 +333,7 @@ Recipes = {
     },
     ["chemical-science-pack"] = {
         name = "Chemical science pack productivity",
+        enable_by = "ce-science_pack",
         stages = 4,
         stages_packs = { Packs[3], Packs[4], Packs[5], Packs[6] },
         stages_levels = { 6, 9, 14 },
@@ -318,6 +344,7 @@ Recipes = {
     },
     ["military-science-pack"] = {
         name = "Military science pack productivity",
+        enable_by = "ce-science_pack",
         stages = 4,
         stages_packs = { Packs[3], Packs[4], Packs[5], Packs[6] },
         stages_levels = { 6, 9, 14 },
@@ -328,6 +355,7 @@ Recipes = {
     },
     ["production-science-pack"] = {
         name = "Production science pack productivity",
+        enable_by = "ce-science_pack",
         stages = 3,
         stages_packs = { Packs[4], Packs[5], Packs[6] },
         stages_levels = { 9, 14 },
@@ -338,6 +366,7 @@ Recipes = {
     },
     ["utility-science-pack"] = {
         name = "Utility science pack productivity",
+        enable_by = "ce-science_pack",
         stages = 2,
         stages_packs = { Packs[5], Packs[6] },
         stages_levels = { 14 },
@@ -348,6 +377,7 @@ Recipes = {
     },
     ["space-science-pack"] = {
         name = "Space science pack productivity",
+        enable_by = "ce-science_pack",
         stages = 2,
         stages_packs = { Packs[6], Packs[6] },
         stages_levels = { 14 },
@@ -358,6 +388,8 @@ Recipes = {
     },
     ["grenade"] = {
         name = "Grenade productivity",
+        enable_by = "ce-military",
+        recipe_icon = true,
         stages = 5,
         stages_packs = { Packs[2], Packs[3], Packs[4], Packs[5], Packs[6] },
         stages_levels = { 3, 3, 3, 4, 5 },
@@ -368,6 +400,7 @@ Recipes = {
     },
     ["firearm-magazine"] = {
         name = "Magazine productivity",
+        enable_by = "ce-military",
         stages = 6,
         stages_packs = Packs,
         stages_levels = { 3, 3, 3, 3, 4, 5 },
@@ -378,6 +411,8 @@ Recipes = {
     },
     ["piercing-rounds-magazine"] = {
         name = "Piercing magazine productivity",
+        enable_by = "ce-military",
+        recipe_icon = true,
         stages = 5,
         stages_packs = { Packs[2], Packs[3], Packs[4], Packs[5], Packs[6] },
         stages_levels = { 3, 3, 3, 4, 5 },
@@ -388,6 +423,7 @@ Recipes = {
     },
     ["uranium-rounds-magazine"] = {
         name = "Uranium magazine productivity",
+        enable_by = "ce-military",
         stages = 2,
         stages_packs = { Packs[5], Packs[6] },
         stages_levels = { 10,15 },

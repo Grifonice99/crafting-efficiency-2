@@ -55,4 +55,7 @@ end
 
 
 ce_new_setting_boolean("ce-bypass-vanilla-limit", "0", false, "startup")
---ce_new_setting_boolean("ce-enable-productivity-module", "1", false, "startup")
+ce_new_setting_boolean("ce-common", "1", true, "startup")
+ce_new_setting_boolean("ce-science_pack", "2", true, "startup")
+ce_new_setting_boolean("ce-intermediate", "3", true, "startup")
+ce_new_setting_boolean("ce-military", "3", true, "startup")

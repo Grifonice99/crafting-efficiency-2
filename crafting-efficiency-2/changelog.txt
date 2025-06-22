@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.2.13
+Date: 21.06.2025
+  Features:
+    - Added ability to choose what type of recipe can have the productivity
+  Bugfixes:
+    - Fixed technologies prerequisites that did not include the base technology of the recipe
+---------------------------------------------------------------------------------------------------
 Version: 0.2.12
 Date: 14.06.2025
   Changes:
