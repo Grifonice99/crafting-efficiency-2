@@ -1,5 +1,10 @@
 ---------------------------------------------------------------------------------------------------
-Version: 0.2.13
+Version: 0.2.15
+Date: 25.06.2025
+  Changes:
+    - Partial internal rewrìte
+---------------------------------------------------------------------------------------------------
+Version: 0.2.14
 Date: 21.06.2025
   Features:
     - Added ability to choose what type of recipe can have the productivity

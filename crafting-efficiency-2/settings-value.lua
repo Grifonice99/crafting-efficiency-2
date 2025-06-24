@@ -1,3 +1,4 @@
+require("prototypes.helper")
 Packs = {
     { { "automation-science-pack", 1 } },
     { { "automation-science-pack", 1 }, { "logistic-science-pack", 1 } },
@@ -45,7 +46,6 @@ Recipes = {
     ["stone-brick"] = {
         name = "Stone brick productivity",
         stages = 6,
-        prerequisites = {},
         stages_packs = Packs,
         stages_levels = { 3, 3, 3, 4, 5 },
         stages_costs = { 1000, 1000, 1000, 1000, 1000, 1200 },
@@ -77,9 +77,9 @@ Recipes = {
     },
     ["iron-stick"] = {
         name = "Iron stick productivity",
+        recipe_icon = true,
         enable_by = "ce-intermediate",
         stages = 6,
-        ignore_auto_prerequisite = true,
         prerequisites = {"electric-energy-distribution-1"},
         stages_packs = Packs,
         stages_levels = { 3, 3, 3, 4, 5 },
@@ -130,6 +130,7 @@ Recipes = {
             "refined-concrete",
             "refined-hazard-concrete",
         },
+        prerequisites = {"concrete"},
         icon = "__base__/graphics/technology/concrete.png",
         icon_size = 256,
         stages_packs = { Packs[2], Packs[3], Packs[4], Packs[5], Packs[6] },
@@ -434,22 +435,17 @@ Recipes = {
     }
 }
 
-
-function CE_Insert_recipe(name, recipe, multi)
-    log("This method will be removed in future releases, please switch to CE_Insert_Recipe.")
-    CE_Insert_Recipe(name, recipe, multi)
-
-end
+---@alias Recipes Recipes
 
 
-function CE_Insert_Recipe(name, recipe, multi)
+function CE_Insert_Recipe(name, recipe)
     if Recipes[name].recipes == nil then
-        Recipes[name].single_recipe = not multi
+        Recipes[name].single_recipe = true
+        Recipes[name].recipe_icon = true
         Recipes[name].recipes = {name, recipe}
     else
         table.insert(Recipes[name].recipes, recipe)
     end
-    Recipes[name].recipe_icon = true
 end
 
 

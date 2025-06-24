@@ -1,3 +1,5 @@
+require("prototypes.helper")
+
 function Add_research(name, stage, stage_level)
     local packs = stage.stages_packs[stage_level]
     local max_level = 0
@@ -48,31 +50,18 @@ function Add_research(name, stage, stage_level)
         table.insert(prerequisites, "ce-" .. name .. "-" .. max_level - stage.stages_levels[stage_level - 1] + 1)
         tech.upgrade = true
     else
-        if stage.prerequisites then
-            for a, b in pairs(stage.prerequisites) do
-                local tech = data.raw["technology"][b]
-                if tech ~= false then
-                    table.insert(prerequisites, b)
-                end
-            end
-        end
-        for a, b in pairs(packs) do
+        prerequisites = table.merge(prerequisites, stage.prerequisites) or {}
+    end
+    for a, b in pairs(packs) do
             local tech = data.raw["technology"][b[1]]
-            if b[1] ~= name and tech.enabled ~= false then
+            if tech and b[1] ~= name and tech.enabled ~= false then
                 table.insert(prerequisites, b[1])
-            end
         end
     end
-
 
     if stage.icon then
         tech.icon = stage.icon
         tech.icon_size = stage.icon_size
-    elseif Icons[name] and (stage.recipe_icon == nil or stage.single_recipe) and Icons[name].icons then
-        tech.icons = Icons[name].icons
-    elseif Icons[name] and (stage.recipe_icon == nil or stage.single_recipe) and Icons[name].icon then
-        tech.icon = Icons[name].icon
-        tech.icon_size = Icons[name].icon_size
     elseif stage.icons then
         tech.icons = stage.icons
     elseif stage.fluid then
@@ -82,28 +71,7 @@ function Add_research(name, stage, stage_level)
     end
 
 
-    local cond = false
-    local name_tech = ""
-
-    if stage_level == 1 and not stage.ignore_auto_prerequisite then
-        for a, b in pairs(CE_research) do
-            if b.enabled ~= false then
-                for d, c in pairs(b[1].effects) do
-                    if c.type == "unlock-recipe" then
-                        if c.recipe == name and not b[1].hidden then
-                            name_tech = a
-                            cond = true
-                        end
-                    end
-                end
-            end
-        end
-    end
-
-    if cond and name_tech ~= "" then
-        table.insert(prerequisites, name_tech)
-        table.insert(prerequisites, stage.prerequisites)
-    end
+    
     local unit = {}
     unit.count_formula = tostring(stage.stages_costs[stage_level]) ..
         " * " .. tostring(stage.stages_cost_multipliers[stage_level]) .. " * l"
@@ -111,7 +79,6 @@ function Add_research(name, stage, stage_level)
     unit.time = stage.stages_times[stage_level]
     tech.unit = unit
     tech.prerequisites = prerequisites
-
     data:extend({ tech })
 end
 
@@ -131,56 +98,83 @@ function Add_items()
     end
 end
 
-local local_recipes = {}
-CE_research = {}
-Icons = {}
+for name, content in pairs(Recipes) do
+    ---@type data.TechnologyPrototype|string|nil|boolean
+    local prereq_tech
+    ---@type table|nil
+    local prereq_techs
 
-for a, b in pairs(Recipes) do
-    if not b.recipes then
-        local_recipes[a] = a
-    else
-        for c, d in pairs(b.recipes) do
-            local_recipes[d] = a
+    Recipes[name].never_unlock = true
+
+    -- Checking for prerequisites
+    if not content.prerequisites and not content.ignore_auto_prerequisite or (content.recipes and content.single_recipe) then
+        -- when initial start with one recipe use that one recipe
+        local temp_name = name
+        if content.single_recipe then
+            temp_name = content.recipes[1]
         end
-    end
-    Recipes[a].never_unlock = true
-end
-
-for name, research in pairs(data.raw.technology) do
-    if research.effects then
-        for a, b in pairs(research.effects) do
-            if b.type == "unlock-recipe" then
-                if local_recipes[b.recipe] then
-                    local recipe_name = local_recipes[b.recipe]
-                    Recipes[recipe_name].never_unlock = false
-                    CE_research[name] = { research }
-
-                    if Recipes[recipe_name].single_recipe and recipe_name == b.recipe or Recipes[recipe_name].recipes == nil then
-                        Icons[recipe_name] = research
-                    end
-
-                    if settings.startup["ce-bypass-vanilla-limit"].value then
-                        data.raw.recipe[b.recipe].maximum_productivity = 4294967296
-                    end
-
-                    if not research.icon and not research.icons then
-                        table.insert(Icons[recipe_name], data.raw.recipe[recipe_name].icon)
-                        table.insert(Icons[recipe_name], data.raw.recipe[recipe_name].icon_size)
-                        table.insert(Icons[recipe_name], data.raw.recipe[recipe_name].icons)
-                    end
-                end
+        prereq_tech = Prerequisites(temp_name)
+    else
+        for index, name in pairs(content.prerequisites) do
+            tech = data.raw.technology[name]
+            if tech and tech.enabled ~= false then
+                if not prereq_techs then prereq_techs = {} end --initialize prereq_techs
+                --enabling recipes if there is at least one prerequisites enabled
+                table.insert(prereq_techs, tech.name)
             end
         end
     end
-end
-for i, v in pairs(Recipes) do
-    if data.raw.recipe[i] and data.raw.recipe[i].enabled == nil then
-        if settings.startup["ce-bypass-vanilla-limit"].value then
-            data.raw.recipe[i].maximum_productivity = 4294967296
+
+    -- if there recipe can be enabled continue
+    if prereq_tech or prereq_techs then
+        Recipes[name].never_unlock = false
+
+        --set-up prerequisites
+        if type(prereq_tech) == "table" then
+            if not Recipes[name].prerequisites then
+                Recipes[name].prerequisites = {}
+            end
+            table.insert(Recipes[name].prerequisites, prereq_tech.name)
         end
-        Recipes[i].never_unlock = false
-    end
-    if v.prerequisites then
-        Recipes[i].never_unlock = false
+
+
+        --grabbing technology icon
+        if not content.icon then
+            if prereq_techs or not (type(prereq_tech) == "table" and (prereq_tech.icon or prereq_tech.icons)) or Recipes[name].recipe_icon then
+                if data.raw.recipe[name] and (data.raw.recipe[name].icon or data.raw.recipe[name].icons) then
+                    Recipes[name].icon = data.raw.recipe[name].icon
+                    Recipes[name].icon_size = data.raw.recipe[name].icon_size
+                    if data.raw.recipe[name].icons then
+                        Recipes[name].icons = {}
+                        Recipes[name].icons = table.merge(Recipes[name].icons, data.raw.recipe[name].icons)
+                    end
+                end
+            elseif type(prereq_tech) == "table" then
+                Recipes[name].icon = prereq_tech.icon
+                Recipes[name].icon_size = prereq_tech.icon_size
+                if prereq_tech.icons then
+                    Recipes[name].icons = {}
+                    Recipes[name].icons = table.merge(Recipes[name].icons, prereq_tech.icons)
+                end
+            else
+                Recipes[name].icon = data.raw.recipe[name].icon
+                Recipes[name].icon_size = data.raw.recipe[name].icon_size
+                if data.raw.recipe[name].icons then
+                    Recipes[name].icons = {}
+                    Recipes[name].icons = table.merge(Recipes[name].icons, data.raw.recipe[name].icons)
+                end
+            end
+        end
+        
+        -- bypass vanilla productivity limit or 300%
+        if settings.startup["ce-bypass-vanilla-limit"].value then
+            if content.recipes then
+                for index, name in pairs(content.recipes) do
+                    data.raw.recipe[name].maximum_productivity = 4294967295
+                end
+            else
+                data.raw.recipe[name].maximum_productivity = 4294967295
+            end
+        end
     end
 end
