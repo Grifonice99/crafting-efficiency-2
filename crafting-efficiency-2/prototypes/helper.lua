@@ -20,7 +20,7 @@ end
 function table.merge(destination, origin)
     if destination and origin then
         for key, value in pairs(origin) do
-            destination[key] = value
+            table.insert(destination, value)
         end
     end
     return destination
