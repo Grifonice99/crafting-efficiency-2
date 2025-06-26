@@ -26,7 +26,6 @@ if mods["space-age"] then
                 "nutrients-from-yumako-mash"
             },
             icon = "__space-age__/graphics/icons/nutrients.png",
-            single_recipe = true,
             stages_levels = { 6, 9, 14 },
             stages_costs = { 2000, 2000, 2000, 2400 },
             stages_cost_multipliers = { 1, 1, 1, 1.5 },

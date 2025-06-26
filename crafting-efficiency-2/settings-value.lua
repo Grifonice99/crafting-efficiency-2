@@ -440,7 +440,6 @@ Recipes = {
 
 function CE_Insert_Recipe(name, recipe)
     if Recipes[name].recipes == nil then
-        Recipes[name].single_recipe = true
         Recipes[name].recipe_icon = true
         Recipes[name].recipes = {name, recipe}
     else

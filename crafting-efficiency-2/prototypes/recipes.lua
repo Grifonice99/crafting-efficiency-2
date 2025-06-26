@@ -107,20 +107,24 @@ for name, content in pairs(Recipes) do
     Recipes[name].never_unlock = true
 
     -- Checking for prerequisites
-    if not content.prerequisites and not content.ignore_auto_prerequisite or (content.recipes and content.single_recipe) then
+    if not content.prerequisites and not content.ignore_auto_prerequisite and content.recipes then
         -- when initial start with one recipe use that one recipe
         local temp_name = name
-        if content.single_recipe then
+
+        if content.recipes then
             temp_name = content.recipes[1]
         end
+
         prereq_tech = Prerequisites(temp_name)
     else
-        for index, name in pairs(content.prerequisites) do
-            tech = data.raw.technology[name]
-            if tech and tech.enabled ~= false then
-                if not prereq_techs then prereq_techs = {} end --initialize prereq_techs
-                --enabling recipes if there is at least one prerequisites enabled
-                table.insert(prereq_techs, tech.name)
+        if content.prerequisites then
+            for index, name in pairs(content.prerequisites) do
+                tech = data.raw.technology[name]
+                if tech and tech.enabled ~= false then
+                    if not prereq_techs then prereq_techs = {} end --initialize prereq_techs
+                    --enabling recipes if there is at least one prerequisites enabled
+                    table.insert(prereq_techs, tech.name)
+                end
             end
         end
     end

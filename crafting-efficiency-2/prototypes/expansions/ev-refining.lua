@@ -1,4 +1,5 @@
 local mod_name = "__ev-assets__"
+
 if mods["ev-refining"] then
 	EV_Refining_Recipes = {
 		["stone-to-gravel"] = {
