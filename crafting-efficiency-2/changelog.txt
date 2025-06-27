@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.2.17
+Date: 27.06.2025
+  Bugfixes:
+    - Fixed missing recipes
+  Changes:
+    - Added productivity for alternative "Iron Stick" recipe with "space-age"
+---------------------------------------------------------------------------------------------------
 Version: 0.2.16
 Date: 26.06.2025
   Bugfixes:

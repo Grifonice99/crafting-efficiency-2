@@ -87,11 +87,23 @@ if mods["space-age"] then
             stages_productivities = { 10, 10 },
             stages_times = { 90, 90 }
         },
+        ["space-science-pack"] = {
+            name = "Space science pack productivity",
+            enable_by = "ce-science_pack",
+            stages = 2,
+            stages_packs = { Packs[6], Packs[6] },
+            stages_levels = { 14 },
+            stages_costs = { 2000, 2400 },
+            stages_cost_multipliers = { 1, 1.5 },
+            stages_productivities = { 10, 10 },
+            stages_times = { 90, 90 }
+        },
     }
     CE_Insert_Recipe("solid-fuel", "solid-fuel-from-ammonia")
     CE_Insert_Recipe("steel-plate", "casting-steel")
     CE_Insert_Recipe("iron-gear-wheel", "casting-iron-gear-wheel")
     CE_Insert_Recipe("iron-plate", "casting-iron")
+    CE_Insert_Recipe("iron-stick", "casting-iron-stick")
     CE_Insert_Recipe("copper-plate", "casting-copper")
     CE_Insert_Recipe("copper-cable", "casting-copper-cable")
     CE_Insert_Recipe("plastic-bar", "bioplastic")

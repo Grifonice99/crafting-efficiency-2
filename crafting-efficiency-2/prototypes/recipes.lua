@@ -107,14 +107,16 @@ for name, content in pairs(Recipes) do
     Recipes[name].never_unlock = true
 
     -- Checking for prerequisites
-    if not content.prerequisites and not content.ignore_auto_prerequisite and content.recipes then
+    if not content.ignore_auto_prerequisite and not content.prerequisites then
         -- when initial start with one recipe use that one recipe
         local temp_name = name
 
         if content.recipes then
+            print(name)
             temp_name = content.recipes[1]
         end
-
+        print(name)
+        print(temp_name)
         prereq_tech = Prerequisites(temp_name)
     else
         if content.prerequisites then

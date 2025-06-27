@@ -376,17 +376,6 @@ Recipes = {
         stages_productivities = { 10, 10 },
         stages_times = { 90, 90 }
     },
-    ["space-science-pack"] = {
-        name = "Space science pack productivity",
-        enable_by = "ce-science_pack",
-        stages = 2,
-        stages_packs = { Packs[6], Packs[6] },
-        stages_levels = { 14 },
-        stages_costs = { 2000, 2400 },
-        stages_cost_multipliers = { 1, 1.5 },
-        stages_productivities = { 10, 10 },
-        stages_times = { 90, 90 }
-    },
     ["grenade"] = {
         name = "Grenade productivity",
         enable_by = "ce-military",
