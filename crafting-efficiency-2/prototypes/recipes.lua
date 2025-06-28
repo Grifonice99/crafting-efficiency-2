@@ -115,8 +115,7 @@ for name, content in pairs(Recipes) do
             print(name)
             temp_name = content.recipes[1]
         end
-        print(name)
-        print(temp_name)
+
         prereq_tech = Prerequisites(temp_name)
     else
         if content.prerequisites then
