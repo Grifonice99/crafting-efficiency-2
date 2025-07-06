@@ -53,9 +53,9 @@ function Add_research(name, stage, stage_level)
         prerequisites = table.merge(prerequisites, stage.prerequisites) or {}
     end
     for a, b in pairs(packs) do
-            local tech = data.raw["technology"][b[1]]
-            if tech and b[1] ~= name and tech.enabled ~= false then
-                table.insert(prerequisites, b[1])
+        local tech = data.raw["technology"][b[1]]
+        if tech and b[1] ~= name and tech.enabled ~= false then
+            table.insert(prerequisites, b[1])
         end
     end
 
@@ -71,7 +71,7 @@ function Add_research(name, stage, stage_level)
     end
 
 
-    
+
     local unit = {}
     unit.count_formula = tostring(stage.stages_costs[stage_level]) ..
         " * " .. tostring(stage.stages_cost_multipliers[stage_level]) .. " * l"
@@ -104,20 +104,25 @@ for name, content in pairs(Recipes) do
     ---@type table|nil
     local prereq_techs
 
+    ---@type string
+    local rec_name
+    if content.recipes then
+        rec_name = content.recipes[1]
+    else
+        rec_name = name
+    end
+
+    --check if the icon have the recipe-icon, if not disable it
+    content.recipe_icon = data.raw.recipe[rec_name].icon or data.raw.recipe[rec_name].icons
+
+
     Recipes[name].never_unlock = true
 
     -- Checking for prerequisites
     if not content.ignore_auto_prerequisite and not content.prerequisites then
         -- when initial start with one recipe use that one recipe
-        local temp_name = name
 
-        if content.recipes then
-            print(name)
-            temp_name = content.recipes[1]
-        end
-        print(name)
-        print(temp_name)
-        prereq_tech = Prerequisites(temp_name)
+        prereq_tech = Prerequisites(rec_name)
     else
         if content.prerequisites then
             for index, name in pairs(content.prerequisites) do
@@ -143,16 +148,15 @@ for name, content in pairs(Recipes) do
             table.insert(Recipes[name].prerequisites, prereq_tech.name)
         end
 
-
         --grabbing technology icon
         if not content.icon then
-            if prereq_techs or not (type(prereq_tech) == "table" and (prereq_tech.icon or prereq_tech.icons)) or Recipes[name].recipe_icon then
-                if data.raw.recipe[name] and (data.raw.recipe[name].icon or data.raw.recipe[name].icons) then
-                    Recipes[name].icon = data.raw.recipe[name].icon
-                    Recipes[name].icon_size = data.raw.recipe[name].icon_size
-                    if data.raw.recipe[name].icons then
+            if not (type(prereq_tech) == "table" and (prereq_tech.icon or prereq_tech.icons)) or (prereq_techs and Recipes[name].recipe_icon) then
+                if data.raw.recipe[rec_name] and (data.raw.recipe[rec_name].icon or data.raw.recipe[rec_name].icons) then
+                    Recipes[name].icon = data.raw.recipe[rec_name].icon
+                    Recipes[name].icon_size = data.raw.recipe[rec_name].icon_size
+                    if data.raw.recipe[rec_name].icons then
                         Recipes[name].icons = {}
-                        Recipes[name].icons = table.merge(Recipes[name].icons, data.raw.recipe[name].icons)
+                        Recipes[name].icons = table.merge(Recipes[name].icons, data.raw.recipe[rec_name].icons)
                     end
                 end
             elseif type(prereq_tech) == "table" then
@@ -163,23 +167,23 @@ for name, content in pairs(Recipes) do
                     Recipes[name].icons = table.merge(Recipes[name].icons, prereq_tech.icons)
                 end
             else
-                Recipes[name].icon = data.raw.recipe[name].icon
-                Recipes[name].icon_size = data.raw.recipe[name].icon_size
-                if data.raw.recipe[name].icons then
+                Recipes[name].icon = data.raw.recipe[rec_name].icon
+                Recipes[name].icon_size = data.raw.recipe[rec_name].icon_size
+                if data.raw.recipe[rec_name].icons then
                     Recipes[name].icons = {}
-                    Recipes[name].icons = table.merge(Recipes[name].icons, data.raw.recipe[name].icons)
+                    Recipes[name].icons = table.merge(Recipes[name].icons, data.raw.recipe[rec_name].icons)
                 end
             end
         end
-        
+
         -- bypass vanilla productivity limit or 300%
         if settings.startup["ce-bypass-vanilla-limit"].value then
             if content.recipes then
                 for index, name in pairs(content.recipes) do
-                    data.raw.recipe[name].maximum_productivity = 4294967295
+                    data.raw.recipe[rec_name].maximum_productivity = 4294967295
                 end
             else
-                data.raw.recipe[name].maximum_productivity = 4294967295
+                data.raw.recipe[rec_name].maximum_productivity = 4294967295
             end
         end
     end
