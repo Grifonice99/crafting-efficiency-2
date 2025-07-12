@@ -1,6 +1,6 @@
 {
   "name": "crafting-efficiency-2",
-  "version": "0.2.18",
+  "version": "0.2.19",
   "title": "Crafting Efficiency",
   "author": "Grifonice99",
   "homepage": "",
@@ -13,6 +13,7 @@
     "?space_age_galore",
     "?bobplates",
     "?ev-refining",
-    "?ev-machines"
+    "?ev-machines",
+    "?extraplanetary-production"
   ]
 }

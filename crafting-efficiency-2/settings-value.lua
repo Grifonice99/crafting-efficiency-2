@@ -428,11 +428,15 @@ Recipes = {
 
 
 function CE_Insert_Recipe(name, recipe)
-    if Recipes[name].recipes == nil then
-        Recipes[name].recipe_icon = true
-        Recipes[name].recipes = {name, recipe}
+    if data.raw.recipe[recipe] then
+        if Recipes[name].recipes == nil then
+            Recipes[name].recipe_icon = true
+            Recipes[name].recipes = {name, recipe}
+        else
+            table.insert(Recipes[name].recipes, recipe)
+        end
     else
-        table.insert(Recipes[name].recipes, recipe)
+        log(name .. " it's an invalid recipe")
     end
 end
 
