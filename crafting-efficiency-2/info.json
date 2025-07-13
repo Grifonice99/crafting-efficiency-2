@@ -14,6 +14,7 @@
     "?bobplates",
     "?ev-refining",
     "?ev-machines",
-    "?extraplanetary-production"
+    "?extraplanetary-production",
+    "?pypostprocessing"
   ]
 }
