@@ -180,7 +180,7 @@ for name, content in pairs(Recipes) do
         if settings.startup["ce-bypass-vanilla-limit"].value then
             if content.recipes then
                 for index, name in pairs(content.recipes) do
-                    data.raw.recipe[rec_name].maximum_productivity = 4294967295
+                    data.raw.recipe[name].maximum_productivity = 4294967295
                 end
             else
                 data.raw.recipe[rec_name].maximum_productivity = 4294967295
